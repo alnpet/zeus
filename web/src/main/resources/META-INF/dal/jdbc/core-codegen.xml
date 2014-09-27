@@ -1,5 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entities>
+  <entity name="activity-in-day" table="activity_in_day" alias="aid">
+    <member name="id" field="id" value-type="int" length="10" nullable="false" key="true" auto-increment="true" />
+    <member name="pet-id" field="pet_id" value-type="int" length="10" nullable="false" />
+    <member name="day" field="day" value-type="Date" nullable="false" />
+    <member name="feeling" field="feeling" value-type="int" length="10" nullable="false" />
+    <member name="health" field="health" value-type="int" length="10" nullable="false" />
+    <member name="food" field="food" value-type="int" length="10" nullable="false" />
+    <member name="play" field="play" value-type="int" length="10" nullable="false" />
+    <member name="active" field="active" value-type="int" length="10" nullable="false" />
+    <member name="reset" field="reset" value-type="int" length="10" nullable="false" />
+    <member name="food-expected" field="food_expected" value-type="int" length="10" nullable="false" />
+    <member name="sport-expected" field="sport_expected" value-type="int" length="10" nullable="false" />
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
+    <var name="key-id" value-type="int" key-member="id" />
+    <primary-key name="PRIMARY" members="id" />
+    <index name="idx_pet_day" unique="true" members="pet_id ASC, day ASC" />
+    <readsets>
+      <readset name="FULL" all="true" />
+    </readsets>
+    <updatesets>
+      <updateset name="FULL" all="true" />
+    </updatesets>
+    <query-defs>
+      <query name="find-by-PK" type="SELECT">
+        <param name="key-id" />
+        <statement><![CDATA[SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='id'/> = ${key-id}]]></statement>
+      </query>
+      <query name="insert" type="INSERT">
+        <statement><![CDATA[INSERT INTO <TABLE/>(<FIELDS/>)
+        VALUES(<VALUES/>)]]></statement>
+      </query>
+      <query name="update-by-PK" type="UPDATE">
+        <param name="key-id" />
+        <statement><![CDATA[UPDATE <TABLE/>
+        SET <FIELDS/>
+        WHERE <FIELD name='id'/> = ${key-id}]]></statement>
+      </query>
+      <query name="delete-by-PK" type="DELETE">
+        <param name="key-id" />
+        <statement><![CDATA[DELETE FROM <TABLE/>
+        WHERE <FIELD name='id'/> = ${key-id}]]></statement>
+      </query>
+    </query-defs>
+  </entity>
+  <entity name="activity-in-hour" table="activity_in_hour" alias="aih">
+    <member name="id" field="id" value-type="int" length="10" nullable="false" key="true" auto-increment="true" />
+    <member name="pet-id" field="pet_id" value-type="int" length="10" nullable="false" />
+    <member name="hour" field="hour" value-type="Date" nullable="false" />
+    <member name="feeling" field="feeling" value-type="int" length="10" nullable="false" />
+    <member name="health" field="health" value-type="int" length="10" nullable="false" />
+    <member name="food" field="food" value-type="int" length="10" nullable="false" />
+    <member name="play" field="play" value-type="int" length="10" nullable="false" />
+    <member name="active" field="active" value-type="int" length="10" nullable="false" />
+    <member name="reset" field="reset" value-type="int" length="10" nullable="false" />
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
+    <var name="key-id" value-type="int" key-member="id" />
+    <primary-key name="PRIMARY" members="id" />
+    <index name="idx_pet_hour" unique="true" members="pet_id ASC, hour ASC" />
+    <readsets>
+      <readset name="FULL" all="true" />
+    </readsets>
+    <updatesets>
+      <updateset name="FULL" all="true" />
+    </updatesets>
+    <query-defs>
+      <query name="find-by-PK" type="SELECT">
+        <param name="key-id" />
+        <statement><![CDATA[SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='id'/> = ${key-id}]]></statement>
+      </query>
+      <query name="insert" type="INSERT">
+        <statement><![CDATA[INSERT INTO <TABLE/>(<FIELDS/>)
+        VALUES(<VALUES/>)]]></statement>
+      </query>
+      <query name="update-by-PK" type="UPDATE">
+        <param name="key-id" />
+        <statement><![CDATA[UPDATE <TABLE/>
+        SET <FIELDS/>
+        WHERE <FIELD name='id'/> = ${key-id}]]></statement>
+      </query>
+      <query name="delete-by-PK" type="DELETE">
+        <param name="key-id" />
+        <statement><![CDATA[DELETE FROM <TABLE/>
+        WHERE <FIELD name='id'/> = ${key-id}]]></statement>
+      </query>
+    </query-defs>
+  </entity>
   <entity name="pet" table="pet" alias="p">
     <member name="id" field="id" value-type="int" length="10" nullable="false" key="true" auto-increment="true" />
     <member name="name" field="name" value-type="String" length="100" nullable="false" />

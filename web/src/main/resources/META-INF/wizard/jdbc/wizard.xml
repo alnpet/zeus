@@ -10,6 +10,8 @@
       </datasource>
       <group name="core" package="com.alnpet.dal.core">
          <table name="pet"/>
+         <table name="activity_in_day"/>
+         <table name="activity_in_hour"/>
       </group>
    </jdbc>
 </wizard>

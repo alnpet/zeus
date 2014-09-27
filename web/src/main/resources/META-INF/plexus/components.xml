@@ -21,6 +21,26 @@
 		</component>
 		<component>
 			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
+			<role-hint>activity-in-day</role-hint>
+			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
+			<configuration>
+				<logical-table-name>activity-in-day</logical-table-name>
+				<physical-table-name>activity_in_day</physical-table-name>
+				<data-source-name>pet</data-source-name>
+			</configuration>
+		</component>
+		<component>
+			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
+			<role-hint>activity-in-hour</role-hint>
+			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
+			<configuration>
+				<logical-table-name>activity-in-hour</logical-table-name>
+				<physical-table-name>activity_in_hour</physical-table-name>
+				<data-source-name>pet</data-source-name>
+			</configuration>
+		</component>
+		<component>
+			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
 			<role-hint>pet</role-hint>
 			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
 			<configuration>
@@ -28,6 +48,24 @@
 				<physical-table-name>pet</physical-table-name>
 				<data-source-name>pet</data-source-name>
 			</configuration>
+		</component>
+		<component>
+			<role>com.alnpet.dal.core.ActivityInDayDao</role>
+			<implementation>com.alnpet.dal.core.ActivityInDayDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.core.ActivityInHourDao</role>
+			<implementation>com.alnpet.dal.core.ActivityInHourDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
 		</component>
 		<component>
 			<role>com.alnpet.dal.core.PetDao</role>

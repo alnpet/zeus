@@ -23,4 +23,12 @@
       </query>
     </query-defs>
   </entity>
+  <entity name="activity-in-hour" table="activity_in_hour" alias="aih">
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
+  </entity>
+  <entity name="activity-in-day" table="activity_in_day" alias="aid">
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
+  </entity>
 </entities>
