@@ -8,6 +8,9 @@
          <page name="pet" title="Pet" path="pet" template="default">
             <description>Pet</description>
          </page>
+         <page name="activity" title="Activity" path="activity" template="default">
+            <description>Activity</description>
+         </page>
       </module>
    </webapp>
 </wizard>

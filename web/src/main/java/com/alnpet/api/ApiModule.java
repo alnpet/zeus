@@ -9,7 +9,9 @@ import org.unidal.web.mvc.annotation.ModulePagesMeta;
 
 com.alnpet.api.home.Handler.class,
 
-com.alnpet.api.pet.Handler.class
+com.alnpet.api.pet.Handler.class,
+
+com.alnpet.api.activity.Handler.class
 })
 public class ApiModule extends AbstractModule {
 

@@ -7,7 +7,9 @@ public enum ApiPage implements Page {
 
    HOME("home", "home", "Home", "Home", true),
 
-   PET("pet", "pet", "Pet", "Pet", true);
+   PET("pet", "pet", "Pet", "Pet", true),
+
+   ACTIVITY("activity", "activity", "Activity", "Activity", true);
 
    private String m_name;
 
