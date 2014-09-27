@@ -18,14 +18,14 @@ public class Model extends ViewModel<ApiPage, Action, Context> {
 	@ElementMeta
 	private int m_code = 200;
 
-	@EntityMeta("pet")
-	private Pet m_pet;
-
 	@ElementMeta
 	private String m_message;
 
 	@ElementMeta
 	private String m_detailMessage;
+	
+	@EntityMeta("pet")
+	private Pet m_pet;
 
 	public Model(Context ctx) {
 		super(ctx);

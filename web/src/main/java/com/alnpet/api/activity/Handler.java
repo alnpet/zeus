@@ -1,19 +1,41 @@
 package com.alnpet.api.activity;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 
-import com.alnpet.api.ApiPage;
 import org.unidal.lookup.annotation.Inject;
 import org.unidal.web.mvc.PageHandler;
 import org.unidal.web.mvc.annotation.InboundActionMeta;
 import org.unidal.web.mvc.annotation.OutboundActionMeta;
 import org.unidal.web.mvc.annotation.PayloadMeta;
 
+import com.alnpet.api.ApiPage;
+import com.alnpet.api.XmlViewer;
+import com.alnpet.dal.core.ActivityInDay;
+import com.alnpet.dal.core.ActivityInDayDao;
+import com.alnpet.dal.core.ActivityInDayEntity;
+import com.alnpet.dal.core.ActivityInHour;
+import com.alnpet.dal.core.ActivityInHourDao;
+import com.alnpet.dal.core.ActivityInHourEntity;
+import com.alnpet.model.entity.Activities;
+import com.alnpet.model.entity.Activity;
+
 public class Handler implements PageHandler<Context> {
 	@Inject
+	private ActivityInHourDao m_hourDao;
+
+	@Inject
+	private ActivityInDayDao m_dayDao;
+
+	@Inject
 	private JspViewer m_jspViewer;
+
+	@Inject
+	private XmlViewer m_xmlViewer;
 
 	@Override
 	@PayloadMeta(Payload.class)
@@ -22,16 +44,96 @@ public class Handler implements PageHandler<Context> {
 		// display only, no action here
 	}
 
+	private void handleInDay(Context ctx, Payload payload, Model model) {
+		Date startDate = payload.getStartDate();
+		Date endDate = payload.getEndDate();
+
+		try {
+			List<ActivityInDay> list = m_dayDao.findAllByDateRange(startDate, endDate, ActivityInDayEntity.READSET_FULL);
+			Activities activities = new Activities().setStartDate(startDate).setEndDate(endDate);
+
+			for (ActivityInDay item : list) {
+				Activity a = new Activity();
+
+				a.setDay(item.getDay());
+				a.setFood(item.getFood());
+				a.setPlay(item.getPlay());
+				a.setActive(item.getActive());
+				a.setReset(item.getReset());
+			}
+
+			model.setActivities(activities);
+		} catch (Throwable e) {
+			model.setCode(500);
+			model.setMessage(e.getMessage());
+			model.setExcpetion(e);
+		}
+	}
+
+	private void handleInHour(Context ctx, Payload payload, Model model) {
+		Date startDate = payload.getStartDate();
+		Date endDate = payload.getEndDate();
+
+		try {
+			List<ActivityInHour> list = m_hourDao
+			      .findAllByDateRange(startDate, endDate, ActivityInHourEntity.READSET_FULL);
+			Activities activities = new Activities().setStartDate(startDate).setEndDate(endDate);
+			Calendar cal = Calendar.getInstance();
+
+			for (ActivityInHour item : list) {
+				Activity a = new Activity();
+
+				cal.setTime(item.getHour());
+
+				a.setHour(cal.get(Calendar.HOUR_OF_DAY));
+				a.setFood(item.getFood());
+				a.setPlay(item.getPlay());
+				a.setActive(item.getActive());
+				a.setReset(item.getReset());
+			}
+
+			model.setActivities(activities);
+		} catch (Throwable e) {
+			model.setCode(500);
+			model.setMessage(e.getMessage());
+			model.setExcpetion(e);
+		}
+	}
+
 	@Override
 	@OutboundActionMeta(name = "activity")
 	public void handleOutbound(Context ctx) throws ServletException, IOException {
 		Model model = new Model(ctx);
+		Payload payload = ctx.getPayload();
+		Action action = payload.getAction();
 
 		model.setAction(Action.VIEW);
 		model.setPage(ApiPage.ACTIVITY);
 
+		if (!ctx.hasErrors()) {
+			switch (action) {
+			case VIEW:
+				String type = payload.getType();
+
+				if ("day".equals(type)) {
+					handleInHour(ctx, payload, model);
+				} else if ("week".equals(type)) {
+					handleInDay(ctx, payload, model);
+				} else if ("month".equals(type)) {
+					handleInDay(ctx, payload, model);
+				}
+
+				m_xmlViewer.view(model);
+				break;
+			}
+		} else {
+			model.setCode(400);
+			model.setMessage("Bad Request");
+			model.setErrors(ctx.getErrors());
+		}
+
 		if (!ctx.isProcessStopped()) {
-		   m_jspViewer.view(ctx, model);
+			m_jspViewer.view(ctx, model);
 		}
 	}
 }

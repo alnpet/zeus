@@ -2,9 +2,30 @@
 <model>
   <entity name="model" root="true">
     <entity-ref name="pet" />
+    <entity-ref name="activities" />
   </entity>
   <entity name="pet">
     <attribute name="id" value-type="String" />
+  </entity>
+  <entity name="activities">
+    <attribute name="start-date" value-type="Date" format="yyyy-MM-dd HH:mm:ss" />
+    <attribute name="end-date" value-type="Date" format="yyyy-MM-dd HH:mm:ss" />
+    <attribute name="feeling" value-type="int" />
+    <attribute name="health" value-type="int" />
+    <attribute name="food0" value-type="int" />
+    <attribute name="sport0" value-type="int" />
+    <entity-ref name="activity" type="list" names="activities" />
+  </entity>
+  <entity name="activity">
+    <attribute name="day" value-type="String" />
+    <attribute name="food" value-type="int" />
+    <attribute name="play" value-type="int" />
+    <attribute name="active" value-type="int" />
+    <attribute name="reset" value-type="int" />
+    <attribute name="food0" value-type="int" />
+    <attribute name="sport0" value-type="int" />
+    <attribute name="hour" value-type="int" />
+    <attribute name="comment" value-type="String" />
   </entity>
 </model>
 

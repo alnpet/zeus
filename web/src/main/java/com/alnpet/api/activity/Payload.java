@@ -164,6 +164,8 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 
 				m_startDate = helper.beginOf('M').asDate();
 				m_endDate = helper.endOf('M').asDate();
+			} else {
+				m_ctx.addError("type.invalid");
 			}
 		}
 

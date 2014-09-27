@@ -158,7 +158,34 @@
 			<implementation>com.alnpet.api.activity.Handler</implementation>
 			<requirements>
 				<requirement>
+					<role>com.alnpet.dal.core.ActivityInHourDao</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.core.ActivityInDayDao</role>
+				</requirement>
+				<requirement>
 					<role>com.alnpet.api.activity.JspViewer</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.api.XmlViewer</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.core.ActivityInHourDao</role>
+			<implementation>com.alnpet.dal.core.ActivityInHourDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.core.ActivityInDayDao</role>
+			<implementation>com.alnpet.dal.core.ActivityInDayDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
 				</requirement>
 			</requirements>
 		</component>

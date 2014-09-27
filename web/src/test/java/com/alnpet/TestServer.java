@@ -7,7 +7,6 @@ import org.junit.runners.JUnit4;
 import org.mortbay.jetty.Handler;
 import org.mortbay.jetty.webapp.WebAppContext;
 import org.mortbay.servlet.GzipFilter;
-
 import org.unidal.test.jetty.JettyServer;
 
 @RunWith(JUnit4.class)
@@ -44,9 +43,9 @@ public class TestServer extends JettyServer {
 	@Test
 	public void startWebapp() throws Exception {
 		// open the page in the default browser
-		// display("/alnpet/api/pet?op=register");
-//		display("/alnpet/api/pet?op=register&name=name&category=category&device=d101");
-		display("/alnpet/api/pet?op=update&token=fefa2021-f0f1-4215-aebe-db52118daafc&nickname=nickname&email=abc@example.com");
+		// display("/alnpet/api/pet?op=register&name=name&category=category&device=d101");
+		// display("/alnpet/api/pet?op=update&token=fefa2021-f0f1-4215-aebe-db52118daafc&nickname=nickname&email=abc@example.com");
+		display("/alnpet/api/activity/day");
 		waitForAnyKey();
 	}
 }
