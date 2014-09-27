@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities do-package="com.alnpet.dal.core" gen="true">
+  <entity name="pet" table="pet" alias="p" do-class="PetDo">
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
+    <query-defs>
+      <query name="insert" type="INSERT">
+        <statement><![CDATA[
+        INSERT INTO <TABLE/>(<FIELDS/>)
+        VALUES(<VALUES/>)
+        ON DUPLICATE KEY UPDATE 
+        	<FIELD name="token"/> = ${token},  
+        	<FIELD name="last-modified-date"/> = NOW() 
+        ]]></statement>
+      </query>
+    </query-defs>
+  </entity>
+</entities>
+
+

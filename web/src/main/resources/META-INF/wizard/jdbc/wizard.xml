@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wizard package="com.alnpet">
+   <jdbc package="com.alnpet.dal" name="pet">
+      <datasource>
+         <driver>com.mysql.jdbc.Driver</driver>
+         <url>jdbc:mysql://localhost:3306/pet</url>
+         <user>pet</user>
+         <password>~{b275f32d30717ad653b0747074fdbad2b44}</password>
+         <properties>useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true</properties>
+      </datasource>
+      <group name="core" package="com.alnpet.dal.core">
+         <table name="pet"/>
+      </group>
+   </jdbc>
+</wizard>

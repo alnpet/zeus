@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wizard package="com.alnpet">
+   <model package="com.alnpet.model" name="model">
+      <sample-model>src/test/resources/com/alnpet/model.xml</sample-model>
+   </model>
+</wizard>

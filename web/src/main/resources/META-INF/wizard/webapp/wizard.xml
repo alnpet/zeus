@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wizard package="com.alnpet">
+   <webapp package="com.alnpet" name="alnpet" module="false" webres="false" cat="true" plugin-management="true" jstl="true" layout="bootstrap">
+      <module name="api" path="api" default="true">
+         <page name="home" title="Home" default="true" path="home" template="default">
+            <description>Home</description>
+         </page>
+         <page name="pet" title="Pet" path="pet" template="default">
+            <description>Pet</description>
+         </page>
+      </module>
+   </webapp>
+</wizard>

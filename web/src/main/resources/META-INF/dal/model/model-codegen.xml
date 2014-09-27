@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+  <entity name="model" root="true">
+    <entity-ref name="pet" />
+  </entity>
+  <entity name="pet">
+    <attribute name="id" value-type="String" />
+  </entity>
+</model>
+
