@@ -45,7 +45,8 @@ public class TestServer extends JettyServer {
 	public void startWebapp() throws Exception {
 		// open the page in the default browser
 		// display("/alnpet/api/pet?op=register");
-		display("/alnpet/api/pet?op=register&name=name&category=category&device=d101");
+//		display("/alnpet/api/pet?op=register&name=name&category=category&device=d101");
+		display("/alnpet/api/pet?op=update&token=fefa2021-f0f1-4215-aebe-db52118daafc&nickname=nickname&email=abc@example.com");
 		waitForAnyKey();
 	}
 }

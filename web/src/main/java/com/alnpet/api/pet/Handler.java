@@ -15,6 +15,7 @@ import com.alnpet.api.ApiPage;
 import com.alnpet.api.XmlViewer;
 import com.alnpet.dal.core.PetDao;
 import com.alnpet.dal.core.PetDo;
+import com.alnpet.dal.core.PetEntity;
 import com.alnpet.model.entity.Pet;
 
 public class Handler implements PageHandler<Context> {
@@ -33,13 +34,23 @@ public class Handler implements PageHandler<Context> {
 	public void handleInbound(Context ctx) throws ServletException, IOException {
 		Payload payload = ctx.getPayload();
 		Action action = payload.getAction();
+		Model model = new Model(ctx);
 
 		switch (action) {
 		case REGISTER:
-			Model model = new Model(ctx);
-
 			if (!ctx.hasErrors()) {
 				handleRegister(payload, model);
+			} else {
+				model.setCode(400);
+				model.setMessage("Bad Request");
+				model.setErrors(ctx.getErrors());
+			}
+
+			m_xmlViewer.view(model);
+			break;
+		case UPDATE:
+			if (!ctx.hasErrors()) {
+				handleUpdate(payload, model);
 			} else {
 				model.setCode(400);
 				model.setMessage("Bad Request");
@@ -84,6 +95,34 @@ public class Handler implements PageHandler<Context> {
 
 		try {
 			m_dao.insert(pet);
+
+			model.setPet(new Pet(token));
+		} catch (Throwable e) {
+			model.setCode(500);
+			model.setMessage(e.getMessage());
+			model.setExcpetion(e);
+		}
+	}
+
+	private void handleUpdate(Payload payload, Model model) {
+		String token = payload.getToken();
+
+		try {
+			PetDo pet = m_dao.findByToken(token, PetEntity.READSET_FULL);
+
+			if (payload.getNickname() != null) {
+				pet.setNickname(payload.getNickname());
+			}
+
+			if (payload.getPhone() != null) {
+				pet.setPhone(payload.getPhone());
+			}
+
+			if (payload.getEmail() != null) {
+				pet.setEmail(payload.getEmail());
+			}
+
+			m_dao.updateByPK(pet, PetEntity.UPDATESET_FULL);
 
 			model.setPet(new Pet(token));
 		} catch (Throwable e) {

@@ -1,0 +1,26 @@
+<scenarios>
+	<scenario id="register">
+		<request><![CDATA[
+http://localhost:2567/alnpet/api/pet?op=register&name=name&category=category&device=d101
+		]]></request>
+		<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+		]]>
+		</response>
+	</scenario>
+	<scenario id="update">
+		<request><![CDATA[
+http://localhost:2567/alnpet/api/pet?op=update&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&nickname=nickname&email=abc@example.com
+		]]></request>
+		<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+		]]>
+		</response>
+	</scenario>
+</scenarios>

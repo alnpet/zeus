@@ -3,7 +3,9 @@ package com.alnpet.api.pet;
 public enum Action implements org.unidal.web.mvc.Action {
 	VIEW("view"),
 
-	REGISTER("register");
+	REGISTER("register"),
+	
+	UPDATE("update");
 
 	private String m_name;
 

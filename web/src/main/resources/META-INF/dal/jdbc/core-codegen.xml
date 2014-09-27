@@ -6,15 +6,18 @@
     <member name="category" field="category" value-type="String" length="100" nullable="false" />
     <member name="token" field="token" value-type="String" length="100" nullable="false" />
     <member name="device" field="device" value-type="String" length="100" nullable="false" />
-    <member name="gender" field="gender" value-type="String" length="10" />
+    <member name="gender" field="gender" value-type="String" length="20" />
     <member name="age" field="age" value-type="double" length="22" />
     <member name="weight" field="weight" value-type="double" length="22" />
+    <member name="nickname" field="nickname" value-type="String" length="100" />
+    <member name="phone" field="phone" value-type="String" length="100" />
+    <member name="email" field="email" value-type="String" length="100" />
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
     <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
     <var name="key-id" value-type="int" key-member="id" />
     <primary-key name="PRIMARY" members="id" />
     <index name="device" unique="true" members="device ASC" />
-    <index name="ix_token" members="token ASC" />
+    <index name="idx_token" members="token ASC" />
     <readsets>
       <readset name="FULL" all="true" />
     </readsets>

@@ -12,6 +12,7 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@FieldMeta("op")
 	private Action m_action;
 
+	// register
 	@FieldMeta("name")
 	private String m_name;
 
@@ -30,6 +31,19 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@FieldMeta("device")
 	private String m_device;
 
+	// update
+	@FieldMeta("token")
+	private String m_token;
+
+	@FieldMeta("nickname")
+	private String m_nickname;
+
+	@FieldMeta("phone")
+	private String m_phone;
+
+	@FieldMeta("email")
+	private String m_email;
+
 	@Override
 	public Action getAction() {
 		return m_action;
@@ -47,6 +61,10 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		return m_device;
 	}
 
+	public String getEmail() {
+		return m_email;
+	}
+
 	public String getGender() {
 		return m_gender;
 	}
@@ -55,9 +73,21 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		return m_name;
 	}
 
+	public String getNickname() {
+		return m_nickname;
+	}
+
 	@Override
 	public ApiPage getPage() {
 		return m_page;
+	}
+
+	public String getPhone() {
+		return m_phone;
+	}
+
+	public String getToken() {
+		return m_token;
 	}
 
 	public double getWeight() {
@@ -95,6 +125,12 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 
 			if (isEmpty(m_device)) {
 				ctx.addError("device.required");
+			}
+
+			break;
+		case UPDATE:
+			if (isEmpty(m_token)) {
+				ctx.addError("token.required");
 			}
 
 			break;

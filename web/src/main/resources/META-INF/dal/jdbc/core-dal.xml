@@ -13,8 +13,14 @@
         	<FIELD name="last-modified-date"/> = NOW() 
         ]]></statement>
       </query>
+      <query name="find-by-token" type="SELECT">
+        <param name="token" />
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='token'/> = ${token}
+        ]]></statement>
+      </query>
     </query-defs>
   </entity>
 </entities>
-
-
