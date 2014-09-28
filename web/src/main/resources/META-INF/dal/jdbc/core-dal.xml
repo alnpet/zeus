@@ -23,7 +23,7 @@
       </query>
     </query-defs>
   </entity>
-  <entity name="activity-in-hour" table="activity_in_hour" alias="aih">
+  <entity name="activity-in-hour" table="activity_in_hour" alias="aih" do-class="ActivityInHourDo">
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
     <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
     <var name="start-date" value-type="Date"/>
@@ -36,14 +36,14 @@
         <statement><![CDATA[
         SELECT <FIELDS/>
         FROM <TABLE/>
-        WHERE <FIELD name='pet-id'/> >= ${pet-id}
-        	AND <FIELD name='day'/> >= ${start-date}
-        	AND <FIELD name='day'/> <= ${end-date}
+        WHERE <FIELD name='pet-id'/> = ${pet-id}
+        	AND <FIELD name='hour'/> >= ${start-date}
+        	AND <FIELD name='hour'/> <= ${end-date}
         ]]></statement>
       </query>
     </query-defs>
   </entity>
-  <entity name="activity-in-day" table="activity_in_day" alias="aid">
+  <entity name="activity-in-day" table="activity_in_day" alias="aid" do-class="ActivityInDayDo">
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
     <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
     <var name="start-date" value-type="Date"/>
@@ -56,7 +56,7 @@
         <statement><![CDATA[
         SELECT <FIELDS/>
         FROM <TABLE/>
-        WHERE <FIELD name='pet-id'/> >= ${pet-id}
+        WHERE <FIELD name='pet-id'/> = ${pet-id}
         	AND <FIELD name='day'/> >= ${start-date}
         	AND <FIELD name='day'/> <= ${end-date}
         ]]></statement>

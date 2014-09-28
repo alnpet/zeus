@@ -16,10 +16,10 @@ import org.unidal.web.mvc.annotation.PayloadMeta;
 
 import com.alnpet.api.ApiPage;
 import com.alnpet.api.XmlViewer;
-import com.alnpet.dal.core.ActivityInDay;
+import com.alnpet.dal.core.ActivityInDayDo;
 import com.alnpet.dal.core.ActivityInDayDao;
 import com.alnpet.dal.core.ActivityInDayEntity;
-import com.alnpet.dal.core.ActivityInHour;
+import com.alnpet.dal.core.ActivityInHourDo;
 import com.alnpet.dal.core.ActivityInHourDao;
 import com.alnpet.dal.core.ActivityInHourEntity;
 import com.alnpet.dal.core.PetDao;
@@ -52,26 +52,6 @@ public class Handler implements PageHandler<Context> {
 		// display only, no action here
 	}
 
-	private int lookupPet(Payload payload, Model model) {
-		int petId = -1;
-
-		try {
-			PetDo pet = m_dao.findByToken(payload.getToken(), PetEntity.READSET_FULL);
-
-			petId = pet.getId();
-			model.setPet(new Pet(payload.getToken()));
-		} catch (DalNotFoundException e) {
-			model.setCode(404);
-			model.setMessage("token.invalid");
-		} catch (Throwable e) {
-			model.setCode(500);
-			model.setMessage(e.getMessage());
-			model.setExcpetion(e);
-		}
-
-		return petId;
-	}
-
 	private void handleInDay(Context ctx, Payload payload, Model model) {
 		int petId = lookupPet(payload, model);
 
@@ -80,18 +60,19 @@ public class Handler implements PageHandler<Context> {
 				Date startDate = payload.getStartDate();
 				Date endDate = payload.getEndDate();
 
-				List<ActivityInDay> list = m_dayDao.findAllByPetAndDateRange(petId, startDate, endDate,
+				List<ActivityInDayDo> list = m_dayDao.findAllByPetAndDateRange(petId, startDate, endDate,
 				      ActivityInDayEntity.READSET_FULL);
 				Activities activities = new Activities().setStartDate(startDate).setEndDate(endDate);
 
-				for (ActivityInDay item : list) {
+				for (ActivityInDayDo item : list) {
 					Activity a = new Activity();
 
 					a.setDay(item.getDay());
 					a.setFood(item.getFood());
 					a.setPlay(item.getPlay());
 					a.setActive(item.getActive());
-					a.setReset(item.getReset());
+					a.setRest(item.getRest());
+					activities.addActivity(a);
 				}
 
 				model.setActivities(activities);
@@ -110,12 +91,12 @@ public class Handler implements PageHandler<Context> {
 			try {
 				Date startDate = payload.getStartDate();
 				Date endDate = payload.getEndDate();
-				List<ActivityInHour> list = m_hourDao.findAllByPetAndDateRange(petId, startDate, endDate,
+				List<ActivityInHourDo> list = m_hourDao.findAllByPetAndDateRange(petId, startDate, endDate,
 				      ActivityInHourEntity.READSET_FULL);
 				Activities activities = new Activities().setStartDate(startDate).setEndDate(endDate);
 				Calendar cal = Calendar.getInstance();
 
-				for (ActivityInHour item : list) {
+				for (ActivityInHourDo item : list) {
 					Activity a = new Activity();
 
 					cal.setTime(item.getHour());
@@ -124,7 +105,8 @@ public class Handler implements PageHandler<Context> {
 					a.setFood(item.getFood());
 					a.setPlay(item.getPlay());
 					a.setActive(item.getActive());
-					a.setReset(item.getReset());
+					a.setRest(item.getRest());
+					activities.addActivity(a);
 				}
 
 				model.setActivities(activities);
@@ -171,5 +153,25 @@ public class Handler implements PageHandler<Context> {
 		if (!ctx.isProcessStopped()) {
 			m_jspViewer.view(ctx, model);
 		}
+	}
+
+	private int lookupPet(Payload payload, Model model) {
+		int petId = -1;
+
+		try {
+			PetDo pet = m_dao.findByToken(payload.getToken(), PetEntity.READSET_FULL);
+
+			petId = pet.getId();
+			model.setPet(new Pet(payload.getToken()));
+		} catch (DalNotFoundException e) {
+			model.setCode(404);
+			model.setMessage("token.invalid");
+		} catch (Throwable e) {
+			model.setCode(500);
+			model.setMessage(e.getMessage());
+			model.setExcpetion(e);
+		}
+
+		return petId;
 	}
 }

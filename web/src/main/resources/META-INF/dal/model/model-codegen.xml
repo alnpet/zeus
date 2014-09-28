@@ -21,7 +21,7 @@
     <attribute name="food" value-type="int" />
     <attribute name="play" value-type="int" />
     <attribute name="active" value-type="int" />
-    <attribute name="reset" value-type="int" />
+    <attribute name="rest" value-type="int" />
     <attribute name="food0" value-type="int" />
     <attribute name="sport0" value-type="int" />
     <attribute name="hour" value-type="int" />

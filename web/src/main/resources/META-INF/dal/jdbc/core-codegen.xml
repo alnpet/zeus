@@ -9,7 +9,7 @@
     <member name="food" field="food" value-type="int" length="10" nullable="false" />
     <member name="play" field="play" value-type="int" length="10" nullable="false" />
     <member name="active" field="active" value-type="int" length="10" nullable="false" />
-    <member name="reset" field="reset" value-type="int" length="10" nullable="false" />
+    <member name="rest" field="rest" value-type="int" length="10" nullable="false" />
     <member name="food-expected" field="food_expected" value-type="int" length="10" nullable="false" />
     <member name="sport-expected" field="sport_expected" value-type="int" length="10" nullable="false" />
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
@@ -56,7 +56,7 @@
     <member name="food" field="food" value-type="int" length="10" nullable="false" />
     <member name="play" field="play" value-type="int" length="10" nullable="false" />
     <member name="active" field="active" value-type="int" length="10" nullable="false" />
-    <member name="reset" field="reset" value-type="int" length="10" nullable="false" />
+    <member name="rest" field="rest" value-type="int" length="10" nullable="false" />
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
     <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
     <var name="key-id" value-type="int" key-member="id" />
