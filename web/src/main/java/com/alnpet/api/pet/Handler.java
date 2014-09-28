@@ -17,6 +17,8 @@ import com.alnpet.dal.core.PetDao;
 import com.alnpet.dal.core.PetDo;
 import com.alnpet.dal.core.PetEntity;
 import com.alnpet.model.entity.Pet;
+import com.dianping.cat.Cat;
+import com.dianping.cat.CatConstants;
 
 public class Handler implements PageHandler<Context> {
 	@Inject
@@ -39,7 +41,7 @@ public class Handler implements PageHandler<Context> {
 		switch (action) {
 		case REGISTER:
 			if (!ctx.hasErrors()) {
-				handleRegister(payload, model);
+				handleRegister(ctx, payload, model);
 			} else {
 				model.setCode(400);
 				model.setMessage("Bad Request");
@@ -50,7 +52,7 @@ public class Handler implements PageHandler<Context> {
 			break;
 		case UPDATE:
 			if (!ctx.hasErrors()) {
-				handleUpdate(payload, model);
+				handleUpdate(ctx, payload, model);
 			} else {
 				model.setCode(400);
 				model.setMessage("Bad Request");
@@ -75,7 +77,7 @@ public class Handler implements PageHandler<Context> {
 		}
 	}
 
-	private void handleRegister(Payload payload, Model model) {
+	private void handleRegister(Context ctx, Payload payload, Model model) {
 		PetDo pet = new PetDo();
 		String token = UUID.randomUUID().toString();
 
@@ -98,13 +100,16 @@ public class Handler implements PageHandler<Context> {
 
 			model.setPet(new Pet(token));
 		} catch (Throwable e) {
+			Cat.logError(e);
+			ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
+
 			model.setCode(500);
 			model.setMessage(e.getMessage());
 			model.setExcpetion(e);
 		}
 	}
 
-	private void handleUpdate(Payload payload, Model model) {
+	private void handleUpdate(Context ctx, Payload payload, Model model) {
 		String token = payload.getToken();
 
 		try {
@@ -126,6 +131,9 @@ public class Handler implements PageHandler<Context> {
 
 			model.setPet(new Pet(token));
 		} catch (Throwable e) {
+			Cat.logError(e);
+			ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
+
 			model.setCode(500);
 			model.setMessage(e.getMessage());
 			model.setExcpetion(e);

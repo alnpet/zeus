@@ -123,7 +123,10 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
                      <goal>dal-model</goal>
                   </goals>
                   <configuration>
-                     <manifest><![CDATA[${basedir}/src/main/resources/META-INF/dal/model/model-manifest.xml,]]></manifest>
+                     <manifest><![CDATA[
+                     ${basedir}/src/main/resources/META-INF/dal/model/model-manifest.xml,
+                     ${basedir}/src/main/resources/META-INF/dal/model/toc-manifest.xml,
+                     ]]></manifest>
                   </configuration>
                </execution>
                <execution>
@@ -135,7 +138,7 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
                   <configuration>
                      <manifest><![CDATA[,
                         ${basedir}/src/main/resources/META-INF/dal/jdbc/core-manifest.xml,
-                     ,]]></manifest>
+                     ]]></manifest>
                   </configuration>
                </execution>
             </executions>

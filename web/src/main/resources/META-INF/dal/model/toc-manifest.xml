@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <file path="toc-codegen.xml" />
+  <file path="toc-model.xml" />
+</manifest>
+

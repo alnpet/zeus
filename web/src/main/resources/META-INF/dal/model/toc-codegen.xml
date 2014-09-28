@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+  <entity name="toc" root="true">
+    <entity-ref name="api" type="list" names="apis" />
+  </entity>
+  <entity name="api">
+    <attribute name="name" value-type="String" />
+    <element name="description" value-type="String" />
+    <element name="syntax" value-type="String" />
+    <entity-ref name="option" type="list" names="options" xml-indent="true" />
+    <entity-ref name="sample" type="list" names="samples" xml-indent="true" />
+  </entity>
+  <entity name="option">
+    <attribute name="name" value-type="String" />
+    <attribute name="type" value-type="String" />
+    <attribute name="optional" value-type="boolean" />
+    <element name="text" value-type="String" text="true" />
+  </entity>
+  <entity name="sample">
+    <element name="request" value-type="String" />
+    <element name="response" value-type="String" />
+  </entity>
+</model>
+

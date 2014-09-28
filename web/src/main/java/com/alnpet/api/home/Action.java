@@ -1,7 +1,9 @@
 package com.alnpet.api.home;
 
 public enum Action implements org.unidal.web.mvc.Action {
-	VIEW("view");
+	VIEW("view"),
+
+	SAMPLE("sample");
 
 	private String m_name;
 

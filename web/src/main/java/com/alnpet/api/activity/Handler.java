@@ -16,11 +16,11 @@ import org.unidal.web.mvc.annotation.PayloadMeta;
 
 import com.alnpet.api.ApiPage;
 import com.alnpet.api.XmlViewer;
-import com.alnpet.dal.core.ActivityInDayDo;
 import com.alnpet.dal.core.ActivityInDayDao;
+import com.alnpet.dal.core.ActivityInDayDo;
 import com.alnpet.dal.core.ActivityInDayEntity;
-import com.alnpet.dal.core.ActivityInHourDo;
 import com.alnpet.dal.core.ActivityInHourDao;
+import com.alnpet.dal.core.ActivityInHourDo;
 import com.alnpet.dal.core.ActivityInHourEntity;
 import com.alnpet.dal.core.PetDao;
 import com.alnpet.dal.core.PetDo;
@@ -28,6 +28,8 @@ import com.alnpet.dal.core.PetEntity;
 import com.alnpet.model.entity.Activities;
 import com.alnpet.model.entity.Activity;
 import com.alnpet.model.entity.Pet;
+import com.dianping.cat.Cat;
+import com.dianping.cat.CatConstants;
 
 public class Handler implements PageHandler<Context> {
 	@Inject
@@ -53,7 +55,7 @@ public class Handler implements PageHandler<Context> {
 	}
 
 	private void handleInDay(Context ctx, Payload payload, Model model) {
-		int petId = lookupPet(payload, model);
+		int petId = lookupPet(ctx, payload, model);
 
 		if (petId > 0) {
 			try {
@@ -77,6 +79,9 @@ public class Handler implements PageHandler<Context> {
 
 				model.setActivities(activities);
 			} catch (Throwable e) {
+				Cat.logError(e);
+				ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
+
 				model.setCode(500);
 				model.setMessage(e.getMessage());
 				model.setExcpetion(e);
@@ -85,7 +90,7 @@ public class Handler implements PageHandler<Context> {
 	}
 
 	private void handleInHour(Context ctx, Payload payload, Model model) {
-		int petId = lookupPet(payload, model);
+		int petId = lookupPet(ctx, payload, model);
 
 		if (petId > 0) {
 			try {
@@ -111,6 +116,9 @@ public class Handler implements PageHandler<Context> {
 
 				model.setActivities(activities);
 			} catch (Throwable e) {
+				Cat.logError(e);
+				ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
+
 				model.setCode(500);
 				model.setMessage(e.getMessage());
 				model.setExcpetion(e);
@@ -155,7 +163,7 @@ public class Handler implements PageHandler<Context> {
 		}
 	}
 
-	private int lookupPet(Payload payload, Model model) {
+	private int lookupPet(Context ctx, Payload payload, Model model) {
 		int petId = -1;
 
 		try {
@@ -167,6 +175,9 @@ public class Handler implements PageHandler<Context> {
 			model.setCode(404);
 			model.setMessage("token.invalid");
 		} catch (Throwable e) {
+			Cat.logError(e);
+			ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
+
 			model.setCode(500);
 			model.setMessage(e.getMessage());
 			model.setExcpetion(e);

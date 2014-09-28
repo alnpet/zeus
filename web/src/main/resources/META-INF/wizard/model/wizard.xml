@@ -3,4 +3,7 @@
    <model package="com.alnpet.model" name="model">
       <sample-model>src/test/resources/com/alnpet/model.xml</sample-model>
    </model>
+   <model package="com.alnpet.toc" name="toc">
+      <sample-model>src/main/resources/com/alnpet/api/home/toc.xml</sample-model>
+   </model>
 </wizard>

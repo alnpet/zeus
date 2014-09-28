@@ -1,0 +1,80 @@
+<toc>
+	<api name="register">
+		<description>Register a pet</description>
+		<syntax><![CDATA[/api/pet?op=register&name=[name]&category=[category]&device=[device]]]></syntax>
+		<options>
+			<option name="name" type="String">Pet name</option>
+			<option name="category" type="String">Category the pet belongs to</option>
+			<option name="device" type="String">Mobile device ID, which is unique</option>
+		</options>
+		<samples>
+			<sample>
+				<request><![CDATA[
+http://localhost:2567/alnpet/api/pet?op=register&name=name&category=category&device=d101
+					]]></request>
+				<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+					]]></response>
+			</sample>
+			<sample/>
+		</samples>
+	</api>
+	<api name="update">
+		<description>Update user information</description>
+		<syntax><![CDATA[/api/pet?op=update&token=[token]&nickname=[nickname]&email=[email]&phone=[phone]]]></syntax>
+		<options>
+			<option name="token" type="String">Access token. Pet ID</option>
+			<option name="nickname" type="String">User nick name</option>
+			<option name="email" type="String">User email address</option>
+			<option name="phone" type="String" optional="true">Use contact phone</option>
+		</options>
+		<samples>
+			<sample>
+				<request><![CDATA[
+http://localhost:2567/alnpet/api/pet?op=update&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&nickname=nickname&email=abc@example.com
+					]]></request>
+				<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+					]]></response>
+			</sample>
+		</samples>
+	</api>
+	<api name="activity">
+		<description>Get pet's activities</description>
+		<syntax><![CDATA[/api/activity/[type]/[date]?token=[token]]]></syntax>
+		<options>
+			<option name="token" type="String">Access token. Pet ID</option>
+		</options>
+		<samples>
+			<sample>
+				<request><![CDATA[
+http://localhost:2567/alnpet/api/activity/day?token=2eb4ead5-b76a-4a7d-86de-f95862dc5056
+					]]></request>
+				<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="2eb4ead5-b76a-4a7d-86de-f95862dc5056"/>
+<activities start-date="2014-09-28 00:00:00" end-date="2014-09-28 23:59:59">
+   <activity food="90" play="60" active="60" rest="20" hour="0"/>
+   <activity food="96" play="60" active="0" rest="20" hour="1"/>
+   <activity food="49" play="40" active="60" rest="60" hour="2"/>
+   <activity food="42" play="0" active="40" rest="60" hour="3"/>
+   <activity food="95" play="40" active="40" rest="20" hour="4"/>
+   <activity food="89" play="0" active="20" rest="0" hour="5"/>
+   <activity food="44" play="0" active="0" rest="40" hour="6"/>
+   <activity food="21" play="40" active="60" rest="20" hour="7"/>
+   <activity food="21" play="40" active="0" rest="60" hour="8"/>
+   <activity food="56" play="60" active="40" rest="60" hour="9"/>
+</activities>
+</model>
+					]]></response>
+			</sample>
+		</samples>
+	</api>
+</toc>

@@ -45,7 +45,8 @@ public class TestServer extends JettyServer {
 		// open the page in the default browser
 		// display("/alnpet/api/pet?op=register&name=name&category=category&device=d101");
 		// display("/alnpet/api/pet?op=update&token=fefa2021-f0f1-4215-aebe-db52118daafc&nickname=nickname&email=abc@example.com");
-		display("/alnpet/api/activity/day?token=2eb4ead5-b76a-4a7d-86de-f95862dc5056");
+		// display("/alnpet/api/activity/day?token=2eb4ead5-b76a-4a7d-86de-f95862dc5056");
+		display("/alnpet/api");
 		waitForAnyKey();
 	}
 }
