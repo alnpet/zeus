@@ -158,6 +158,9 @@
 			<implementation>com.alnpet.api.activity.Handler</implementation>
 			<requirements>
 				<requirement>
+					<role>com.alnpet.dal.core.PetDao</role>
+				</requirement>
+				<requirement>
 					<role>com.alnpet.dal.core.ActivityInHourDao</role>
 				</requirement>
 				<requirement>

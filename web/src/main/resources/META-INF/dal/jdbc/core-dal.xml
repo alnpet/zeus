@@ -29,14 +29,16 @@
     <var name="start-date" value-type="Date"/>
     <var name="end-date" value-type="Date"/>
     <query-defs>
-      <query name="find-all-by-date-range" type="SELECT" multiple="true">
+      <query name="find-all-by-pet-and-date-range" type="SELECT" multiple="true">
+        <param name="pet-id" />
         <param name="start-date" />
         <param name="end-date" />
         <statement><![CDATA[
         SELECT <FIELDS/>
         FROM <TABLE/>
-        WHERE <FIELD name='hour'/> >= ${start-date}
-        	AND <FIELD name='hour'/> <= ${end-date}
+        WHERE <FIELD name='pet-id'/> >= ${pet-id}
+        	AND <FIELD name='day'/> >= ${start-date}
+        	AND <FIELD name='day'/> <= ${end-date}
         ]]></statement>
       </query>
     </query-defs>
@@ -47,13 +49,15 @@
     <var name="start-date" value-type="Date"/>
     <var name="end-date" value-type="Date"/>
     <query-defs>
-      <query name="find-all-by-date-range" type="SELECT" multiple="true">
+      <query name="find-all-by-pet-and-date-range" type="SELECT" multiple="true">
+        <param name="pet-id" />
         <param name="start-date" />
         <param name="end-date" />
         <statement><![CDATA[
         SELECT <FIELDS/>
         FROM <TABLE/>
-        WHERE <FIELD name='day'/> >= ${start-date}
+        WHERE <FIELD name='pet-id'/> >= ${pet-id}
+        	AND <FIELD name='day'/> >= ${start-date}
         	AND <FIELD name='day'/> <= ${end-date}
         ]]></statement>
       </query>

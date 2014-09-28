@@ -21,6 +21,9 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@PathMeta("pathes")
 	private String[] m_pathes;
 
+	@FieldMeta("token")
+	private String m_token;
+
 	private String m_type;
 
 	private String m_date;
@@ -45,6 +48,10 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 
 	public Date getStartDate() {
 		return m_startDate;
+	}
+
+	public String getToken() {
+		return m_token;
 	}
 
 	public String getType() {

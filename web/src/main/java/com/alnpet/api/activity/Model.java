@@ -12,6 +12,7 @@ import org.unidal.web.mvc.view.annotation.ModelMeta;
 
 import com.alnpet.api.ApiPage;
 import com.alnpet.model.entity.Activities;
+import com.alnpet.model.entity.Pet;
 
 @ModelMeta("model")
 public class Model extends ViewModel<ApiPage, Action, Context> {
@@ -24,6 +25,9 @@ public class Model extends ViewModel<ApiPage, Action, Context> {
 	@ElementMeta
 	private String m_detailMessage;
 
+	@EntityMeta("pet")
+	private Pet m_pet;
+
 	@EntityMeta
 	private Activities m_activities;
 
@@ -32,8 +36,8 @@ public class Model extends ViewModel<ApiPage, Action, Context> {
 	}
 
 	public Activities getActivities() {
-   	return m_activities;
-   }
+		return m_activities;
+	}
 
 	public int getCode() {
 		return m_code;
@@ -52,9 +56,13 @@ public class Model extends ViewModel<ApiPage, Action, Context> {
 		return m_message;
 	}
 
+	public Pet getPet() {
+		return m_pet;
+	}
+
 	public void setActivities(Activities activities) {
-   	m_activities = activities;
-   }
+		m_activities = activities;
+	}
 
 	public void setCode(int code) {
 		m_code = code;
@@ -85,5 +93,9 @@ public class Model extends ViewModel<ApiPage, Action, Context> {
 
 	public void setMessage(String message) {
 		m_message = message;
+	}
+
+	public void setPet(Pet pet) {
+		m_pet = pet;
 	}
 }
