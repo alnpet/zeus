@@ -51,7 +51,78 @@ public class Handler implements PageHandler<Context> {
 	@PayloadMeta(Payload.class)
 	@InboundActionMeta(name = "activity")
 	public void handleInbound(Context ctx) throws ServletException, IOException {
-		// display only, no action here
+		Model model = new Model(ctx);
+		Payload payload = ctx.getPayload();
+		Action action = payload.getAction();
+
+		switch (action) {
+		case UPDATE:
+			if (!ctx.hasErrors()) {
+				handleUpdate(ctx, payload, model);
+			} else {
+				model.setCode(400);
+				model.setMessage("Bad Request");
+				model.setErrors(ctx.getErrors());
+			}
+
+			m_xmlViewer.view(model);
+			break;
+		}
+	}
+
+	private void handleUpdate(Context ctx, Payload payload, Model model) {
+		int petId = lookupPet(ctx, payload, model);
+
+		if (petId > 0) {
+			Date date = payload.getDate();
+			int[] hours = payload.getHours();
+			int[] foods = payload.getFoods();
+			int[] plays = payload.getPlays();
+			int[] actives = payload.getActives();
+			int[] rests = payload.getRests();
+			Calendar cal = Calendar.getInstance();
+			ActivityInHourDo[] batch = new ActivityInHourDo[hours.length];
+			int index = 0;
+
+			cal.setTime(date);
+
+			for (int hour : hours) {
+				ActivityInHourDo a = new ActivityInHourDo();
+
+				cal.set(Calendar.HOUR, hour);
+				a.setPetId(petId);
+				a.setHour(cal.getTime());
+
+				if (foods.length > 0) {
+					a.setFood(foods[index]);
+				}
+
+				if (plays.length > 0) {
+					a.setPlay(plays[index]);
+				}
+
+				if (actives.length > 0) {
+					a.setActive(actives[index]);
+				}
+
+				if (rests.length > 0) {
+					a.setRest(rests[index]);
+				}
+
+				batch[index++] = a;
+			}
+
+			try {
+				m_hourDao.insert(batch);
+			} catch (Throwable e) {
+				Cat.logError(e);
+				ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
+
+				model.setCode(500);
+				model.setMessage(e.getMessage());
+				model.setExcpetion(e);
+			}
+		}
 	}
 
 	private void handleInDay(Context ctx, Payload payload, Model model) {
@@ -156,6 +227,8 @@ public class Handler implements PageHandler<Context> {
 			model.setCode(400);
 			model.setMessage("Bad Request");
 			model.setErrors(ctx.getErrors());
+
+			m_xmlViewer.view(model);
 		}
 
 		if (!ctx.isProcessStopped()) {

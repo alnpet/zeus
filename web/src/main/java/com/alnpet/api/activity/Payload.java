@@ -18,15 +18,33 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@FieldMeta("op")
 	private Action m_action;
 
+	// view
 	@PathMeta("pathes")
 	private String[] m_pathes;
 
 	@FieldMeta("token")
 	private String m_token;
 
-	private String m_type;
+	// update
+	@FieldMeta(value = "date", format = "yyyy-MM-dd")
+	private Date m_date;
 
-	private String m_date;
+	@FieldMeta("hour")
+	private int[] m_hours;
+
+	@FieldMeta("food")
+	private int[] m_foods;
+
+	@FieldMeta("play")
+	private int[] m_plays;
+
+	@FieldMeta("active")
+	private int[] m_actives;
+
+	@FieldMeta("rest")
+	private int[] m_rests;
+
+	private String m_type;
 
 	private Date m_startDate;
 
@@ -37,13 +55,37 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		return m_action;
 	}
 
+	public int[] getActives() {
+		return m_actives;
+	}
+
 	public Date getEndDate() {
 		return m_endDate;
+	}
+
+	public int[] getFoods() {
+		return m_foods;
+	}
+
+	public int[] getHours() {
+		return m_hours;
 	}
 
 	@Override
 	public ApiPage getPage() {
 		return m_page;
+	}
+
+	public Date getDate() {
+		return m_date;
+	}
+
+	public int[] getPlays() {
+		return m_plays;
+	}
+
+	public int[] getRests() {
+		return m_rests;
 	}
 
 	public Date getStartDate() {
@@ -77,21 +119,63 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 			m_action = Action.VIEW;
 		}
 
-		if (m_pathes != null) {
-			int index = 0;
+		switch (m_action) {
+		case VIEW:
+			String date = null;
 
-			m_type = m_pathes.length > index ? m_pathes[index++] : null;
-			m_date = m_pathes.length > index ? m_pathes[index++] : null;
+			if (m_pathes != null) {
+				int index = 0;
+
+				m_type = m_pathes.length > index ? m_pathes[index++] : null;
+				date = m_pathes.length > index ? m_pathes[index++] : null;
+			}
+
+			if (m_type == null) {
+				m_type = "day";
+			}
+
+			DateNormalizer normalizer = new DateNormalizer(ctx, m_type, date);
+
+			m_startDate = normalizer.getStartDate();
+			m_endDate = normalizer.getEndDate();
+			break;
+		case UPDATE:
+			boolean valid = true;
+			int len = m_hours.length;
+			if (m_hours != null && len > 0) {
+				if (m_date == null) {
+					m_date = Dates.now().beginOf('d').asDate();
+				}
+
+				if (m_foods.length + m_plays.length + m_actives.length + m_rests.length == 0) {
+					valid = false;
+				}
+
+				if (valid && m_foods.length > 0 && m_foods.length != len) {
+					valid = false;
+				}
+
+				if (valid && m_plays.length > 0 && m_plays.length != len) {
+					valid = false;
+				}
+
+				if (valid && m_actives.length > 0 && m_actives.length != len) {
+					valid = false;
+				}
+
+				if (valid && m_rests.length > 0 && m_rests.length != len) {
+					valid = false;
+				}
+			} else {
+				valid = false;
+			}
+
+			if (!valid) {
+				ctx.addError("request.invalid");
+			}
+
+			break;
 		}
-
-		if (m_type == null) {
-			m_type = "day";
-		}
-
-		DateNormalizer normalizer = new DateNormalizer(ctx, m_type, m_date);
-
-		m_startDate = normalizer.getStartDate();
-		m_endDate = normalizer.getEndDate();
 	}
 
 	static class DateNormalizer {
@@ -107,13 +191,17 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 
 		private Date m_today;
 
-		public DateNormalizer(ActionContext<?> ctx, String type, String date) {
+		public DateNormalizer(ActionContext<?> ctx, Date today, String type, String date) {
 			m_ctx = ctx;
 			m_type = type;
 			m_date = date;
-			m_today = new Date();
+			m_today = today;
 
 			initialize();
+		}
+
+		public DateNormalizer(ActionContext<?> ctx, String type, String date) {
+			this(ctx, new Date(), type, date);
 		}
 
 		public Date getEndDate() {
@@ -174,11 +262,6 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 			} else {
 				m_ctx.addError("type.invalid");
 			}
-		}
-
-		// for test purpose
-		void setToday(Date today) {
-			m_today = today;
 		}
 	}
 }

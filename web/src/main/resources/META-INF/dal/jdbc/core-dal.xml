@@ -41,6 +41,26 @@
         	AND <FIELD name='hour'/> <= ${end-date}
         ]]></statement>
       </query>
+      <query name="insert" type="INSERT" batch="true">
+        <statement><![CDATA[
+        INSERT INTO <TABLE/>(<FIELDS/>)
+        VALUES(<VALUES/>)
+        ON DUPLICATE KEY UPDATE 
+        	<IF type="GT" field="food" value="0">
+        	   <FIELD name="food"/> = ${food},
+        	</IF>  
+        	<IF type="GT" field="play" value="0">
+        	   <FIELD name="play"/> = ${play},
+        	</IF>  
+        	<IF type="GT" field="active" value="0">
+        	   <FIELD name="active"/> = ${active},
+        	</IF>  
+        	<IF type="GT" field="rest" value="0">
+        	   <FIELD name="rest"/> = ${rest},
+        	</IF>  
+        	<FIELD name="last-modified-date"/> = NOW() 
+        ]]></statement>
+      </query>
     </query-defs>
   </entity>
   <entity name="activity-in-day" table="activity_in_day" alias="aid" do-class="ActivityInDayDo">

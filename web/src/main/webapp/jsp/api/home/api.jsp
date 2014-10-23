@@ -18,7 +18,13 @@
 			<td colspan="4">${model.webapp}${api.syntax}</td>
 		</tr>
 		<tr>
-			<th class="text-success" rowspan="${w:size(api.options)+1}">Options</th>
+			<th class="text-success" rowspan="${w:size(api.options)+2}">Options</th>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Optional</th>
+			<th>Description</th>
 		</tr>
 		<c:forEach var="option" items="${api.options}">
 			<tr>

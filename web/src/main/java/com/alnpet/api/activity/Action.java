@@ -1,7 +1,9 @@
 package com.alnpet.api.activity;
 
 public enum Action implements org.unidal.web.mvc.Action {
-	VIEW("view");
+	VIEW("view"),
+	
+	UPDATE("update");
 
 	private String m_name;
 
