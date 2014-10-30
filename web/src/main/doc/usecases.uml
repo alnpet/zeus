@@ -1,0 +1,12 @@
+title ALNPet Use Cases\n
+
+:End User: as User
+usecase "Feed" as Feed
+usecase "Audio/Video" as Media
+usecase "Data Collection" as Data
+usecase "Light on/off" as Light
+
+User --> Feed
+User --> Media
+User --> Data
+User --> Light

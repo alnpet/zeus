@@ -11,6 +11,9 @@
          <page name="activity" title="Activity" path="activity" template="default">
             <description>Activity</description>
          </page>
+         <page name="category" title="Category" path="category" template="default">
+            <description>Category</description>
+         </page>
       </module>
    </webapp>
 </wizard>

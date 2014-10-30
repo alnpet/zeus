@@ -12,6 +12,7 @@
          <table name="pet"/>
          <table name="activity_in_day"/>
          <table name="activity_in_hour"/>
+         <table name="category"/>
       </group>
    </jdbc>
 </wizard>

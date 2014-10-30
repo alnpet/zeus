@@ -9,7 +9,9 @@ public enum ApiPage implements Page {
 
    PET("pet", "pet", "Pet", "Pet", true),
 
-   ACTIVITY("activity", "activity", "Activity", "Activity", true);
+   ACTIVITY("activity", "activity", "Activity", "Activity", true),
+
+   CATEGORY("category", "category", "Category", "Category", true);
 
    private String m_name;
 

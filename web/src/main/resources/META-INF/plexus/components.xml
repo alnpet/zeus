@@ -41,6 +41,16 @@
 		</component>
 		<component>
 			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
+			<role-hint>category</role-hint>
+			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
+			<configuration>
+				<logical-table-name>category</logical-table-name>
+				<physical-table-name>category</physical-table-name>
+				<data-source-name>pet</data-source-name>
+			</configuration>
+		</component>
+		<component>
+			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
 			<role-hint>pet</role-hint>
 			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
 			<configuration>
@@ -61,6 +71,15 @@
 		<component>
 			<role>com.alnpet.dal.core.ActivityInHourDao</role>
 			<implementation>com.alnpet.dal.core.ActivityInHourDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.core.CategoryDao</role>
+			<implementation>com.alnpet.dal.core.CategoryDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -111,22 +130,13 @@
 			<implementation>com.alnpet.api.pet.Handler</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.dal.core.PetDao</role>
-				</requirement>
-				<requirement>
 					<role>com.alnpet.api.pet.JspViewer</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.api.XmlViewer</role>
+					<role>com.alnpet.dal.core.PetDao</role>
 				</requirement>
-			</requirements>
-		</component>
-		<component>
-			<role>com.alnpet.dal.core.PetDao</role>
-			<implementation>com.alnpet.dal.core.PetDao</implementation>
-			<requirements>
 				<requirement>
-					<role>org.unidal.dal.jdbc.QueryEngine</role>
+					<role>com.alnpet.api.XmlViewer</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -136,6 +146,15 @@
 			<requirements>
 				<requirement>
 					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.core.PetDao</role>
+			<implementation>com.alnpet.dal.core.PetDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -158,9 +177,6 @@
 			<implementation>com.alnpet.api.activity.Handler</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.dal.core.PetDao</role>
-				</requirement>
-				<requirement>
 					<role>com.alnpet.dal.core.ActivityInHourDao</role>
 				</requirement>
 				<requirement>
@@ -168,6 +184,9 @@
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.activity.JspViewer</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.core.PetDao</role>
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.XmlViewer</role>
@@ -195,6 +214,42 @@
 		<component>
 			<role>com.alnpet.api.activity.JspViewer</role>
 			<implementation>com.alnpet.api.activity.JspViewer</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.api.category.Handler</role>
+			<implementation>com.alnpet.api.category.Handler</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.dal.core.CategoryDao</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.api.category.JspViewer</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.core.PetDao</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.api.XmlViewer</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.core.CategoryDao</role>
+			<implementation>com.alnpet.dal.core.CategoryDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.api.category.JspViewer</role>
+			<implementation>com.alnpet.api.category.JspViewer</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.web.mvc.view.model.ModelHandler</role>

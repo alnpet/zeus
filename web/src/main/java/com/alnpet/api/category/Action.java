@@ -1,11 +1,7 @@
-package com.alnpet.api.activity;
+package com.alnpet.api.category;
 
 public enum Action implements org.unidal.web.mvc.Action {
-	VIEW("view"),
-	
-	FEED("feed"),
-	
-	UPDATE("update");
+	VIEW("view");
 
 	private String m_name;
 

@@ -1,22 +1,20 @@
-package com.alnpet.api.activity;
+package com.alnpet.api.category;
+
+import java.util.List;
 
 import org.unidal.web.mvc.view.annotation.EntityMeta;
 import org.unidal.web.mvc.view.annotation.ModelMeta;
 
 import com.alnpet.api.ApiModel;
-import com.alnpet.model.entity.Activities;
+import com.alnpet.dal.core.Category;
 
 @ModelMeta("model")
 public class Model extends ApiModel<Action, Context> {
-	@EntityMeta
-	private Activities m_activities;
+	@EntityMeta("categories")
+	private List<Category> m_categories;
 
 	public Model(Context ctx) {
 		super(ctx);
-	}
-
-	public Activities getActivities() {
-		return m_activities;
 	}
 
 	@Override
@@ -24,7 +22,11 @@ public class Model extends ApiModel<Action, Context> {
 		return Action.VIEW;
 	}
 
-	public void setActivities(Activities activities) {
-		m_activities = activities;
+	public List<Category> getCategories() {
+		return m_categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		m_categories = categories;
 	}
 }

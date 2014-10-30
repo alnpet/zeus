@@ -51,3 +51,16 @@ CREATE TABLE `activity_in_day` (
   UNIQUE KEY idx_pet_day(`pet_id`, `day`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(100) NOT NULL,
+  `type` int(11) NOT NULL COMMENT "1:small, 2:medium, 3:big",
+  `english_name` varchar(100) NOT NULL,
+  `chinese_name` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL COMMENT "1:active, 9:suspended",
+  `creation_date` datetime NOT NULL,
+  `last_modified_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY idx_code(`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

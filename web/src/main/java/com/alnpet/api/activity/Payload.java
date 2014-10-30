@@ -44,6 +44,10 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@FieldMeta("rest")
 	private int[] m_rests;
 
+	// feed
+	@FieldMeta("amount")
+	private int m_amount;
+
 	private String m_type;
 
 	private Date m_startDate;
@@ -59,8 +63,16 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		return m_actives;
 	}
 
+	public Date getDate() {
+		return m_date;
+	}
+
 	public Date getEndDate() {
 		return m_endDate;
+	}
+
+	public int getAmout() {
+		return m_amount;
 	}
 
 	public int[] getFoods() {
@@ -74,10 +86,6 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@Override
 	public ApiPage getPage() {
 		return m_page;
-	}
-
-	public Date getDate() {
-		return m_date;
 	}
 
 	public int[] getPlays() {
@@ -117,6 +125,10 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	public void validate(ActionContext<?> ctx) {
 		if (m_action == null) {
 			m_action = Action.VIEW;
+		}
+
+		if (m_token == null) {
+			ctx.addError("token.required");
 		}
 
 		switch (m_action) {
@@ -174,6 +186,11 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 				ctx.addError("request.invalid");
 			}
 
+			break;
+		case FEED:
+			if (m_amount <= 0) {
+				ctx.addError("amount.required");
+			}
 			break;
 		}
 	}

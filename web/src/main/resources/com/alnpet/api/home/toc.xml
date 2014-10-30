@@ -88,11 +88,11 @@ http://api.alnpet.com/api/activity/day?token=b47f5b61-0617-4d3b-b79f-857442b45ab
 				</sample>
 			</samples>
 		</api>
-		<api name="put activity data">
-			<description>Put pet's activities</description>
-			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=update&token=[token]&hour=[hour]&food=[food]&play=[play]&active=[active]8&rest=[rest]]]></syntax>
+		<api name="upload activity data">
+			<description>Upload pet's activities</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=update&uid=[uid]&hour=[hour]&food=[food]&play=[play]&active=[active]8&rest=[rest]]]></syntax>
 			<options>
-				<option name="token" type="String">Access token. Pet ID</option>
+				<option name="uid" type="String">Unique ID of feed device. 20 bytes length from UBIC Platform.</option>
 				<option name="hour" type="int">Hour of day. Optional values: 0-23</option>
 				<option name="food" type="int" optional="true">Food in gram.</option>
 				<option name="play" type="int" optional="true">Play in calorie.</option>
@@ -103,6 +103,27 @@ http://api.alnpet.com/api/activity/day?token=b47f5b61-0617-4d3b-b79f-857442b45ab
 				<sample>
 					<request><![CDATA[
 http://api.alnpet.com/api/activity?op=update&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&hour=10&food=12&play=3&active=18&rest=40
+					]]></request>
+					<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+					]]></response>
+				</sample>
+			</samples>
+		</api>
+		<api name="feed">
+			<description>Feed the pet</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=feed&uid=[uid]&amout=[amout]]]></syntax>
+			<options>
+				<option name="token" type="String">Access token. Pet ID</option>
+				<option name="amount" type="int">Amount of food in gram to feed</option>
+			</options>
+			<samples>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/activity?op=feed&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&amount=300
 					]]></request>
 					<response><![CDATA[
 <model>

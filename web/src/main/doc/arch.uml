@@ -1,0 +1,43 @@
+title ALNPet System Diagram\n
+
+:End User: as User
+note right of User :use cases:\n1) feed\n2) audio/video\n3) data collection\n4) light on/off
+
+package "Client Layer" {
+  [iOS APP] as iOS
+  [Android APP] as Android
+
+  User -- iOS
+}
+
+package "Web Application" {
+  [Web App] as Webapp
+  database "\nDatabase\n" as Database
+
+  iOS ---> Webapp : 3.3) pull
+  Webapp -left-> Database : persist
+}
+
+package "UBIA Network" {
+  cloud "UBIA Platform" as UBIA
+  [Gateway] as Gateway
+
+  iOS ...> UBIA : 1.1) feed
+  iOS ..> UBIA : 2) audio/video
+  iOS ..> UBIA : 4.1) light
+  Webapp <-left-- Gateway : 1.2) feed\nresult
+  Webapp <--- Gateway : 3.1) push
+}
+
+package "Hardware Layer" {
+  [Feeder] as Feeder
+  [Web Camera] as Camera
+  [Ring] as Ring
+  [...] as Others
+
+  UBIA ..> Feeder
+  Gateway <.. Feeder
+  Feeder ..> Camera
+  Feeder <.. Ring : bluetooth
+  Feeder <.. Others
+}

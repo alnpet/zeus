@@ -6,29 +6,19 @@ import java.util.UUID;
 import javax.servlet.ServletException;
 
 import org.unidal.lookup.annotation.Inject;
-import org.unidal.web.mvc.PageHandler;
 import org.unidal.web.mvc.annotation.InboundActionMeta;
 import org.unidal.web.mvc.annotation.OutboundActionMeta;
 import org.unidal.web.mvc.annotation.PayloadMeta;
 
+import com.alnpet.api.ApiHandler;
 import com.alnpet.api.ApiPage;
-import com.alnpet.api.XmlViewer;
-import com.alnpet.dal.core.PetDao;
 import com.alnpet.dal.core.PetDo;
 import com.alnpet.dal.core.PetEntity;
 import com.alnpet.model.entity.Pet;
-import com.dianping.cat.Cat;
-import com.dianping.cat.CatConstants;
 
-public class Handler implements PageHandler<Context> {
-	@Inject
-	private PetDao m_dao;
-
+public class Handler extends ApiHandler<Context> {
 	@Inject
 	private JspViewer m_jspViewer;
-
-	@Inject
-	private XmlViewer m_xmlViewer;
 
 	@Override
 	@PayloadMeta(Payload.class)
@@ -100,12 +90,7 @@ public class Handler implements PageHandler<Context> {
 
 			model.setPet(new Pet(token));
 		} catch (Throwable e) {
-			Cat.logError(e);
-			ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
-
-			model.setCode(500);
-			model.setMessage(e.getMessage());
-			model.setExcpetion(e);
+			handleException(ctx, model, e);
 		}
 	}
 
@@ -131,12 +116,7 @@ public class Handler implements PageHandler<Context> {
 
 			model.setPet(new Pet(token));
 		} catch (Throwable e) {
-			Cat.logError(e);
-			ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
-
-			model.setCode(500);
-			model.setMessage(e.getMessage());
-			model.setExcpetion(e);
+			handleException(ctx, model, e);
 		}
 	}
 }

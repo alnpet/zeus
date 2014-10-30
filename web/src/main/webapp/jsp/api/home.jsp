@@ -20,6 +20,7 @@
 				<ul class="nav nav-tabs well" style="text-align: right; margin-top: 30px;">
 					<li id="home"><a href="?tab=home"><strong>Home</strong></a></li>
 					<li id="release"><a href="?tab=release"><strong>Release Notes</strong></a></li>
+					<li id="arch"><a href="?tab=arch"><strong>System Diagram</strong></a></li>
 					<li id="api"><a href="?tab=api"><strong>API References</strong></a></li>
 				</ul>
 				<div class="tab-content">
@@ -27,6 +28,9 @@
 					<c:choose>
 						<c:when test="${payload.tab == 'release'}">
 							<%@ include file="home/release.jsp"%>
+						</c:when>
+						<c:when test="${payload.tab == 'arch'}">
+							<%@ include file="home/arch.jsp"%>
 						</c:when>
 						<c:when test="${payload.tab == 'api'}">
 							<%@ include file="home/api.jsp"%>

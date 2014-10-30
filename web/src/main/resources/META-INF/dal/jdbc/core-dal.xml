@@ -63,6 +63,20 @@
       </query>
     </query-defs>
   </entity>
+  <entity name="category" table="category" alias="c">
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
+    <query-defs>
+      <query name="find-all-by-status" type="SELECT" multiple="true">
+        <param name="status" />
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='status'/> = ${status}
+        ]]></statement>
+      </query>
+    </query-defs>
+  </entity>
   <entity name="activity-in-day" table="activity_in_day" alias="aid" do-class="ActivityInDayDo">
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
     <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
