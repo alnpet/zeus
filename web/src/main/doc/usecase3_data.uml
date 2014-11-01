@@ -1,0 +1,35 @@
+actor "End User" as User
+participant "iOS APP" as iOS
+participant "UBIA Platform" as UBIA
+participant "Feeder" as Feeder
+participant "Gateway" as Gateway
+participant "WebApp" as WebApp
+Database Database
+
+Feeder -> Gateway : notify feed result(P2P)
+activate Feeder
+Gateway -> WebApp : notify feed result(HTTP)
+activate WebApp
+WebApp -> Database : persist feed result
+WebApp --> Gateway
+deactivate WebApp
+Gateway --> Feeder
+deactivate Feeder
+
+Feeder -> Gateway : push health data(P2P)
+activate Feeder
+Gateway -> WebApp : push health data(HTTP)
+activate WebApp
+WebApp -> Database : persist health data
+WebApp --> Gateway
+deactivate WebApp
+Gateway --> Feeder
+deactivate Feeder
+
+User -> iOS : 3.0) UI display
+activate iOS
+iOS -> WebApp : 3.1) feed/health data
+activate WebApp
+WebApp -> Database : 3.2) query feed/health data
+WebApp --> iOS
+deactivate WebApp

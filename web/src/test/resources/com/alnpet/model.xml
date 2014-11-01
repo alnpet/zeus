@@ -1,5 +1,5 @@
 <model>
-	<pet id="abc-123">
+	<pet token="abc-123">
 	</pet>
 	<activities start-date="2014-09-27 00:00:00" end-date="2014-09-27 23:59:59" feeling="82" health="90" food0="300" sport0="1000">
 		<activity day="2014-09-27" food="302" play="12" active="13" rest="14" food0="300" sport0="1000"/>

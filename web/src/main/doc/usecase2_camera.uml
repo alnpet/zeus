@@ -1,0 +1,14 @@
+actor "End User" as User
+participant "iOS APP" as iOS
+participant "UBIA Platform" as UBIA
+participant "Feeder" as Feeder
+
+User -> iOS : 2.0) press "show video" button
+activate iOS
+iOS -> UBIA : 2.1) camera cmd
+UBIA -> Feeder : 2.2) route camera cmd
+activate Feeder
+Feeder -> Feeder : camera action
+deactivate Feeder
+Feeder --> UBIA
+UBIA --> iOS

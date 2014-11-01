@@ -1,5 +1,7 @@
 package com.alnpet.api;
 
+import java.io.IOException;
+
 import org.unidal.dal.jdbc.DalNotFoundException;
 import org.unidal.lookup.annotation.Inject;
 import org.unidal.web.mvc.ActionContext;
@@ -17,7 +19,7 @@ public abstract class ApiHandler<T extends ActionContext<?>> implements PageHand
 	protected PetDao m_dao;
 
 	@Inject
-	protected XmlViewer m_xmlViewer;
+	private XmlViewer m_xmlViewer;
 
 	protected void handleException(T ctx, ApiModel<?, ?> model, Throwable e) {
 		Cat.logError(e);
@@ -28,14 +30,14 @@ public abstract class ApiHandler<T extends ActionContext<?>> implements PageHand
 		model.setExcpetion(e);
 	}
 
-	protected int lookupPetByToken(T ctx, ApiModel<?, ?> model, String token) {
-		int petId = -1;
-
+	protected Pet lookupPetByToken(T ctx, ApiModel<?, ?> model, String token) {
 		try {
-			PetDo pet = m_dao.findByToken(token, PetEntity.READSET_FULL);
+			PetDo p = m_dao.findByToken(token, PetEntity.READSET_FULL);
+			Pet pet = new Pet(token);
 
-			petId = pet.getId();
-			model.setPet(new Pet(token));
+			pet.setInternalId(p.getId());
+			model.setPet(pet);
+			return pet;
 		} catch (DalNotFoundException e) {
 			model.setCode(404);
 			model.setMessage("token.invalid");
@@ -43,6 +45,27 @@ public abstract class ApiHandler<T extends ActionContext<?>> implements PageHand
 			handleException(ctx, model, e);
 		}
 
-		return petId;
+		return null;
+	}
+
+	protected Pet lookupPetByDevice(T ctx, ApiModel<?, ?> model, String device) {
+		try {
+			PetDo petDo = m_dao.findByDevice(device, PetEntity.READSET_FULL);
+			Pet pet = new Pet(petDo.getToken());
+
+			model.setPet(pet);
+			return pet;
+		} catch (DalNotFoundException e) {
+			model.setCode(404);
+			model.setMessage("device.invalid");
+		} catch (Throwable e) {
+			handleException(ctx, model, e);
+		}
+
+		return null;
+	}
+
+	protected void renderResponse(ApiModel<?, ?> model) throws IOException {
+		m_xmlViewer.view(model);
 	}
 }

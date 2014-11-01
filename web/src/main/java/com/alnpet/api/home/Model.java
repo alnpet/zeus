@@ -1,11 +1,9 @@
 package com.alnpet.api.home;
 
-import org.unidal.web.mvc.ViewModel;
-
-import com.alnpet.api.ApiPage;
+import com.alnpet.api.ApiModel;
 import com.alnpet.toc.entity.Toc;
 
-public class Model extends ViewModel<ApiPage, Action, Context> {
+public class Model extends ApiModel<Action, Context> {
 	private Toc m_toc;
 
 	public Model(Context ctx) {

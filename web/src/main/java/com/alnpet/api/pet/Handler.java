@@ -38,18 +38,22 @@ public class Handler extends ApiHandler<Context> {
 				model.setErrors(ctx.getErrors());
 			}
 
-			m_xmlViewer.view(model);
+			renderResponse(model);
 			break;
-		case UPDATE:
+		case BIND:
 			if (!ctx.hasErrors()) {
-				handleUpdate(ctx, payload, model);
+				Pet pet = lookupPetByToken(ctx, model, payload.getToken());
+
+				if (pet != null) {
+					handleBind(ctx, payload, model, pet);
+				}
 			} else {
 				model.setCode(400);
 				model.setMessage("Bad Request");
 				model.setErrors(ctx.getErrors());
 			}
 
-			m_xmlViewer.view(model);
+			renderResponse(model);
 			break;
 		}
 	}
@@ -75,7 +79,6 @@ public class Handler extends ApiHandler<Context> {
 		pet.setName(payload.getName());
 		pet.setGender(payload.getGender());
 		pet.setCategory(payload.getCategory());
-		pet.setDevice(payload.getDevice());
 
 		if (payload.getAge() > 0) {
 			pet.setAge(payload.getAge());
@@ -94,27 +97,30 @@ public class Handler extends ApiHandler<Context> {
 		}
 	}
 
-	private void handleUpdate(Context ctx, Payload payload, Model model) {
-		String token = payload.getToken();
-
+	private void handleBind(Context ctx, Payload payload, Model model, Pet pet) {
 		try {
-			PetDo pet = m_dao.findByToken(token, PetEntity.READSET_FULL);
+			PetDo p = m_dao.findByPK(pet.getInternalId(), PetEntity.READSET_FULL);
+			String type = payload.getType();
 
-			if (payload.getNickname() != null) {
-				pet.setNickname(payload.getNickname());
+			if ("user".equals(type)) {
+				if (payload.getNickname() != null) {
+					p.setNickname(payload.getNickname());
+				}
+
+				if (payload.getPhone() != null) {
+					p.setPhone(payload.getPhone());
+				}
+
+				if (payload.getEmail() != null) {
+					p.setEmail(payload.getEmail());
+				}
+			} else if ("device".equals(type)) {
+				p.setDevice(payload.getDevice());
 			}
 
-			if (payload.getPhone() != null) {
-				pet.setPhone(payload.getPhone());
-			}
+			m_dao.updateByPK(p, PetEntity.UPDATESET_FULL);
 
-			if (payload.getEmail() != null) {
-				pet.setEmail(payload.getEmail());
-			}
-
-			m_dao.updateByPK(pet, PetEntity.UPDATESET_FULL);
-
-			model.setPet(new Pet(token));
+			model.setPet(pet);
 		} catch (Throwable e) {
 			handleException(ctx, model, e);
 		}

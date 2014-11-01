@@ -1,0 +1,14 @@
+actor "End User" as User
+participant "iOS APP" as iOS
+participant "UBIA Platform" as UBIA
+participant "Feeder" as Feeder
+
+User -> iOS : 4.0) press "light on/off" button
+activate iOS
+iOS -> UBIA : 2.1) light cmd
+UBIA -> Feeder : 2.2) route light cmd
+activate Feeder
+Feeder -> Feeder : light action
+deactivate Feeder
+Feeder --> UBIA
+UBIA --> iOS

@@ -15,6 +15,7 @@ import com.alnpet.api.ApiPage;
 import com.alnpet.dal.core.Category;
 import com.alnpet.dal.core.CategoryDao;
 import com.alnpet.dal.core.CategoryEntity;
+import com.alnpet.model.entity.Pet;
 
 public class Handler extends ApiHandler<Context> {
 	@Inject
@@ -43,9 +44,9 @@ public class Handler extends ApiHandler<Context> {
 
 		switch (action) {
 		case VIEW:
-			int petId = lookupPetByToken(ctx, model, payload.getToken());
+			Pet pet = lookupPetByToken(ctx, model, payload.getToken());
 
-			if (petId > 0) {
+			if (pet != null) {
 				try {
 					List<Category> categories = m_categoryDao.findAllByStatus(1, CategoryEntity.READSET_FULL);
 
@@ -55,7 +56,7 @@ public class Handler extends ApiHandler<Context> {
 				}
 			}
 
-			m_xmlViewer.view(model);
+			renderResponse(model);
 			break;
 		}
 

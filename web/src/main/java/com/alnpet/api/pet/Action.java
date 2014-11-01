@@ -5,7 +5,7 @@ public enum Action implements org.unidal.web.mvc.Action {
 
 	REGISTER("register"),
 	
-	UPDATE("update");
+	BIND("bind");
 
 	private String m_name;
 

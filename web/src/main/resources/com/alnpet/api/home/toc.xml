@@ -10,16 +10,18 @@
 	<apis>
 		<api name="register pet">
 			<description>Register a pet</description>
-			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=register&name=[name]&category=[category]&device=[device]]]></syntax>
+			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=register&name=[name]&gender=[gender]&category=[category]&age=[age]&weight=[weight]]]></syntax>
 			<options>
 				<option name="name" type="String">Pet name</option>
 				<option name="category" type="String">Category the pet belongs to</option>
-				<option name="device" type="String">Mobile device ID, which is unique</option>
+				<option name="gender" type="String">Pet gender. Values: 'F' for female, or 'M' for male</option>
+				<option name="age" type="double">Pet's age</option>
+				<option name="weight" type="double">Pet's weight</option>
 			</options>
 			<samples>
 				<sample>
 					<request><![CDATA[
-http://api.alnpet.com/api/pet?op=register&name=name&category=category&device=d101
+http://api.alnpet.com/api/pet?op=register&name=name&category=category&gender=M&&age=1.02&weight=3.4
 					]]></request>
 					<response><![CDATA[
 <model>
@@ -31,11 +33,12 @@ http://api.alnpet.com/api/pet?op=register&name=name&category=category&device=d10
 				<sample />
 			</samples>
 		</api>
-		<api name="update user">
-			<description>Update pet owner information</description>
-			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=update&token=[token]&nickname=[nickname]&email=[email]&phone=[phone]]]></syntax>
+		<api name="bind pet owner">
+			<description>Bind pet's owner information</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=user&token=[token]&nickname=[nickname]&email=[email]&phone=[phone]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
+				<option name="type" type="String">Bind type. 'user' or 'device'</option>
 				<option name="nickname" type="String">User nick name</option>
 				<option name="email" type="String">User email address</option>
 				<option name="phone" type="String" optional="true">Use contact phone</option>
@@ -43,7 +46,29 @@ http://api.alnpet.com/api/pet?op=register&name=name&category=category&device=d10
 			<samples>
 				<sample>
 					<request><![CDATA[
-http://api.alnpet.com/api/pet?op=update&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&nickname=nickname&email=abc@example.com
+http://api.alnpet.com/api/pet?op=update&type=user&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&nickname=nickname&email=abc@example.com
+					]]></request>
+					<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+					]]></response>
+				</sample>
+			</samples>
+		</api>
+		<api name="bind pet feeder device">
+			<description>Bind pet's feeder device id</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=device&token=[token]&device=[device]]]></syntax>
+			<options>
+				<option name="token" type="String">Access token. Pet ID</option>
+				<option name="type" type="String">Bind type. 'user' or 'device'</option>
+				<option name="device" type="String">Device's unique ID, 20 bytes length</option>
+			</options>
+			<samples>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/pet?op=update&type=device&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&device=abcdefghij1234567890
 					]]></request>
 					<response><![CDATA[
 <model>

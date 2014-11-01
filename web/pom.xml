@@ -160,6 +160,23 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.unidal.maven.plugins</groupId>
+				<artifactId>uml-maven-plugin</artifactId>
+				<version>2.0.7</version>
+				<executions>
+					<execution>
+						<id>default-cli</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<source>${basedir}/src/main/doc</source>
+							<output>${basedir}/src/main/webapp/img/uml</output>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<properties>

@@ -13,7 +13,7 @@ CREATE TABLE `pet` (
   `creation_date` datetime NOT NULL,
   `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY (`device`),
+  UNIQUE KEY `idx_device`(`device`),
   KEY `idx_token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

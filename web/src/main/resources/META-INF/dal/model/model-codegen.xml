@@ -5,7 +5,7 @@
     <entity-ref name="activities" />
   </entity>
   <entity name="pet">
-    <attribute name="id" value-type="String" />
+    <attribute name="token" value-type="String" />
   </entity>
   <entity name="activities">
     <attribute name="start-date" value-type="Date" format="yyyy-MM-dd HH:mm:ss" />

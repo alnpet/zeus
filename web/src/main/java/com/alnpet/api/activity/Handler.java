@@ -25,6 +25,7 @@ import com.alnpet.dal.core.ActivityInHourDo;
 import com.alnpet.dal.core.ActivityInHourEntity;
 import com.alnpet.model.entity.Activities;
 import com.alnpet.model.entity.Activity;
+import com.alnpet.model.entity.Pet;
 import com.dianping.cat.Cat;
 import com.dianping.cat.message.Message;
 
@@ -49,10 +50,10 @@ public class Handler extends ApiHandler<Context> {
 		switch (action) {
 		case UPDATE:
 			if (!ctx.hasErrors()) {
-				int petId = lookupPetByToken(ctx, model, payload.getToken());
+				Pet pet = lookupPetByToken(ctx, model, payload.getToken());
 
-				if (petId > 0) {
-					handleUpdate(ctx, payload, model, petId);
+				if (pet != null) {
+					handleUpdate(ctx, payload, model, pet);
 				}
 			} else {
 				model.setCode(400);
@@ -60,15 +61,15 @@ public class Handler extends ApiHandler<Context> {
 				model.setErrors(ctx.getErrors());
 			}
 
-			m_xmlViewer.view(model);
+			renderResponse(model);
 			break;
 		case FEED:
 			int amount = payload.getAmout();
 
 			try {
-				int petId = lookupPetByToken(ctx, model, payload.getToken());
+				Pet pet = lookupPetByToken(ctx, model, payload.getToken());
 
-				if (petId > 0) {
+				if (pet != null) {
 					String url = String.format("http://xxx/%s", amount); // TODO need actual url pattern
 					InputStream in = Urls.forIO().connectTimeout(5000).readTimeout(5000).openStream(url);
 					String result = Files.forIO().readFrom(in, "utf-8");
@@ -79,7 +80,7 @@ public class Handler extends ApiHandler<Context> {
 				handleException(ctx, model, e);
 			}
 
-			m_xmlViewer.view(model);
+			renderResponse(model);
 			break;
 		}
 	}
@@ -151,10 +152,11 @@ public class Handler extends ApiHandler<Context> {
 		if (!ctx.hasErrors()) {
 			switch (action) {
 			case VIEW:
-				int petId = lookupPetByToken(ctx, model, payload.getToken());
+				Pet pet = lookupPetByToken(ctx, model, payload.getToken());
 
-				if (petId > 0) {
+				if (pet != null) {
 					String type = payload.getType();
+					int petId = pet.getInternalId();
 
 					if ("day".equals(type)) {
 						handleInHour(ctx, payload, model, petId);
@@ -165,7 +167,7 @@ public class Handler extends ApiHandler<Context> {
 					}
 				}
 
-				m_xmlViewer.view(model);
+				renderResponse(model);
 				break;
 			}
 		} else {
@@ -173,7 +175,7 @@ public class Handler extends ApiHandler<Context> {
 			model.setMessage("Bad Request");
 			model.setErrors(ctx.getErrors());
 
-			m_xmlViewer.view(model);
+			renderResponse(model);
 		}
 
 		if (!ctx.isProcessStopped()) {
@@ -181,7 +183,7 @@ public class Handler extends ApiHandler<Context> {
 		}
 	}
 
-	private void handleUpdate(Context ctx, Payload payload, Model model, int petId) {
+	private void handleUpdate(Context ctx, Payload payload, Model model, Pet pet) {
 		Date date = payload.getDate();
 		int[] hours = payload.getHours();
 		int[] foods = payload.getFoods();
@@ -198,7 +200,7 @@ public class Handler extends ApiHandler<Context> {
 			ActivityInHourDo a = new ActivityInHourDo();
 
 			cal.set(Calendar.HOUR, hour);
-			a.setPetId(petId);
+			a.setPetId(pet.getInternalId());
 			a.setHour(cal.getTime());
 
 			if (foods.length > 0) {

@@ -21,6 +21,14 @@
         WHERE <FIELD name='token'/> = ${token}
         ]]></statement>
       </query>
+      <query name="find-by-device" type="SELECT">
+        <param name="device" />
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='device'/> = ${device}
+        ]]></statement>
+      </query>
     </query-defs>
   </entity>
   <entity name="activity-in-hour" table="activity_in_hour" alias="aih" do-class="ActivityInHourDo">

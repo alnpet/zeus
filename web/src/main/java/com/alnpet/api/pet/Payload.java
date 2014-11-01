@@ -31,9 +31,12 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@FieldMeta("device")
 	private String m_device;
 
-	// update
+	// bind
 	@FieldMeta("token")
 	private String m_token;
+
+	@FieldMeta("type")
+	private String m_type;
 
 	@FieldMeta("nickname")
 	private String m_nickname;
@@ -43,6 +46,9 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 
 	@FieldMeta("email")
 	private String m_email;
+	
+	@FieldMeta("uid")
+	private String m_uid;
 
 	@Override
 	public Action getAction() {
@@ -90,6 +96,14 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		return m_token;
 	}
 
+	public String getType() {
+		return m_type;
+	}
+
+	public String getUid() {
+   	return m_uid;
+   }
+
 	public double getWeight() {
 		return m_weight;
 	}
@@ -128,7 +142,7 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 			}
 
 			break;
-		case UPDATE:
+		case BIND:
 			if (isEmpty(m_token)) {
 				ctx.addError("token.required");
 			}

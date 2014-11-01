@@ -9,11 +9,11 @@ import javax.servlet.ServletException;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.InitializationException;
 import org.unidal.lookup.annotation.Inject;
-import org.unidal.web.mvc.PageHandler;
 import org.unidal.web.mvc.annotation.InboundActionMeta;
 import org.unidal.web.mvc.annotation.OutboundActionMeta;
 import org.unidal.web.mvc.annotation.PayloadMeta;
 
+import com.alnpet.api.ApiHandler;
 import com.alnpet.api.ApiPage;
 import com.alnpet.toc.entity.Api;
 import com.alnpet.toc.entity.Sample;
@@ -21,7 +21,7 @@ import com.alnpet.toc.entity.Toc;
 import com.alnpet.toc.transform.BaseVisitor;
 import com.alnpet.toc.transform.DefaultSaxParser;
 
-public class Handler implements PageHandler<Context>, Initializable {
+public class Handler extends ApiHandler<Context> implements Initializable {
 	@Inject
 	private JspViewer m_jspViewer;
 
