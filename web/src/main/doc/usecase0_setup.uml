@@ -1,0 +1,58 @@
+actor "End User" as User
+participant "iOS APP" as iOS
+participant "UBIA Platform" as UBIA
+participant "Feeder" as Feeder
+participant "Gateway" as Gateway
+participant "WebApp" as WebApp
+database Database
+
+User -> iOS : app setup
+activate iOS
+
+== initialize ==
+
+iOS -> WebApp : get pet categories
+activate WebApp
+WebApp -> Database : get categories
+WebApp --> iOS
+deactivate WebApp
+
+|||
+== pet form ==
+
+iOS -> iOS : 0.0) show pet registration form
+
+iOS -> WebApp : 0.1) register pet
+activate WebApp
+WebApp -> WebApp : generate unique token
+WebApp -> Database : persist pet
+WebApp --> iOS : token
+deactivate WebApp
+iOS -> iOS : take photo and store it locally
+
+|||
+== pet owner form ==
+
+iOS -> iOS : show pet owner form
+iOS -> WebApp : submit pet owner form
+activate WebApp
+WebApp -> Database : persist pet owner
+WebApp --> iOS
+deactivate WebApp
+
+|||
+== bind camera ==
+
+iOS -> UBIA : probe camera cmd
+UBIA -> Feeder : probe camera
+activate Feeder
+Feeder -> Feeder : camera lookup
+Feeder --> UBIA
+deactivate Feeder
+UBIA --> iOS
+iOS -> WebApp : bind camera
+activate WebApp
+WebApp -> Database : persist binding
+WebApp --> iOS
+deactivate WebApp
+

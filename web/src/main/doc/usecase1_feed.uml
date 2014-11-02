@@ -19,6 +19,8 @@ deactivate Feeder
 UBIA --> iOS
 deactivate iOS
 
+... \n few minutes later \n ...
+
 Feeder -> Gateway : notify feed result(P2P)
 activate Feeder
 Gateway -> WebApp : notify feed result(HTTP)

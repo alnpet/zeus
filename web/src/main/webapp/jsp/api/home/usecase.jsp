@@ -1,5 +1,8 @@
 <%@ page session="false" language="java" pageEncoding="UTF-8"%>
 
+<h3>User Scenario 0: Setup</h3>
+<img src="${model.webapp}/img/uml/usecase0_setup.png" border="0"><br><br>
+
 <h3>User Scenario 1: Feed</h3>
 <img src="${model.webapp}/img/uml/usecase1_feed.png" border="0"><br><br>
 
