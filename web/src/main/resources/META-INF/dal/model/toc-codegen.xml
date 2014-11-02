@@ -2,16 +2,15 @@
 <model>
   <entity name="toc" root="true">
     <entity-ref name="release" type="list" names="releases" xml-indent="true" />
-    <entity-ref name="change" type="list" names="changes" xml-indent="true" />
     <entity-ref name="api" type="list" names="apis" xml-indent="true" />
   </entity>
   <entity name="release">
     <attribute name="version" value-type="double" />
     <attribute name="date" value-type="Date" format="yyyy-MM-dd" />
-    <element name="text" value-type="String" text="true" />
+    <element name="description" value-type="String" />
+    <entity-ref name="change" type="list" names="changes" xml-indent="true" />
   </entity>
   <entity name="change">
-    <attribute name="bug-id" value-type="String" />
     <attribute name="date" value-type="Date" format="yyyy-MM-dd" />
     <element name="text" value-type="String" text="true" />
   </entity>

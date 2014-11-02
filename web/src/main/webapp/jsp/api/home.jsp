@@ -40,7 +40,7 @@
 							<%@ include file="home/release.jsp"%>
 						</c:when>
 						<c:otherwise>
-							<br>Welcome to Aligned Pet Home page!
+							<br>Welcome to ALNPet Home page!
 						</c:otherwise>
 					</c:choose>
 				</div>

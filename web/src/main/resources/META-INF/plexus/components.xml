@@ -114,24 +114,6 @@
 				<requirement>
 					<role>com.alnpet.api.home.JspViewer</role>
 				</requirement>
-			</requirements>
-		</component>
-		<component>
-			<role>com.alnpet.api.home.JspViewer</role>
-			<implementation>com.alnpet.api.home.JspViewer</implementation>
-			<requirements>
-				<requirement>
-					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
-				</requirement>
-			</requirements>
-		</component>
-		<component>
-			<role>com.alnpet.api.pet.Handler</role>
-			<implementation>com.alnpet.api.pet.Handler</implementation>
-			<requirements>
-				<requirement>
-					<role>com.alnpet.api.pet.JspViewer</role>
-				</requirement>
 				<requirement>
 					<role>com.alnpet.dal.core.PetDao</role>
 				</requirement>
@@ -141,8 +123,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.api.pet.JspViewer</role>
-			<implementation>com.alnpet.api.pet.JspViewer</implementation>
+			<role>com.alnpet.api.home.JspViewer</role>
+			<implementation>com.alnpet.api.home.JspViewer</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
@@ -169,6 +151,30 @@
 				<requirement>
 					<role>org.unidal.web.mvc.view.model.ModelBuilder</role>
 					<role-hint>json</role-hint>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.api.pet.Handler</role>
+			<implementation>com.alnpet.api.pet.Handler</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.api.pet.JspViewer</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.core.PetDao</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.api.XmlViewer</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.api.pet.JspViewer</role>
+			<implementation>com.alnpet.api.pet.JspViewer</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
 				</requirement>
 			</requirements>
 		</component>

@@ -1,12 +1,23 @@
 <toc>
 	<releases>
-		<release version="1.0" date="2014-09-28">Initial version</release>
-		<release version="1.1" date="2014-09-30">Second version</release>
+		<release version="0.1" date="2014-09-28">
+			<description>Initial version</description>
+			<changes>
+				<change date="2014-09-27">Development environment setup and online production environment setup</change>
+				<change date="2014-09-27">API for pet registration and pet owner's contact information collection</change>
+				<change date="2014-09-28">API for pet activities in hourly, daily and weekly</change>
+			</changes>
+		</release>
+		<release version="0.2" date="2014-11-02">
+			<description>More features added</description>
+			<changes>
+				<change date="2014-10-23">API for pet activity data collection</change>
+				<change date="2014-10-30">API for pet categories</change>
+				<change date="2014-11-02">High level design diagram</change>
+				<change date="2014-11-02">User scenarios diagrams</change>
+			</changes>
+		</release>
 	</releases>
-	<changes>
-		<change bug-id="MNG-0001" date="2014-09-27">Pet registration and pet owner's contact information collection</change>
-		<change bug-id="MNG-0002" date="2014-09-28">Pet activities in hourly, daily and weekly</change>
-	</changes>
 	<apis>
 		<api name="register pet">
 			<description>Register a pet</description>
