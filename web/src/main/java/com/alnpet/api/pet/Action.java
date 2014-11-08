@@ -1,15 +1,18 @@
 package com.alnpet.api.pet;
 
 public enum Action implements org.unidal.web.mvc.Action {
-	VIEW("view"),
+	VIEW("1.0", "view"),
 
-	REGISTER("register"),
-	
-	BIND("bind");
+	REGISTER("1.1", "register"),
+
+	BIND("1.2", "bind");
+
+	private String m_id;
 
 	private String m_name;
 
-	private Action(String name) {
+	private Action(String id, String name) {
+		m_id = id;
 		m_name = name;
 	}
 
@@ -21,6 +24,10 @@ public enum Action implements org.unidal.web.mvc.Action {
 		}
 
 		return defaultAction;
+	}
+
+	public String getId() {
+		return m_id;
 	}
 
 	@Override

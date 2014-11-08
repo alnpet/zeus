@@ -20,7 +20,7 @@
 	</releases>
 	<apis>
 		<api name="register pet">
-			<description>Register a pet</description>
+			<description>(1.1) Register a pet</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=register&name=[name]&gender=[gender]&category=[category]&age=[age]&weight=[weight]]]></syntax>
 			<options>
 				<option name="name" type="String">Pet name</option>
@@ -45,7 +45,7 @@ http://api.alnpet.com/api/pet?op=register&name=name&category=category&gender=M&&
 			</samples>
 		</api>
 		<api name="bind pet owner">
-			<description>Bind pet's owner information</description>
+			<description>(1.2.1) Bind pet's owner information</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=user&token=[token]&nickname=[nickname]&email=[email]&phone=[phone]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
@@ -69,7 +69,7 @@ http://api.alnpet.com/api/pet?op=update&type=user&token=b47f5b61-0617-4d3b-b79f-
 			</samples>
 		</api>
 		<api name="bind pet feeder device">
-			<description>Bind pet's feeder device id</description>
+			<description>(1.2.2) Bind pet's feeder device id</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=device&token=[token]&device=[device]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
@@ -91,7 +91,7 @@ http://api.alnpet.com/api/pet?op=update&type=device&token=b47f5b61-0617-4d3b-b79
 			</samples>
 		</api>
 		<api name="get activity data">
-			<description>Get pet's activities</description>
+			<description>(2.0) Get pet's activities</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/activity/[type]/[date]?token=[token]]]></syntax>
 			<options>
 				<option name="type" type="String" optional="true">Type. Optional values: 'day', 'week', 'month'. Default value: 'day'</option>
@@ -125,7 +125,7 @@ http://api.alnpet.com/api/activity/day?token=b47f5b61-0617-4d3b-b79f-857442b45ab
 			</samples>
 		</api>
 		<api name="upload activity data">
-			<description>Upload pet's activities</description>
+			<description>(2.1) Upload pet's activities</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=update&uid=[uid]&hour=[hour]&food=[food]&play=[play]&active=[active]8&rest=[rest]]]></syntax>
 			<options>
 				<option name="uid" type="String">Unique ID of feed device. 20 bytes length from UBIC Platform.</option>
@@ -150,7 +150,7 @@ http://api.alnpet.com/api/activity?op=update&token=b47f5b61-0617-4d3b-b79f-85744
 			</samples>
 		</api>
 		<api name="feed">
-			<description>Feed the pet</description>
+			<description>(2.2) Feed the pet</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=feed&uid=[uid]&amout=[amout]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
