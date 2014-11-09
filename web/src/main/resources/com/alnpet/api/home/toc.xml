@@ -170,5 +170,31 @@ http://api.alnpet.com/api/activity?op=feed&token=b47f5b61-0617-4d3b-b79f-857442b
 				</sample>
 			</samples>
 		</api>
+		<api name="get pet categories">
+			<description>(3.0) Get pet categories</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/category]]></syntax>
+			<samples>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/category
+					]]></request>
+					<response><![CDATA[
+<model>
+<code>200</code>
+<categories>
+<category id="1" name="Affenpinscher" type="Small"/>
+<category id="2" name="Afghan Hound" type="Big"/>
+<category id="3" name="Airedale Terrier" type="Middle"/>
+<category id="4" name="Akita" type="Big"/>
+<category id="5" name="Alaskan Malamute" type="Big"/>
+<category id="6" name="American Eskimo Dog" type="Big"/>
+<category id="7" name="American Staffordshire Terrier" type="Middle"/>
+<category id="8" name="American Water Spaniel" type="Middle"/>
+</categories>
+</model>
+					]]></response>
+				</sample>
+			</samples>
+		</api>
 	</apis>
 </toc>

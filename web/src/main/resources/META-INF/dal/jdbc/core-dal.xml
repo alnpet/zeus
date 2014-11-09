@@ -71,7 +71,7 @@
       </query>
     </query-defs>
   </entity>
-  <entity name="category" table="category" alias="c">
+  <entity name="category" table="category" alias="c" do-class="CategoryDo">
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
     <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
     <query-defs>

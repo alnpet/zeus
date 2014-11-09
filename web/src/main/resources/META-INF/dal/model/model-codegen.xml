@@ -3,6 +3,7 @@
   <entity name="model" root="true">
     <entity-ref name="pet" />
     <entity-ref name="activities" />
+    <entity-ref name="category" type="list" names="categories" xml-indent="true" />
   </entity>
   <entity name="pet">
     <attribute name="token" value-type="String" />
@@ -17,7 +18,7 @@
     <entity-ref name="activity" type="list" names="activities" />
   </entity>
   <entity name="activity">
-    <attribute name="day" value-type="String" />
+    <attribute name="day" value-type="Date" format="yyyy-MM-dd" />
     <attribute name="food" value-type="int" />
     <attribute name="play" value-type="int" />
     <attribute name="active" value-type="int" />
@@ -25,7 +26,13 @@
     <attribute name="food0" value-type="int" />
     <attribute name="sport0" value-type="int" />
     <attribute name="hour" value-type="int" />
+    <attribute name="reset" value-type="int" />
     <attribute name="comment" value-type="String" />
+  </entity>
+  <entity name="category">
+    <attribute name="id" value-type="int" />
+    <attribute name="name" value-type="String" />
+    <attribute name="type" value-type="String" />
   </entity>
 </model>
 

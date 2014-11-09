@@ -94,16 +94,29 @@
   </entity>
   <entity name="category" table="category" alias="c">
     <member name="id" field="id" value-type="int" length="10" nullable="false" key="true" auto-increment="true" />
-    <member name="code" field="code" value-type="String" length="100" nullable="false" />
+    <member name="name" field="name" value-type="String" length="100" nullable="false" />
     <member name="type" field="type" value-type="int" length="10" nullable="false" />
-    <member name="english-name" field="english_name" value-type="String" length="100" nullable="false" />
-    <member name="chinese-name" field="chinese_name" value-type="String" length="100" nullable="false" />
+    <member name="male-weight-min" field="male_weight_min" value-type="double" length="22" nullable="false" />
+    <member name="male-weight-max" field="male_weight_max" value-type="double" length="22" nullable="false" />
+    <member name="male-weight-avg" field="male_weight_avg" value-type="double" length="22" nullable="false" />
+    <member name="male-kid-weight" field="male_kid_weight" value-type="double" length="22" nullable="false" />
+    <member name="male-height" field="male_height" value-type="double" length="22" nullable="false" />
+    <member name="male-energy" field="male_energy" value-type="double" length="22" nullable="false" />
+    <member name="male-feed" field="male_feed" value-type="double" length="22" nullable="false" />
+    <member name="female-weight-min" field="female_weight_min" value-type="double" length="22" nullable="false" />
+    <member name="female-weight-max" field="female_weight_max" value-type="double" length="22" nullable="false" />
+    <member name="female-weight-avg" field="female_weight_avg" value-type="double" length="22" nullable="false" />
+    <member name="female-kid-weight" field="female_kid_weight" value-type="double" length="22" nullable="false" />
+    <member name="female-height" field="female_height" value-type="double" length="22" nullable="false" />
+    <member name="female-energy" field="female_energy" value-type="double" length="22" nullable="false" />
+    <member name="female-feed" field="female_feed" value-type="double" length="22" nullable="false" />
+    <member name="month-to-growup" field="month_to_growup" value-type="int" length="10" nullable="false" />
     <member name="status" field="status" value-type="int" length="10" nullable="false" />
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
     <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
     <var name="key-id" value-type="int" key-member="id" />
     <primary-key name="PRIMARY" members="id" />
-    <index name="idx_code" unique="true" members="code ASC" />
+    <index name="idx_code" unique="true" members="name ASC" />
     <readsets>
       <readset name="FULL" all="true" />
     </readsets>

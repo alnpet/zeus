@@ -43,10 +43,5 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		if (m_action == null) {
 			m_action = Action.VIEW;
 		}
-
-		if (m_token == null) {
-			ctx.addError("token.required");
-		}
-
 	}
 }

@@ -9,6 +9,8 @@ import org.unidal.lookup.configuration.Component;
 import org.unidal.web.mvc.view.model.ModelBuilder;
 
 import com.alnpet.api.XmlViewer;
+import com.alnpet.category.CategoryManager;
+import com.alnpet.dal.core.CategoryDao;
 
 public class ComponentsConfigurator extends AbstractResourceConfigurator {
 	@Override
@@ -17,6 +19,9 @@ public class ComponentsConfigurator extends AbstractResourceConfigurator {
 
 		all.add(C(XmlViewer.class)//
 		      .req(ModelBuilder.class, "xml", "m_xmlBuilder"));
+
+		all.add(C(CategoryManager.class) //
+		      .req(CategoryDao.class));
 
 		// move following line to top-level project as possible
 		all.add(C(JdbcDataSourceDescriptorManager.class) //

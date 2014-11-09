@@ -1,7 +1,9 @@
 package com.alnpet.api.category;
 
 public enum Action implements org.unidal.web.mvc.Action {
-	VIEW("3.0", "view");
+	VIEW("3.0", "view"),
+
+	SETUP("3.1", "setup");
 
 	private String m_id;
 

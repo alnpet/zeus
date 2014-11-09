@@ -7,4 +7,8 @@
 		<activity hour="7" food="60" play="12" active="13" reset="14" comment="breakfast"/>
 		<activity hour="11" food="80" play="12" active="13" reset="14" comment="lunch"/>
 	</activities>
+	<categories>
+		<category id="1" name="Affenpinscher" type="Small"/>
+		<category/>
+	</categories>
 </model>
