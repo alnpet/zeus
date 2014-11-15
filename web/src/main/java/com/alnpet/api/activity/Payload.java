@@ -25,6 +25,9 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@FieldMeta("token")
 	private String m_token;
 
+	@FieldMeta("uid")
+	private String m_uid;
+
 	// update
 	@FieldMeta(value = "date", format = "yyyy-MM-dd")
 	private Date m_date;
@@ -71,7 +74,7 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		return m_endDate;
 	}
 
-	public int getAmout() {
+	public int getAmount() {
 		return m_amount;
 	}
 
@@ -108,6 +111,10 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		return m_type;
 	}
 
+	public String getUid() {
+		return m_uid;
+	}
+
 	public void setAction(String action) {
 		m_action = Action.getByName(action, Action.VIEW);
 	}
@@ -127,13 +134,13 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 			m_action = Action.VIEW;
 		}
 
-		if (m_token == null) {
-			ctx.addError("token.required");
-		}
-
 		switch (m_action) {
 		case VIEW:
 			String date = null;
+
+			if (m_token == null) {
+				ctx.addError("token.required");
+			}
 
 			if (m_pathes != null) {
 				int index = 0;
@@ -154,6 +161,7 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		case UPDATE:
 			boolean valid = true;
 			int len = m_hours.length;
+
 			if (m_hours != null && len > 0) {
 				if (m_date == null) {
 					m_date = Dates.now().beginOf('d').asDate();
@@ -182,15 +190,24 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 				valid = false;
 			}
 
+			if (m_uid == null) {
+				ctx.addError("uid.required");
+			}
+
 			if (!valid) {
 				ctx.addError("request.invalid");
 			}
 
 			break;
 		case FEED:
+			if (m_uid == null) {
+				ctx.addError("uid.required");
+			}
+
 			if (m_amount <= 0) {
 				ctx.addError("amount.required");
 			}
+
 			break;
 		}
 	}

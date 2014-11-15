@@ -126,7 +126,7 @@ http://api.alnpet.com/api/activity/day?token=b47f5b61-0617-4d3b-b79f-857442b45ab
 		</api>
 		<api name="upload activity data">
 			<description>(2.1) Upload pet's activities</description>
-			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=update&uid=[uid]&hour=[hour]&food=[food]&play=[play]&active=[active]8&rest=[rest]]]></syntax>
+			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=update&uid=[uid]&hour=[hour]&food=[food]&play=[play]&active=[active]&rest=[rest]]]></syntax>
 			<options>
 				<option name="uid" type="String">Unique ID of feed device. 20 bytes length from UBIC Platform.</option>
 				<option name="hour" type="int">Hour of day. Optional values: 0-23</option>
@@ -149,6 +149,7 @@ http://api.alnpet.com/api/activity?op=update&token=b47f5b61-0617-4d3b-b79f-85744
 				</sample>
 			</samples>
 		</api>
+		<!-- 
 		<api name="feed">
 			<description>(2.2) Feed the pet</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=feed&uid=[uid]&amout=[amout]]]></syntax>
@@ -170,6 +171,7 @@ http://api.alnpet.com/api/activity?op=feed&token=b47f5b61-0617-4d3b-b79f-857442b
 				</sample>
 			</samples>
 		</api>
+		 -->
 		<api name="get pet categories">
 			<description>(3.0) Get pet categories</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/category]]></syntax>
