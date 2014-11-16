@@ -17,6 +17,13 @@
 				<change date="2014-11-02">User scenarios diagrams</change>
 			</changes>
 		</release>
+		<release version="0.3" date="2014-11-16">
+			<description>Bug fixes</description>
+			<changes>
+				<change date="2014-11-15">Add integration test</change>
+				<change date="2014-11-09">Category online setup</change>
+			</changes>
+		</release>
 	</releases>
 	<apis>
 		<api name="register pet">
@@ -138,7 +145,7 @@ http://api.alnpet.com/api/activity/day?token=b47f5b61-0617-4d3b-b79f-857442b45ab
 			<samples>
 				<sample>
 					<request><![CDATA[
-http://api.alnpet.com/api/activity?op=update&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&hour=10&food=12&play=3&active=18&rest=40
+http://api.alnpet.com/api/activity?op=update&uid=abcdefghij1234567890&hour=10&food=12&play=3&active=18&rest=40
 					]]></request>
 					<response><![CDATA[
 <model>
