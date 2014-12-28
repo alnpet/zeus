@@ -16,15 +16,15 @@ public class ComponentsConfigurator extends AbstractResourceConfigurator {
 		List<Component> all = new ArrayList<Component>();
 
 		all.add(C(XmlViewer.class)//
-		      .req(ModelBuilder.class, "xml", "m_xmlBuilder"));
+				.req(ModelBuilder.class, "xml", "m_xmlBuilder"));
 
 		// move following line to top-level project as possible
 		all.add(C(JdbcDataSourceDescriptorManager.class) //
-		      .config(E("datasourceFile").value("config/datasources.xml"), //
-		            E("baseDirRef").value("PET_HOME")));
+				.config(E("datasourceFile").value("config/datasources.xml"), //
+						E("baseDirRef").value("PET_HOME")));
 
 		all.addAll(new PetDatabaseConfigurator().defineComponents());
-
+		
 		// Please keep it as last
 		all.addAll(new WebComponentConfigurator().defineComponents());
 
