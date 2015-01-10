@@ -158,6 +158,8 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 			}
 
 			break;
+		default:
+			break;
 		}
 	}
 }

@@ -70,8 +70,13 @@ public class Handler extends ApiHandler<Context> {
 				Pet pet = lookupPetByDevice(ctx, model, payload.getUid());
 
 				if (pet != null) {
-					String url = String.format("http://xxx/%s", amount); // TODO need actual url pattern
-					InputStream in = Urls.forIO().connectTimeout(5000).readTimeout(5000).openStream(url);
+					String url = String.format("http://xxx/%s", amount); // TODO
+																			// need
+																			// actual
+																			// url
+																			// pattern
+					InputStream in = Urls.forIO().connectTimeout(5000)
+							.readTimeout(5000).openStream(url);
 					String result = Files.forIO().readFrom(in, "utf-8");
 
 					Cat.logEvent("Pet", "FeedResult", Message.SUCCESS, result);
@@ -82,17 +87,22 @@ public class Handler extends ApiHandler<Context> {
 
 			renderResponse(model);
 			break;
+		default:
+			break;
 		}
 	}
 
-	private void handleInDay(Context ctx, Payload payload, Model model, int petId) {
+	private void handleInDay(Context ctx, Payload payload, Model model,
+			int petId) {
 		try {
 			Date startDate = payload.getStartDate();
 			Date endDate = payload.getEndDate();
 
-			List<ActivityInDayDo> list = m_dayDao.findAllByPetAndDateRange(petId, startDate, endDate,
-			      ActivityInDayEntity.READSET_FULL);
-			Activities activities = new Activities().setStartDate(startDate).setEndDate(endDate);
+			List<ActivityInDayDo> list = m_dayDao
+					.findAllByPetAndDateRange(petId, startDate, endDate,
+							ActivityInDayEntity.READSET_FULL);
+			Activities activities = new Activities().setStartDate(startDate)
+					.setEndDate(endDate);
 
 			for (ActivityInDayDo item : list) {
 				Activity a = new Activity();
@@ -111,13 +121,16 @@ public class Handler extends ApiHandler<Context> {
 		}
 	}
 
-	private void handleInHour(Context ctx, Payload payload, Model model, int petId) {
+	private void handleInHour(Context ctx, Payload payload, Model model,
+			int petId) {
 		try {
 			Date startDate = payload.getStartDate();
 			Date endDate = payload.getEndDate();
-			List<ActivityInHourDo> list = m_hourDao.findAllByPetAndDateRange(petId, startDate, endDate,
-			      ActivityInHourEntity.READSET_FULL);
-			Activities activities = new Activities().setStartDate(startDate).setEndDate(endDate);
+			List<ActivityInHourDo> list = m_hourDao.findAllByPetAndDateRange(
+					petId, startDate, endDate,
+					ActivityInHourEntity.READSET_FULL);
+			Activities activities = new Activities().setStartDate(startDate)
+					.setEndDate(endDate);
 			Calendar cal = Calendar.getInstance();
 
 			for (ActivityInHourDo item : list) {
@@ -141,7 +154,8 @@ public class Handler extends ApiHandler<Context> {
 
 	@Override
 	@OutboundActionMeta(name = "activity")
-	public void handleOutbound(Context ctx) throws ServletException, IOException {
+	public void handleOutbound(Context ctx) throws ServletException,
+			IOException {
 		Model model = new Model(ctx);
 		Payload payload = ctx.getPayload();
 		Action action = payload.getAction();
@@ -168,6 +182,8 @@ public class Handler extends ApiHandler<Context> {
 				}
 
 				renderResponse(model);
+				break;
+			default:
 				break;
 			}
 		} else {

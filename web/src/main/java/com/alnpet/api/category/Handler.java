@@ -54,12 +54,15 @@ public class Handler extends ApiHandler<Context> {
 
 			renderResponse(model);
 			break;
+		default:
+			break;
 		}
 	}
 
 	@Override
 	@OutboundActionMeta(name = "category")
-	public void handleOutbound(Context ctx) throws ServletException, IOException {
+	public void handleOutbound(Context ctx) throws ServletException,
+			IOException {
 		Model model = new Model(ctx);
 		Payload payload = ctx.getPayload();
 
@@ -71,7 +74,8 @@ public class Handler extends ApiHandler<Context> {
 		switch (action) {
 		case VIEW:
 			try {
-				List<CategoryDo> categories = m_categoryDao.findAllByStatus(1, CategoryEntity.READSET_FULL);
+				List<CategoryDo> categories = m_categoryDao.findAllByStatus(1,
+						CategoryEntity.READSET_FULL);
 				List<Category> list = new ArrayList<Category>();
 
 				for (CategoryDo category : categories) {
@@ -79,7 +83,8 @@ public class Handler extends ApiHandler<Context> {
 
 					item.setId(category.getId());
 					item.setName(category.getName());
-					item.setType(PetType.getById(category.getType(), PetType.UNKNOWN).getName());
+					item.setType(PetType.getById(category.getType(),
+							PetType.UNKNOWN).getName());
 					list.add(item);
 				}
 
@@ -89,6 +94,8 @@ public class Handler extends ApiHandler<Context> {
 			}
 
 			renderResponse(model);
+			break;
+		default:
 			break;
 		}
 

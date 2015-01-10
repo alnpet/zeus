@@ -120,7 +120,7 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
 		<plugins>
 			<plugin>
 				<groupId>org.unidal.maven.plugins</groupId>
-				<artifactId>codegen-maven-plugin</artifactId>
+				<artifactId>plexus-maven-plugin</artifactId>
 				<version>2.1.1</version>
 				<executions>
 					<execution>
@@ -133,6 +133,13 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
 							<className>com.alnpet.build.ComponentsConfigurator</className>
 						</configuration>
 					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.unidal.maven.plugins</groupId>
+				<artifactId>codegen-maven-plugin</artifactId>
+				<version>2.1.1</version>
+				<executions>
 					<execution>
 						<id>generate dal model files</id>
 						<phase>generate-sources</phase>

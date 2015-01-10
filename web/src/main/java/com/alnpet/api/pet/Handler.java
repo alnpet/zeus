@@ -55,12 +55,15 @@ public class Handler extends ApiHandler<Context> {
 
 			renderResponse(model);
 			break;
+		default:
+			break;
 		}
 	}
 
 	@Override
 	@OutboundActionMeta(name = "pet")
-	public void handleOutbound(Context ctx) throws ServletException, IOException {
+	public void handleOutbound(Context ctx) throws ServletException,
+			IOException {
 		Model model = new Model(ctx);
 
 		model.setAction(Action.VIEW);
@@ -99,7 +102,8 @@ public class Handler extends ApiHandler<Context> {
 
 	private void handleBind(Context ctx, Payload payload, Model model, Pet pet) {
 		try {
-			PetDo p = m_dao.findByPK(pet.getInternalId(), PetEntity.READSET_FULL);
+			PetDo p = m_dao.findByPK(pet.getInternalId(),
+					PetEntity.READSET_FULL);
 			String type = payload.getType();
 
 			if ("user".equals(type)) {
