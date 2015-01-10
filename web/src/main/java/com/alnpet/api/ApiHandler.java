@@ -50,9 +50,10 @@ public abstract class ApiHandler<T extends ActionContext<?>> implements PageHand
 
 	protected Pet lookupPetByDevice(T ctx, ApiModel<?, ?> model, String device) {
 		try {
-			PetDo petDo = m_dao.findByDevice(device, PetEntity.READSET_FULL);
-			Pet pet = new Pet(petDo.getToken());
+			PetDo p = m_dao.findByDevice(device, PetEntity.READSET_FULL);
+			Pet pet = new Pet(p.getToken());
 
+			pet.setInternalId(p.getId());
 			model.setPet(pet);
 			return pet;
 		} catch (DalNotFoundException e) {

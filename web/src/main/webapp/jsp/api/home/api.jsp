@@ -17,23 +17,25 @@
 			<th class="text-success">Syntax</th>
 			<td colspan="4">${model.webapp}${api.syntax}</td>
 		</tr>
-		<tr>
-			<th class="text-success" rowspan="${w:size(api.options)+2}">Options</th>
-		</tr>
-		<tr>
-			<th>Name</th>
-			<th>Type</th>
-			<th>Optional</th>
-			<th>Description</th>
-		</tr>
-		<c:forEach var="option" items="${api.options}">
+		<c:if test="${not empty api.options}">
 			<tr>
-				<td>${option.name}</td>
-				<td>${option.type}</td>
-				<td>${option.optional}</td>
-				<td>${option.text}</td>
+				<th class="text-success" rowspan="${w:size(api.options)+2}">Options</th>
 			</tr>
-		</c:forEach>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Optional</th>
+				<th>Description</th>
+			</tr>
+			<c:forEach var="option" items="${api.options}">
+				<tr>
+					<td>${option.name}</td>
+					<td>${option.type}</td>
+					<td>${option.optional}</td>
+					<td>${option.text}</td>
+				</tr>
+			</c:forEach>
+		</c:if>
 		<tr>
 			<th class="text-success" rowspan="${w:size(api.samples)*2+1}">Samples</th>
 		</tr>

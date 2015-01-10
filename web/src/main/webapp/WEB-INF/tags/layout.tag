@@ -54,7 +54,7 @@
 	
 		<br />
 		<div class="container">
-			<footer><center>&copy;2014 ALNpet Team</center></footer>
+			<footer><center>&copy;2014 ALNPet Team, All Rights Reserved</center></footer>
 		</div>
 	</div>
 	<!--/.fluid-container-->

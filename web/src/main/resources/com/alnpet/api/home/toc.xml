@@ -17,10 +17,17 @@
 				<change date="2014-11-02">User scenarios diagrams</change>
 			</changes>
 		</release>
+		<release version="0.3" date="2014-11-16">
+			<description>Bug fixes</description>
+			<changes>
+				<change date="2014-11-15">Add integration test</change>
+				<change date="2014-11-09">Category online setup</change>
+			</changes>
+		</release>
 	</releases>
 	<apis>
 		<api name="register pet">
-			<description>Register a pet</description>
+			<description>(1.1) Register a pet</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=register&name=[name]&gender=[gender]&category=[category]&age=[age]&weight=[weight]]]></syntax>
 			<options>
 				<option name="name" type="String">Pet name</option>
@@ -45,7 +52,7 @@ http://api.alnpet.com/api/pet?op=register&name=name&category=category&gender=M&&
 			</samples>
 		</api>
 		<api name="bind pet owner">
-			<description>Bind pet's owner information</description>
+			<description>(1.2.1) Bind pet's owner information</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=user&token=[token]&nickname=[nickname]&email=[email]&phone=[phone]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
@@ -69,7 +76,7 @@ http://api.alnpet.com/api/pet?op=update&type=user&token=b47f5b61-0617-4d3b-b79f-
 			</samples>
 		</api>
 		<api name="bind pet feeder device">
-			<description>Bind pet's feeder device id</description>
+			<description>(1.2.2) Bind pet's feeder device id</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=device&token=[token]&device=[device]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
@@ -91,7 +98,7 @@ http://api.alnpet.com/api/pet?op=update&type=device&token=b47f5b61-0617-4d3b-b79
 			</samples>
 		</api>
 		<api name="get activity data">
-			<description>Get pet's activities</description>
+			<description>(2.0) Get pet's activities</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/activity/[type]/[date]?token=[token]]]></syntax>
 			<options>
 				<option name="type" type="String" optional="true">Type. Optional values: 'day', 'week', 'month'. Default value: 'day'</option>
@@ -125,8 +132,8 @@ http://api.alnpet.com/api/activity/day?token=b47f5b61-0617-4d3b-b79f-857442b45ab
 			</samples>
 		</api>
 		<api name="upload activity data">
-			<description>Upload pet's activities</description>
-			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=update&uid=[uid]&hour=[hour]&food=[food]&play=[play]&active=[active]8&rest=[rest]]]></syntax>
+			<description>(2.1) Upload pet's activities</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=update&uid=[uid]&hour=[hour]&food=[food]&play=[play]&active=[active]&rest=[rest]]]></syntax>
 			<options>
 				<option name="uid" type="String">Unique ID of feed device. 20 bytes length from UBIC Platform.</option>
 				<option name="hour" type="int">Hour of day. Optional values: 0-23</option>
@@ -138,7 +145,7 @@ http://api.alnpet.com/api/activity/day?token=b47f5b61-0617-4d3b-b79f-857442b45ab
 			<samples>
 				<sample>
 					<request><![CDATA[
-http://api.alnpet.com/api/activity?op=update&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&hour=10&food=12&play=3&active=18&rest=40
+http://api.alnpet.com/api/activity?op=update&uid=abcdefghij1234567890&hour=10&food=12&play=3&active=18&rest=40
 					]]></request>
 					<response><![CDATA[
 <model>
@@ -149,8 +156,9 @@ http://api.alnpet.com/api/activity?op=update&token=b47f5b61-0617-4d3b-b79f-85744
 				</sample>
 			</samples>
 		</api>
+		<!-- 
 		<api name="feed">
-			<description>Feed the pet</description>
+			<description>(2.2) Feed the pet</description>
 			<syntax><![CDATA[http://api.alnpet.com/api/activity?op=feed&uid=[uid]&amout=[amout]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
@@ -165,6 +173,33 @@ http://api.alnpet.com/api/activity?op=feed&token=b47f5b61-0617-4d3b-b79f-857442b
 <model>
 <code>200</code>
 <pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+					]]></response>
+				</sample>
+			</samples>
+		</api>
+		 -->
+		<api name="get pet categories">
+			<description>(3.0) Get pet categories</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/category]]></syntax>
+			<samples>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/category
+					]]></request>
+					<response><![CDATA[
+<model>
+<code>200</code>
+<categories>
+<category id="1" name="Affenpinscher" type="Small"/>
+<category id="2" name="Afghan Hound" type="Big"/>
+<category id="3" name="Airedale Terrier" type="Middle"/>
+<category id="4" name="Akita" type="Big"/>
+<category id="5" name="Alaskan Malamute" type="Big"/>
+<category id="6" name="American Eskimo Dog" type="Big"/>
+<category id="7" name="American Staffordshire Terrier" type="Middle"/>
+<category id="8" name="American Water Spaniel" type="Middle"/>
+</categories>
 </model>
 					]]></response>
 				</sample>

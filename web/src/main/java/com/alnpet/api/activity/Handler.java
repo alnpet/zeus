@@ -50,7 +50,7 @@ public class Handler extends ApiHandler<Context> {
 		switch (action) {
 		case UPDATE:
 			if (!ctx.hasErrors()) {
-				Pet pet = lookupPetByToken(ctx, model, payload.getToken());
+				Pet pet = lookupPetByDevice(ctx, model, payload.getUid());
 
 				if (pet != null) {
 					handleUpdate(ctx, payload, model, pet);
@@ -63,11 +63,11 @@ public class Handler extends ApiHandler<Context> {
 
 			renderResponse(model);
 			break;
-		case FEED:
-			int amount = payload.getAmout();
+		case FEED: // TODO delete it
+			int amount = payload.getAmount();
 
 			try {
-				Pet pet = lookupPetByToken(ctx, model, payload.getToken());
+				Pet pet = lookupPetByDevice(ctx, model, payload.getUid());
 
 				if (pet != null) {
 					String url = String.format("http://xxx/%s", amount); // TODO need actual url pattern

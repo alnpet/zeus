@@ -6,11 +6,11 @@ import org.unidal.web.mvc.view.annotation.EntityMeta;
 import org.unidal.web.mvc.view.annotation.ModelMeta;
 
 import com.alnpet.api.ApiModel;
-import com.alnpet.dal.core.Category;
+import com.alnpet.model.entity.Category;
 
 @ModelMeta("model")
 public class Model extends ApiModel<Action, Context> {
-	@EntityMeta("categories")
+	@EntityMeta(value = "category", multiple = true, names = "categories")
 	private List<Category> m_categories;
 
 	public Model(Context ctx) {

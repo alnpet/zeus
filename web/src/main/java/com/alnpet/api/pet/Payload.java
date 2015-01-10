@@ -46,7 +46,7 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 
 	@FieldMeta("email")
 	private String m_email;
-	
+
 	@FieldMeta("uid")
 	private String m_uid;
 
@@ -101,8 +101,8 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	}
 
 	public String getUid() {
-   	return m_uid;
-   }
+		return m_uid;
+	}
 
 	public double getWeight() {
 		return m_weight;
@@ -137,14 +137,24 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 				ctx.addError("category.required");
 			}
 
-			if (isEmpty(m_device)) {
-				ctx.addError("device.required");
-			}
-
 			break;
 		case BIND:
 			if (isEmpty(m_token)) {
 				ctx.addError("token.required");
+			}
+
+			if ("user".equals(m_type)) {
+				if (isEmpty(m_nickname)) {
+					ctx.addError("nickname.required");
+				}
+
+				if (isEmpty(m_email)) {
+					ctx.addError("email.required");
+				}
+			} else if ("device".equals(m_type)) {
+				if (isEmpty(m_device)) {
+					ctx.addError("device.required");
+				}
 			}
 
 			break;

@@ -12,6 +12,15 @@
 			</requirements>
 		</component>
 		<component>
+			<role>com.alnpet.category.CategoryManager</role>
+			<implementation>com.alnpet.category.CategoryManager</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.dal.core.CategoryDao</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
 			<role>org.unidal.dal.jdbc.datasource.JdbcDataSourceDescriptorManager</role>
 			<implementation>org.unidal.dal.jdbc.datasource.JdbcDataSourceDescriptorManager</implementation>
 			<configuration>
@@ -231,6 +240,9 @@
 			<implementation>com.alnpet.api.category.Handler</implementation>
 			<requirements>
 				<requirement>
+					<role>com.alnpet.category.CategoryManager</role>
+				</requirement>
+				<requirement>
 					<role>com.alnpet.dal.core.CategoryDao</role>
 				</requirement>
 				<requirement>
@@ -241,6 +253,15 @@
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.XmlViewer</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.category.CategoryManager</role>
+			<implementation>com.alnpet.category.CategoryManager</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.dal.core.CategoryDao</role>
 				</requirement>
 			</requirements>
 		</component>

@@ -3,7 +3,7 @@ CREATE TABLE `pet` (
   `name` varchar(100) NOT NULL,
   `category` varchar(100) NOT NULL,
   `token` varchar(100) NOT NULL,
-  `device` varchar(100) NOT NULL,
+  `device` varchar(100) DEFAULT NULL,
   `gender` varchar(20) DEFAULT NULL,
   `age` double DEFAULT NULL,
   `weight` double DEFAULT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE `pet` (
   `creation_date` datetime NOT NULL,
   `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_device`(`device`),
+  INDEX `idx_device`(`device`),
   KEY `idx_token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -52,15 +52,28 @@ CREATE TABLE `activity_in_day` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(100) NOT NULL,
-  `type` int(11) NOT NULL COMMENT "1:small, 2:medium, 3:big",
-  `english_name` varchar(100) NOT NULL,
-  `chinese_name` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL COMMENT "1:active, 9:suspended",
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT "No.",
+  `name` varchar(100) NOT NULL COMMENT "Name",
+  `type` int(11) NOT NULL COMMENT "种类. 1:small, 2:medium, 3:big",
+  `male_weight_min` double NOT NULL COMMENT "成年公犬体重下限（Kg）",
+  `male_weight_max` double NOT NULL COMMENT "成年公犬体重上限（Kg）",
+  `male_weight_avg` double NOT NULL COMMENT "成年公犬体重平均（Kg）",
+  `male_kid_weight` double NOT NULL COMMENT "公幼犬体重（CM）",
+  `male_height` double NOT NULL COMMENT "成年公犬身高（CM）",
+  `male_energy` double NOT NULL COMMENT "成年公犬需要卡路里（Kcal）",
+  `male_feed` double NOT NULL COMMENT "成年公犬喂食量（g)",
+  `female_weight_min` double NOT NULL COMMENT "成年母犬体重下限（Kg）",
+  `female_weight_max` double NOT NULL COMMENT "成年母犬体重上限（Kg）",
+  `female_weight_avg` double NOT NULL COMMENT "成年母犬体重平均（Kg）",
+  `female_kid_weight` double NOT NULL COMMENT "公幼犬体重（CM）",
+  `female_height` double NOT NULL COMMENT "成年公犬身高（CM）",
+  `female_energy` double NOT NULL COMMENT "成年公犬需要卡路里（Kcal）",
+  `female_feed` double NOT NULL COMMENT "成年公犬喂食量（g)",
+  `month_to_growup` int(11) NOT NULL COMMENT "成年月数(月）",
+  `status` int(11) NOT NULL COMMENT "1:active, 2:inactive",
   `creation_date` datetime NOT NULL,
   `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY idx_code(`code`)
+  UNIQUE KEY idx_code(`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

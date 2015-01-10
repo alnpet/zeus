@@ -1,11 +1,16 @@
 package com.alnpet.api.category;
 
 public enum Action implements org.unidal.web.mvc.Action {
-	VIEW("view");
+	VIEW("3.0", "view"),
+
+	SETUP("3.1", "setup");
+
+	private String m_id;
 
 	private String m_name;
 
-	private Action(String name) {
+	private Action(String id, String name) {
+		m_id = id;
 		m_name = name;
 	}
 
@@ -17,6 +22,10 @@ public enum Action implements org.unidal.web.mvc.Action {
 		}
 
 		return defaultAction;
+	}
+
+	public String getId() {
+		return m_id;
 	}
 
 	@Override
