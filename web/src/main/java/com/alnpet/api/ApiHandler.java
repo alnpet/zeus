@@ -7,16 +7,14 @@ import org.unidal.lookup.annotation.Inject;
 import org.unidal.web.mvc.ActionContext;
 import org.unidal.web.mvc.PageHandler;
 
-import com.alnpet.dal.core.PetDao;
-import com.alnpet.dal.core.PetDo;
-import com.alnpet.dal.core.PetEntity;
 import com.alnpet.model.entity.Pet;
+import com.alnpet.service.PetService;
 import com.dianping.cat.Cat;
 import com.dianping.cat.CatConstants;
 
 public abstract class ApiHandler<T extends ActionContext<?>> implements PageHandler<T> {
 	@Inject
-	protected PetDao m_dao;
+	protected PetService m_service;
 
 	@Inject
 	private XmlViewer m_xmlViewer;
@@ -25,22 +23,17 @@ public abstract class ApiHandler<T extends ActionContext<?>> implements PageHand
 		Cat.logError(e);
 		ctx.getHttpServletRequest().setAttribute(CatConstants.CAT_STATE, e.getClass().getName());
 
-		model.setCode(500);
-		model.setMessage(e.getMessage());
-		model.setExcpetion(e);
+		model.error(500, e.getMessage()).setExcpetion(e);
 	}
 
 	protected Pet lookupPetByToken(T ctx, ApiModel<?, ?> model, String token) {
 		try {
-			PetDo p = m_dao.findByToken(token, PetEntity.READSET_FULL);
-			Pet pet = new Pet(token);
+			Pet pet = m_service.lookupByToken(token);
 
-			pet.setInternalId(p.getId());
 			model.setPet(pet);
 			return pet;
 		} catch (DalNotFoundException e) {
-			model.setCode(404);
-			model.setMessage("token.invalid");
+			model.error(404, "token.invalid");
 		} catch (Throwable e) {
 			handleException(ctx, model, e);
 		}
@@ -50,15 +43,12 @@ public abstract class ApiHandler<T extends ActionContext<?>> implements PageHand
 
 	protected Pet lookupPetByDevice(T ctx, ApiModel<?, ?> model, String device) {
 		try {
-			PetDo p = m_dao.findByDevice(device, PetEntity.READSET_FULL);
-			Pet pet = new Pet(p.getToken());
+			Pet pet = m_service.lookupByDevice(device);
 
-			pet.setInternalId(p.getId());
 			model.setPet(pet);
 			return pet;
 		} catch (DalNotFoundException e) {
-			model.setCode(404);
-			model.setMessage("device.invalid");
+			model.error(404, "device.invalid");
 		} catch (Throwable e) {
 			handleException(ctx, model, e);
 		}

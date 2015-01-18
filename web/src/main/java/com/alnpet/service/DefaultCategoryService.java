@@ -1,23 +1,41 @@
-package com.alnpet.category;
+package com.alnpet.service;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.unidal.dal.jdbc.DalException;
 import org.unidal.helper.Files;
 import org.unidal.lookup.annotation.Inject;
 
 import com.alnpet.dal.core.CategoryDao;
 import com.alnpet.dal.core.CategoryDo;
+import com.alnpet.dal.core.CategoryEntity;
+import com.alnpet.model.entity.Category;
 import com.site.helper.Splitters;
 
-public class CategoryManager {
+public class DefaultCategoryService implements CategoryService {
 	@Inject
 	private CategoryDao m_dao;
 
-	private List<CategoryDo> parseCategories() throws IOException {
+	@Override
+   public List<Category> findActiveCategories() throws Exception {
+		List<CategoryDo> categories = m_dao.findAllByStatus(1, CategoryEntity.READSET_FULL);
+		List<Category> list = new ArrayList<Category>();
+
+		for (CategoryDo category : categories) {
+			Category item = new Category();
+
+			item.setId(category.getId());
+			item.setName(category.getName());
+			item.setType(PetType.getById(category.getType(), PetType.UNKNOWN).getName());
+			list.add(item);
+		}
+
+		return list;
+	}
+
+	private List<CategoryDo> loadCategories() throws IOException {
 		InputStream in = getClass().getResourceAsStream("category.csv");
 		String csv = Files.forIO().readFrom(in, "utf-8");
 		List<String> lines = Splitters.by('\n').trim().noEmptyItem().split(csv);
@@ -71,8 +89,9 @@ public class CategoryManager {
 		return categories;
 	}
 
-	public void setup() throws IOException, DalException {
-		List<CategoryDo> categories = parseCategories();
+	@Override
+   public void setup() throws Exception {
+		List<CategoryDo> categories = loadCategories();
 
 		for (CategoryDo category : categories) {
 			m_dao.insert(category);

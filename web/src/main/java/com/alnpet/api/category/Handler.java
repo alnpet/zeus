@@ -1,7 +1,6 @@
 package com.alnpet.api.category;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,19 +12,12 @@ import org.unidal.web.mvc.annotation.PayloadMeta;
 
 import com.alnpet.api.ApiHandler;
 import com.alnpet.api.ApiPage;
-import com.alnpet.category.CategoryManager;
-import com.alnpet.category.PetType;
-import com.alnpet.dal.core.CategoryDao;
-import com.alnpet.dal.core.CategoryDo;
-import com.alnpet.dal.core.CategoryEntity;
 import com.alnpet.model.entity.Category;
+import com.alnpet.service.CategoryService;
 
 public class Handler extends ApiHandler<Context> {
 	@Inject
-	private CategoryManager m_manager;
-
-	@Inject
-	private CategoryDao m_categoryDao;
+	private CategoryService m_service;
 
 	@Inject
 	private JspViewer m_jspViewer;
@@ -42,14 +34,12 @@ public class Handler extends ApiHandler<Context> {
 		case SETUP:
 			if (!ctx.hasErrors()) {
 				try {
-					m_manager.setup();
+					m_service.setup();
 				} catch (Throwable e) {
 					handleException(ctx, model, e);
 				}
 			} else {
-				model.setCode(400);
-				model.setMessage("Bad Request");
-				model.setErrors(ctx.getErrors());
+				model.error(400, "Bad Request").setErrors(ctx.getErrors());
 			}
 
 			renderResponse(model);
@@ -61,8 +51,7 @@ public class Handler extends ApiHandler<Context> {
 
 	@Override
 	@OutboundActionMeta(name = "category")
-	public void handleOutbound(Context ctx) throws ServletException,
-			IOException {
+	public void handleOutbound(Context ctx) throws ServletException, IOException {
 		Model model = new Model(ctx);
 		Payload payload = ctx.getPayload();
 
@@ -74,19 +63,7 @@ public class Handler extends ApiHandler<Context> {
 		switch (action) {
 		case VIEW:
 			try {
-				List<CategoryDo> categories = m_categoryDao.findAllByStatus(1,
-						CategoryEntity.READSET_FULL);
-				List<Category> list = new ArrayList<Category>();
-
-				for (CategoryDo category : categories) {
-					Category item = new Category();
-
-					item.setId(category.getId());
-					item.setName(category.getName());
-					item.setType(PetType.getById(category.getType(),
-							PetType.UNKNOWN).getName());
-					list.add(item);
-				}
+				List<Category> list = m_service.findActiveCategories();
 
 				model.setCategories(list);
 			} catch (Throwable e) {

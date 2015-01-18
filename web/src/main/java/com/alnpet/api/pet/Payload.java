@@ -155,6 +155,8 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 				if (isEmpty(m_device)) {
 					ctx.addError("device.required");
 				}
+			} else {
+				ctx.addError("type.required");
 			}
 
 			break;

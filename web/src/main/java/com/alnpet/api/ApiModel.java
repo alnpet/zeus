@@ -46,8 +46,10 @@ public abstract class ApiModel<A extends Action, M extends ActionContext<?>> ext
 		return m_pet;
 	}
 
-	public void setCode(int code) {
+	public ApiModel<A, M> error(int code, String message) {
 		m_code = code;
+		m_message = message;
+		return this;
 	}
 
 	public void setErrors(List<ErrorObject> errors) {
@@ -71,10 +73,6 @@ public abstract class ApiModel<A extends Action, M extends ActionContext<?>> ext
 		e.printStackTrace(pw);
 
 		m_detailMessage = sw.toString();
-	}
-
-	public void setMessage(String message) {
-		m_message = message;
 	}
 
 	public void setPet(Pet pet) {

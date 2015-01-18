@@ -12,11 +12,32 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.category.CategoryManager</role>
-			<implementation>com.alnpet.category.CategoryManager</implementation>
+			<role>com.alnpet.service.PetService</role>
+			<implementation>com.alnpet.service.DefaultPetService</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.dal.core.PetDao</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.service.CategoryService</role>
+			<implementation>com.alnpet.service.DefaultCategoryService</implementation>
 			<requirements>
 				<requirement>
 					<role>com.alnpet.dal.core.CategoryDao</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.service.ActivityService</role>
+			<implementation>com.alnpet.service.DefaultActivityService</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.dal.core.ActivityInHourDao</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.core.ActivityInDayDao</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -124,7 +145,7 @@
 					<role>com.alnpet.api.home.JspViewer</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.core.PetDao</role>
+					<role>com.alnpet.service.PetService</role>
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.XmlViewer</role>
@@ -137,15 +158,6 @@
 			<requirements>
 				<requirement>
 					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
-				</requirement>
-			</requirements>
-		</component>
-		<component>
-			<role>com.alnpet.dal.core.PetDao</role>
-			<implementation>com.alnpet.dal.core.PetDao</implementation>
-			<requirements>
-				<requirement>
-					<role>org.unidal.dal.jdbc.QueryEngine</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -171,7 +183,7 @@
 					<role>com.alnpet.api.pet.JspViewer</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.core.PetDao</role>
+					<role>com.alnpet.service.PetService</role>
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.XmlViewer</role>
@@ -192,37 +204,16 @@
 			<implementation>com.alnpet.api.activity.Handler</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.dal.core.ActivityInHourDao</role>
-				</requirement>
-				<requirement>
-					<role>com.alnpet.dal.core.ActivityInDayDao</role>
+					<role>com.alnpet.service.ActivityService</role>
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.activity.JspViewer</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.core.PetDao</role>
+					<role>com.alnpet.service.PetService</role>
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.XmlViewer</role>
-				</requirement>
-			</requirements>
-		</component>
-		<component>
-			<role>com.alnpet.dal.core.ActivityInHourDao</role>
-			<implementation>com.alnpet.dal.core.ActivityInHourDao</implementation>
-			<requirements>
-				<requirement>
-					<role>org.unidal.dal.jdbc.QueryEngine</role>
-				</requirement>
-			</requirements>
-		</component>
-		<component>
-			<role>com.alnpet.dal.core.ActivityInDayDao</role>
-			<implementation>com.alnpet.dal.core.ActivityInDayDao</implementation>
-			<requirements>
-				<requirement>
-					<role>org.unidal.dal.jdbc.QueryEngine</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -240,37 +231,16 @@
 			<implementation>com.alnpet.api.category.Handler</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.category.CategoryManager</role>
-				</requirement>
-				<requirement>
-					<role>com.alnpet.dal.core.CategoryDao</role>
+					<role>com.alnpet.service.CategoryService</role>
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.category.JspViewer</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.core.PetDao</role>
+					<role>com.alnpet.service.PetService</role>
 				</requirement>
 				<requirement>
 					<role>com.alnpet.api.XmlViewer</role>
-				</requirement>
-			</requirements>
-		</component>
-		<component>
-			<role>com.alnpet.category.CategoryManager</role>
-			<implementation>com.alnpet.category.CategoryManager</implementation>
-			<requirements>
-				<requirement>
-					<role>com.alnpet.dal.core.CategoryDao</role>
-				</requirement>
-			</requirements>
-		</component>
-		<component>
-			<role>com.alnpet.dal.core.CategoryDao</role>
-			<implementation>com.alnpet.dal.core.CategoryDao</implementation>
-			<requirements>
-				<requirement>
-					<role>org.unidal.dal.jdbc.QueryEngine</role>
 				</requirement>
 			</requirements>
 		</component>

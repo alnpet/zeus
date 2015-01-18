@@ -1,4 +1,4 @@
-package com.alnpet.category;
+package com.alnpet.service;
 
 public enum PetType {
 	UNKNOWN(0, "Unknown"),
