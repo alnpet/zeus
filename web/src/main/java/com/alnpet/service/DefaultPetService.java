@@ -59,12 +59,12 @@ public class DefaultPetService implements PetService {
 		}
 
 		m_dao.insert(pet);
-		return new Pet(token).setInternalId(pet.getId()).setToken(token);
+		return new Pet(token).setInternalId(pet.getId());
 	}
 
 	@Override
-   public void bindUser(int id, String nickname, String phone, String email) throws Exception {
-		PetDo p = m_dao.findByPK(id, PetEntity.READSET_FULL);
+   public void bindUser(int petId, String nickname, String phone, String email) throws Exception {
+		PetDo p = m_dao.findByPK(petId, PetEntity.READSET_FULL);
 
 		if (nickname != null) {
 			p.setNickname(nickname);
@@ -82,8 +82,8 @@ public class DefaultPetService implements PetService {
 	}
 
 	@Override
-   public void bindDevice(int id, String device) throws Exception {
-		PetDo p = m_dao.findByPK(id, PetEntity.READSET_FULL);
+   public void bindDevice(int petId, String device) throws Exception {
+		PetDo p = m_dao.findByPK(petId, PetEntity.READSET_FULL);
 
 		p.setDevice(device);
 

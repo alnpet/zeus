@@ -17,6 +17,7 @@ import org.unidal.web.mvc.annotation.PayloadMeta;
 import com.alnpet.api.ApiHandler;
 import com.alnpet.api.ApiPage;
 import com.alnpet.model.entity.Activities;
+import com.alnpet.model.entity.Activity;
 import com.alnpet.model.entity.Pet;
 import com.alnpet.service.ActivityService;
 import com.dianping.cat.Cat;
@@ -140,18 +141,22 @@ public class Handler extends ApiHandler<Context> {
 		if (pet != null) {
 			try {
 				String type = payload.getType();
-				int petId = pet.getInternalId();
-				Activities activities = null;
 
 				if ("day".equals(type)) {
-					activities = m_service.findActivitiesInHour(petId, payload.getStartDate(), payload.getEndDate());
-				} else if ("week".equals(type)) {
-					activities = m_service.findActivitiesInDay(petId, payload.getStartDate(), payload.getEndDate());
-				} else if ("month".equals(type)) {
-					activities = m_service.findActivitiesInDay(petId, payload.getStartDate(), payload.getEndDate());
-				}
+					Activity activity = m_service.findActivity(pet, payload.getStartDate(), payload.getEndDate());
 
-				model.setActivities(activities);
+					model.setActivity(activity);
+				} else if ("week".equals(type)) {
+					Activities activities = m_service.findActivities(pet, type, payload.getStartDate(), payload.getEndDate());
+
+					model.setActivities(activities);
+				} else if ("month".equals(type)) {
+					Activities activities = m_service.findActivities(pet, type, payload.getStartDate(), payload.getEndDate());
+
+					model.setActivities(activities);
+				} else {
+					throw new IllegalArgumentException("type=" + type);
+				}
 			} catch (Throwable e) {
 				handleException(ctx, model, e);
 			}

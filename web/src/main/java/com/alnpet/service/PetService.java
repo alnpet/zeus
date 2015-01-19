@@ -9,7 +9,7 @@ public interface PetService {
 
 	public Pet create(String name, String gender, String category, double age, double weight) throws Exception;
 
-	public void bindDevice(int id, String device) throws Exception;
+	public void bindDevice(int petId, String device) throws Exception;
 
-	public void bindUser(int id, String nickname, String phone, String email) throws Exception;
+	public void bindUser(int petId, String nickname, String phone, String email) throws Exception;
 }

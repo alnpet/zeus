@@ -5,32 +5,45 @@
     <element name="message" value-type="String" />
     <element name="detailMessage" value-type="String" />
     <entity-ref name="pet" />
+    <entity-ref name="activity" />
     <entity-ref name="activities" />
     <entity-ref name="category" type="list" names="categories" xml-indent="true" />
   </entity>
   <entity name="pet">
-    <attribute name="token" value-type="String" />
-  </entity>
-  <entity name="activities">
-    <attribute name="start-date" value-type="Date" format="yyyy-MM-dd HH:mm:ss" />
-    <attribute name="end-date" value-type="Date" format="yyyy-MM-dd HH:mm:ss" />
-    <attribute name="feeling" value-type="int" />
-    <attribute name="health" value-type="int" />
+    <attribute name="id" value-type="String" />
+    <attribute name="category" value-type="int" />
     <attribute name="food0" value-type="int" />
     <attribute name="sport0" value-type="int" />
-    <entity-ref name="activity" type="list" names="activities" />
+    <attribute name="weight" value-type="int" />
+    <attribute name="manual-feed" value-type="int" />
   </entity>
   <entity name="activity">
-    <attribute name="day" value-type="Date" format="yyyy-MM-dd" />
+    <attribute name="date" value-type="Date" format="yyyy-MM-dd" />
     <attribute name="food" value-type="int" />
     <attribute name="play" value-type="int" />
     <attribute name="active" value-type="int" />
     <attribute name="rest" value-type="int" />
+    <attribute name="sport" value-type="int" />
+    <attribute name="feeling" value-type="int" />
+    <attribute name="health" value-type="int" />
     <attribute name="food0" value-type="int" />
     <attribute name="sport0" value-type="int" />
+    <attribute name="day" value-type="int" />
+    <attribute name="week" value-type="int" />
+    <attribute name="food-state" value-type="int" />
+    <entity-ref name="item" type="list" names="items" />
+  </entity>
+  <entity name="item">
     <attribute name="hour" value-type="int" />
-    <attribute name="reset" value-type="int" />
-    <attribute name="comment" value-type="String" />
+    <attribute name="food" value-type="int" />
+    <attribute name="play" value-type="int" />
+    <attribute name="active" value-type="int" />
+    <attribute name="rest" value-type="int" />
+  </entity>
+  <entity name="activities">
+    <attribute name="date" value-type="Date" format="yyyy-MM-dd" />
+    <attribute name="type" value-type="String" />
+    <entity-ref name="activity" type="list" names="activities" />
   </entity>
   <entity name="category">
     <attribute name="id" value-type="int" />
