@@ -5,7 +5,9 @@ public enum Action implements org.unidal.web.mvc.Action {
 
 	UPDATE("2.1", "update"),
 
-	FEED("2.2", "feed");
+	FEED("2.2", "feed"),
+	
+	FAKE("2.9", "fake");
 
 	private String m_id;
 

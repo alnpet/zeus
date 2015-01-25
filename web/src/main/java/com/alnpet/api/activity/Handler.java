@@ -71,6 +71,19 @@ public class Handler extends ApiHandler<Context> {
 
 			renderResponse(model);
 			break;
+		case FAKE:
+			if (!ctx.hasErrors()) {
+				try {
+					m_service.setFake(payload.isFake());
+				} catch (Throwable e) {
+					handleException(ctx, model, e);
+				}
+			} else {
+				model.error(400, "Bad Request").setErrors(ctx.getErrors());
+			}
+
+			renderResponse(model);
+			break;
 		default:
 			break;
 		}

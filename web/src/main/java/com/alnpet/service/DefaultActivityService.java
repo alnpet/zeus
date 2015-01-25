@@ -59,8 +59,6 @@ public class DefaultActivityService implements ActivityService {
 		Random r = new Random();
 		Calendar cal = Calendar.getInstance();
 
-		cal.setTime(startDate);
-
 		if ("week".equals(type)) {
 			int weekday = cal.get(Calendar.DAY_OF_WEEK);
 
@@ -77,7 +75,7 @@ public class DefaultActivityService implements ActivityService {
 				activities.addActivity(a);
 			}
 		} else if ("month".equals(type)) {
-			int day = cal.get(Calendar.DAY_OF_MONTH);
+			int day = cal.get(Calendar.DATE);
 
 			for (int i = 1; i <= day; i++) {
 				Activity a = new Activity().setDay(i);

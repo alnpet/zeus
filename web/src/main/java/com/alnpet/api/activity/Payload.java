@@ -51,6 +51,10 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 	@FieldMeta("amount")
 	private int m_amount;
 
+	// fake
+	@FieldMeta("fake")
+	private boolean m_fake;
+
 	private String m_type;
 
 	private Date m_startDate;
@@ -66,16 +70,16 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 		return m_actives;
 	}
 
+	public int getAmount() {
+		return m_amount;
+	}
+
 	public Date getDate() {
 		return m_date;
 	}
 
 	public Date getEndDate() {
 		return m_endDate;
-	}
-
-	public int getAmount() {
-		return m_amount;
 	}
 
 	public int[] getFoods() {
@@ -113,6 +117,10 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 
 	public String getUid() {
 		return m_uid;
+	}
+
+	public boolean isFake() {
+		return m_fake;
 	}
 
 	public void setAction(String action) {
@@ -209,6 +217,8 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 			}
 
 			break;
+		default:
+			break;
 		}
 	}
 
@@ -221,7 +231,7 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 
 		private Date m_startDate;
 
-		private Date m_endDate;
+		private Date m_endDate;	
 
 		private Date m_today;
 
