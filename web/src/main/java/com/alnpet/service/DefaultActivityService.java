@@ -72,18 +72,27 @@ public class DefaultActivityService implements ActivityService {
 				a.setActive(15 * r.nextInt(32));
 				a.setRest(24 * r.nextInt(16));
 
+				a.setSport0(1000);
+
 				activities.addActivity(a);
 			}
 		} else if ("month".equals(type)) {
 			int day = cal.get(Calendar.DAY_OF_MONTH);
 
-			for (int i = 0; i < day; i++) {
+			for (int i = 1; i <= day; i++) {
 				Activity a = new Activity().setDay(i);
 
+				cal.set(Calendar.DAY_OF_MONTH, i);
+
+				int week = cal.get(Calendar.WEEK_OF_MONTH);
+
+				a.setWeek(week);
 				a.setFood(3 * (32 + r.nextInt(64)));
 				a.setPlay(3 * (r.nextInt(256)));
 				a.setActive(15 * r.nextInt(32));
 				a.setRest(24 * r.nextInt(16));
+
+				a.setSport0(1000);
 
 				activities.addActivity(a);
 			}
@@ -223,13 +232,23 @@ public class DefaultActivityService implements ActivityService {
 					rest += item.getRest();
 				}
 
+				// sum
 				activity.setFood(food);
 				activity.setPlay(play);
 				activity.setActive(active);
 				activity.setRest(rest);
 			}
-			
+
+			// formula
 			activity.setSport(activity.getPlay() * 2 + activity.getActive());
+
+			// formula
+			int delta = activity.getSport0() - activity.getSport();
+			if (delta > 0) {
+				activity.setToSpoon(delta / 7);
+				activity.setToWalk(delta / 17);
+				activity.setToWalk(delta / 27);
+			}
 		}
 	}
 }

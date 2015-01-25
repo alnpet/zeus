@@ -15,29 +15,37 @@ public class DefaultPetService implements PetService {
 	protected PetDao m_dao;
 
 	@Override
-	public Pet lookupByToken(String token) throws Exception {
-		try {
-			PetDo p = m_dao.findByToken(token, PetEntity.READSET_FULL);
-			Pet pet = new Pet(token);
+   public void bindDevice(int petId, String device) throws Exception {
+		PetDo p = m_dao.findByPK(petId, PetEntity.READSET_FULL);
 
-			pet.setInternalId(p.getId());
-			return pet;
-		} catch (DalException e) {
-			throw e;
-		}
+		p.setDevice(device);
+
+		m_dao.updateByPK(p, PetEntity.UPDATESET_FULL);
 	}
 
 	@Override
-	public Pet lookupByDevice(String device) throws Exception {
-		try {
-			PetDo p = m_dao.findByDevice(device, PetEntity.READSET_FULL);
-			Pet pet = new Pet(p.getToken());
+   public void bindPortrait(int petId, byte[] portrait) throws Exception {
+	   // TODO Auto-generated method stub
+	   
+   }
 
-			pet.setInternalId(p.getId());
-			return pet;
-		} catch (DalException e) {
-			throw e;
+	@Override
+   public void bindUser(int petId, String nickname, String phone, String email) throws Exception {
+		PetDo p = m_dao.findByPK(petId, PetEntity.READSET_FULL);
+
+		if (nickname != null) {
+			p.setNickname(nickname);
 		}
+
+		if (phone != null) {
+			p.setPhone(phone);
+		}
+
+		if (email != null) {
+			p.setEmail(email);
+		}
+
+		m_dao.updateByPK(p, PetEntity.UPDATESET_FULL);
 	}
 
 	@Override
@@ -63,30 +71,28 @@ public class DefaultPetService implements PetService {
 	}
 
 	@Override
-   public void bindUser(int petId, String nickname, String phone, String email) throws Exception {
-		PetDo p = m_dao.findByPK(petId, PetEntity.READSET_FULL);
+	public Pet lookupByDevice(String device) throws Exception {
+		try {
+			PetDo p = m_dao.findByDevice(device, PetEntity.READSET_FULL);
+			Pet pet = new Pet(p.getToken());
 
-		if (nickname != null) {
-			p.setNickname(nickname);
+			pet.setInternalId(p.getId());
+			return pet;
+		} catch (DalException e) {
+			throw e;
 		}
-
-		if (phone != null) {
-			p.setPhone(phone);
-		}
-
-		if (email != null) {
-			p.setEmail(email);
-		}
-
-		m_dao.updateByPK(p, PetEntity.UPDATESET_FULL);
 	}
 
 	@Override
-   public void bindDevice(int petId, String device) throws Exception {
-		PetDo p = m_dao.findByPK(petId, PetEntity.READSET_FULL);
+	public Pet lookupByToken(String token) throws Exception {
+		try {
+			PetDo p = m_dao.findByToken(token, PetEntity.READSET_FULL);
+			Pet pet = new Pet(token);
 
-		p.setDevice(device);
-
-		m_dao.updateByPK(p, PetEntity.UPDATESET_FULL);
+			pet.setInternalId(p.getId());
+			return pet;
+		} catch (DalException e) {
+			throw e;
+		}
 	}
 }

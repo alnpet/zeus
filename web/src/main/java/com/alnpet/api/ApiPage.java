@@ -11,7 +11,9 @@ public enum ApiPage implements Page {
 
    ACTIVITY("activity", "activity", "Activity", "Activity", true),
 
-   CATEGORY("category", "category", "Category", "Category", true);
+   CATEGORY("category", "category", "Category", "Category", true),
+
+   SETTING("setting", "setting", "Setting", "Setting", true);
 
    private String m_name;
 

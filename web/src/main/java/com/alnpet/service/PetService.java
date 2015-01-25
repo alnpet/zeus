@@ -12,4 +12,6 @@ public interface PetService {
 	public void bindDevice(int petId, String device) throws Exception;
 
 	public void bindUser(int petId, String nickname, String phone, String email) throws Exception;
+
+	public void bindPortrait(int petId, byte[] portrait) throws Exception;
 }

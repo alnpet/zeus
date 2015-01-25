@@ -26,6 +26,10 @@ public class Handler extends ApiHandler<Context> {
 
 				if ("user".equals(type)) {
 					m_service.bindUser(pet.getInternalId(), payload.getNickname(), payload.getPhone(), payload.getEmail());
+				} else if ("portrait".equals(type)) {
+					byte[] portrait = new byte[0]; // TODO
+					
+					m_service.bindPortrait(pet.getInternalId(), portrait);
 				} else if ("device".equals(type)) {
 					m_service.bindDevice(pet.getInternalId(), payload.getDevice());
 				}

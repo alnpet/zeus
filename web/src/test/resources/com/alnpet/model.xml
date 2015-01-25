@@ -2,19 +2,27 @@
 	<code>200</code>
 	<message>short message</message>
 	<detailMessage>detail message</detailMessage>
-	<pet id="abc-123" category="1" food0="300" sport0="1000" weight="5300" manual-feed="10" >
+	<pet id="abc-123" category="1" food0="300" sport0="1000" weight="5300"
+		manual-feed="10">
 	</pet>
-	<activity date="2014-09-27" food="140" play="27" active="29" rest="31" sport="290" feeling="82" health="90" food0="300" sport0="1000">
-		<item hour="7" food="60" play="12" active="13" rest="14"/>
-		<item hour="8" food="80" play="15" active="16" rest="17"/>
+	<activity date="2014-09-27" food="140" play="27" active="29"
+		rest="31" sport="585" feeling="82" health="90" food0="300" sport0="1000"
+		to-spoon="55" to-walk="25" to-run="15">
+		<item hour="7" food="60" play="12" active="13" rest="14" />
+		<item hour="8" food="80" play="15" active="16" rest="17" />
 	</activity>
 	<activities date="2014-09-01" type="month|week">
-		<activity day="1" week="1" food="60" food-state="1" play="300" active="200" rest="185" sport="585" food0="300" sport0="600"/>
-		<activity day="2" week="1" food="80" food-state="2"/>
-		<activity day="3" food="20" food-state="0"/>
+		<activity day="1" week="1" food="60" food-state="1" play="300"
+			active="200" rest="185" sport="585" food0="300" sport0="600" />
+		<activity day="2" week="1" food="80" food-state="2" />
+		<activity day="3" food="20" food-state="0" />
 	</activities>
 	<categories>
-		<category id="1" name="Affenpinscher" type="Small"/>
-		<category/>
+		<category id="1" name="Affenpinscher" type="Small" />
+		<category />
 	</categories>
+	<settings>
+		<setting key="key1">value1</setting>
+		<setting key="key2">value2</setting>
+	</settings>
 </model>

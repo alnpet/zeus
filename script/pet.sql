@@ -77,3 +77,13 @@ CREATE TABLE `category` (
   UNIQUE KEY idx_code(`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `setting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pet_id` int(11) NOT NULL,
+  `key` varchar(100) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `last_modified_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_pet_key` (`pet_id`, `key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

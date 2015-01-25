@@ -13,7 +13,9 @@ com.alnpet.api.pet.Handler.class,
 
 com.alnpet.api.activity.Handler.class,
 
-com.alnpet.api.category.Handler.class
+com.alnpet.api.category.Handler.class,
+
+com.alnpet.api.setting.Handler.class
 })
 public class ApiModule extends AbstractModule {
 

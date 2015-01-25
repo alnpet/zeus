@@ -151,6 +151,8 @@ public class Payload implements ActionPayload<ApiPage, Action> {
 				if (isEmpty(m_email)) {
 					ctx.addError("email.required");
 				}
+			} else if ("portrait".equals(m_type)) {
+				// TODO
 			} else if ("device".equals(m_type)) {
 				if (isEmpty(m_device)) {
 					ctx.addError("device.required");

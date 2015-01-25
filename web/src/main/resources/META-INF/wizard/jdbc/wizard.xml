@@ -13,6 +13,7 @@
          <table name="activity_in_day"/>
          <table name="activity_in_hour"/>
          <table name="category"/>
+         <table name="setting"/>
       </group>
    </jdbc>
 </wizard>

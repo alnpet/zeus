@@ -6,8 +6,6 @@
 	<entity name="pet">
 		<attribute name="id" value-type="String" key="true" />
 		<attribute name="internal-id" value-type="int" render="false" />
-	    <attribute name="food0" value-type="int" primitive="true" />
-	    <attribute name="sport0" value-type="int" primitive="true" />
 	</entity>
 	<entity name="activities">
 		<entity-ref name="activity" type="list" names="activities" />
@@ -18,6 +16,7 @@
 	    <attribute name="active" value-type="int" primitive="true" />
 	    <attribute name="rest" value-type="int" primitive="true" />
 	    <attribute name="sport" value-type="int" primitive="true" />
+	    <attribute name="sport0" value-type="int" primitive="true" />
 	</entity>
 	<entity name="item">
 	    <attribute name="hour" value-type="int" primitive="true" />
@@ -26,5 +25,9 @@
 	    <attribute name="active" value-type="int" primitive="true" />
 	    <attribute name="rest" value-type="int" primitive="true" />
 	</entity>
+  <entity name="setting">
+    <attribute name="key" value-type="String" key="true"/>
+    <element name="text" value-type="String" text="true" alias="value"/>
+  </entity>
 </model>
 

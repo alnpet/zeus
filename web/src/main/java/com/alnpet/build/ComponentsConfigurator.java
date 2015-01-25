@@ -13,12 +13,15 @@ import com.alnpet.dal.core.ActivityInDayDao;
 import com.alnpet.dal.core.ActivityInHourDao;
 import com.alnpet.dal.core.CategoryDao;
 import com.alnpet.dal.core.PetDao;
+import com.alnpet.dal.core.SettingDao;
 import com.alnpet.service.ActivityService;
 import com.alnpet.service.CategoryService;
 import com.alnpet.service.DefaultActivityService;
 import com.alnpet.service.DefaultCategoryService;
 import com.alnpet.service.DefaultPetService;
+import com.alnpet.service.DefaultSettingService;
 import com.alnpet.service.PetService;
+import com.alnpet.service.SettingService;
 
 public class ComponentsConfigurator extends AbstractResourceConfigurator {
 	@Override
@@ -34,6 +37,8 @@ public class ComponentsConfigurator extends AbstractResourceConfigurator {
 		      .req(CategoryDao.class));
 		all.add(C(ActivityService.class, DefaultActivityService.class) //
 		      .req(ActivityInHourDao.class, ActivityInDayDao.class));
+		all.add(C(SettingService.class, DefaultSettingService.class) //
+		      .req(SettingDao.class));
 
 		// move following line to top-level project as possible
 		all.add(C(JdbcDataSourceDescriptorManager.class) //

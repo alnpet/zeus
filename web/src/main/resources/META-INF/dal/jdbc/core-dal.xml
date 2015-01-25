@@ -105,4 +105,27 @@
       </query>
     </query-defs>
   </entity>
+  <entity name="setting" table="setting" alias="s" do-class="SettingDo">
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
+    <query-defs>
+      <query name="find-by-pet-and-key" type="SELECT">
+        <param name="pet-id" />
+        <param name="key" />
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='pet-id'/> = ${pet-id}
+        	AND <FIELD name='key'/> = ${key}
+        ]]></statement>
+      </query>
+      <query name="delete-all-by-pet-id" type="DELETE">
+        <param name="pet-id" />
+        <statement><![CDATA[
+        DELETE FROM <TABLE/>
+        WHERE <FIELD name='pet-id'/> = ${pet-id}
+        ]]></statement>
+      </query>
+    </query-defs>
+  </entity>
 </entities>

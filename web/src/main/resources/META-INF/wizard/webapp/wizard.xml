@@ -14,6 +14,9 @@
          <page name="category" title="Category" path="category" template="default">
             <description>Category</description>
          </page>
+         <page name="setting" title="Setting" path="setting" template="default">
+            <description>Setting</description>
+         </page>
       </module>
    </webapp>
 </wizard>

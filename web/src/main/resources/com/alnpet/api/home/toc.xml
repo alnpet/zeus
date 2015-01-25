@@ -53,18 +53,19 @@ http://api.alnpet.com/api/pet?op=register&name=name&category=category&gender=M&&
 		</api>
 		<api name="bind pet owner">
 			<description>(1.2.1) Bind pet's owner information</description>
-			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=user&token=[token]&nickname=[nickname]&email=[email]&phone=[phone]]]></syntax>
+			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=user&token=[token]&nickname=[nickname]&email=[email]&phone=[phone]&gender=[gender]&age=[age]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
-				<option name="type" type="String">Bind type. 'user' or 'device'</option>
 				<option name="nickname" type="String">User nick name</option>
 				<option name="email" type="String">User email address</option>
 				<option name="phone" type="String" optional="true">Use contact phone</option>
+				<option name="gender" type="String" optional="true">User gender. Values: 'F' for female, or 'M' for male</option>
+				<option name="age" type="double" optional="true">User's age</option>
 			</options>
 			<samples>
 				<sample>
 					<request><![CDATA[
-http://api.alnpet.com/api/pet?op=update&type=user&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&nickname=nickname&email=abc@example.com
+http://api.alnpet.com/api/pet?op=bind&type=user&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&nickname=nickname&email=abc@example.com
 					]]></request>
 					<response><![CDATA[
 <model>
@@ -80,13 +81,33 @@ http://api.alnpet.com/api/pet?op=update&type=user&token=b47f5b61-0617-4d3b-b79f-
 			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=device&token=[token]&device=[device]]]></syntax>
 			<options>
 				<option name="token" type="String">Access token. Pet ID</option>
-				<option name="type" type="String">Bind type. 'user' or 'device'</option>
 				<option name="device" type="String">Device's unique ID, 20 bytes length</option>
 			</options>
 			<samples>
 				<sample>
 					<request><![CDATA[
-http://api.alnpet.com/api/pet?op=update&type=device&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&device=abcdefghij1234567890
+http://api.alnpet.com/api/pet?op=bind&type=device&token=b47f5b61-0617-4d3b-b79f-857442b45ab1&device=abcdefghij1234567890
+					]]></request>
+					<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+					]]></response>
+				</sample>
+			</samples>
+		</api>
+		<api name="bind pet's portrait">
+			<description>(1.2.3) Bind pet's portrait</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/pet?op=bind&type=portrait&token=[token]]]></syntax>
+			<options>
+				<option name="token" type="String">Access token. Pet ID</option>
+				<option name="HTTP POST BODY" type="byte[]">HTTP POST body. Pet portrait image content</option>
+			</options>
+			<samples>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/pet?op=bind&type=portrait&token=b47f5b61-0617-4d3b-b79f-857442b45ab1
 					]]></request>
 					<response><![CDATA[
 <model>
@@ -200,6 +221,53 @@ http://api.alnpet.com/api/category
 <category id="7" name="American Staffordshire Terrier" type="Middle"/>
 <category id="8" name="American Water Spaniel" type="Middle"/>
 </categories>
+</model>
+					]]></response>
+				</sample>
+			</samples>
+		</api>
+		<api name="view setttings">
+			<description>(4.0) View Settings</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/setting?token=[token]&keys=[key1],[key2]]]></syntax>
+			<options>
+				<option name="token" type="String">Access token. Pet ID</option>
+				<option name="keys" type="String">Key list delimited by comma(',')</option>
+			</options>
+			<samples>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/setting?token=b47f5b61-0617-4d3b-b79f-857442b45ab1&keys=key1,key2
+					]]></request>
+					<response><![CDATA[
+
+<model>
+<code>200</code>
+<settings>
+<setting key="key1">value1</setting>
+<setting key="key2">value2</setting>
+</settings>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
+</model>
+					]]></response>
+				</sample>
+			</samples>
+		</api>
+		<api name="update setttings">
+			<description>(4.1) Update Settings</description>
+			<syntax><![CDATA[http://api.alnpet.com/api/setting?op=update&token=[token]&keys=[key1],[key2]&[key1]=[value1]&[key2]=[value2]]]></syntax>
+			<options>
+				<option name="token" type="String">Access token. Pet ID</option>
+				<option name="keys" type="String">Key list delimited by comma(',')</option>
+			</options>
+			<samples>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/setting?token=b47f5b61-0617-4d3b-b79f-857442b45ab1&keys=key1,key2&op=update&key1=value1&key2=value2
+					]]></request>
+					<response><![CDATA[
+<model>
+<code>200</code>
+<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
 </model>
 					]]></response>
 				</sample>
