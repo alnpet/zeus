@@ -5,7 +5,7 @@
 	</entity>
 	<entity name="pet">
 		<attribute name="id" value-type="String" key="true" />
-		<attribute name="internal-id" value-type="int" render="false" />
+		<attribute name="internal-id" value-type="int" primitive="true" render="false" />
 		<attribute name="fake" value-type="boolean" primitive="true" render="false" />
 	</entity>
 	<entity name="activities">
