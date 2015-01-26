@@ -12,6 +12,4 @@ public interface ActivityService {
 	public Activities findActivities(Pet pet, String type, Date startDate, Date endDate) throws Exception;
 
 	public Activity findActivity(Pet pet, Date startDate, Date endDate) throws Exception;
-
-	public void setFake(boolean mockMode);
 }

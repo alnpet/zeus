@@ -27,8 +27,6 @@ public class DefaultActivityService implements ActivityService {
 	@Inject
 	private ActivityInDayDao m_dayDao;
 
-	private boolean m_fake;
-
 	@Override
 	public void create(int petId, Date hour, int food, int play, int active, int rest) throws Exception {
 		ActivityInHourDo a = new ActivityInHourDo();
@@ -132,7 +130,7 @@ public class DefaultActivityService implements ActivityService {
 	public Activities findActivities(Pet pet, String type, Date startDate, Date endDate) throws Exception {
 		Activities activities = new Activities().setType(type).setDate(startDate);
 
-		if (m_fake) {
+		if (pet.isFake()) {
 			fakeActivities(pet, type, startDate, endDate, activities);
 		} else {
 			loadActivities(pet, startDate, endDate, activities);
@@ -147,7 +145,7 @@ public class DefaultActivityService implements ActivityService {
 	public Activity findActivity(Pet pet, Date startDate, Date endDate) throws Exception {
 		Activity activity = new Activity().setDate(startDate);
 
-		if (m_fake) {
+		if (pet.isFake()) {
 			fakeActivity(pet, startDate, endDate, activity);
 		} else {
 			loadActivity(pet, startDate, endDate, activity);
@@ -200,11 +198,6 @@ public class DefaultActivityService implements ActivityService {
 
 		activity.setFood(food);
 		activity.setSport(sport);
-	}
-
-	@Override
-	public void setFake(boolean fake) {
-		m_fake = fake;
 	}
 
 	private static class ModelVisitor extends BaseVisitor {

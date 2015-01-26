@@ -16,10 +16,7 @@ public class ActivityServiceTest extends ComponentTestCase {
 		ActivityService service = lookup(ActivityService.class);
 		Date startDate = Dates.now().beginOf('d').asDate();
 		Date endDate = Dates.now().endOf('d').asDate();
-
-		service.setFake(true);
-
-		Activity activity = service.findActivity(new Pet(), startDate, endDate);
+		Activity activity = service.findActivity(new Pet().setFake(true), startDate, endDate);
 
 		System.out.println(activity);
 	}
@@ -29,10 +26,7 @@ public class ActivityServiceTest extends ComponentTestCase {
 		ActivityService service = lookup(ActivityService.class);
 		Date startDate = Dates.now().beginOf('d').asDate();
 		Date endDate = Dates.now().endOf('d').asDate();
-
-		service.setFake(true);
-
-		Activities activities = service.findActivities(new Pet(), "week", startDate, endDate);
+		Activities activities = service.findActivities(new Pet().setFake(true), "week", startDate, endDate);
 
 		System.out.println(activities);
 	}
@@ -42,10 +36,7 @@ public class ActivityServiceTest extends ComponentTestCase {
 		ActivityService service = lookup(ActivityService.class);
 		Date startDate = Dates.now().beginOf('d').asDate();
 		Date endDate = Dates.now().endOf('d').asDate();
-		
-		service.setFake(true);
-		
-		Activities activities = service.findActivities(new Pet(), "month", startDate, endDate);
+		Activities activities = service.findActivities(new Pet().setFake(true), "month", startDate, endDate);
 		
 		System.out.println(activities);
 	}

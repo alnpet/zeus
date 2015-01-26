@@ -27,6 +27,13 @@ public abstract class ApiHandler<T extends ActionContext<?>> implements PageHand
 	}
 
 	protected Pet lookupPetByToken(T ctx, ApiModel<?, ?> model, String token) {
+		if ("fake".equals(token)) {
+			Pet pet = new Pet(token).setFake(true);
+			
+			model.setPet(pet);
+			return pet;
+		}
+		
 		try {
 			Pet pet = m_service.lookupByToken(token);
 

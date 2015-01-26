@@ -71,19 +71,6 @@ public class Handler extends ApiHandler<Context> {
 
 			renderResponse(model);
 			break;
-		case FAKE:
-			if (!ctx.hasErrors()) {
-				try {
-					m_service.setFake(payload.isFake());
-				} catch (Throwable e) {
-					handleException(ctx, model, e);
-				}
-			} else {
-				model.error(400, "Bad Request").setErrors(ctx.getErrors());
-			}
-
-			renderResponse(model);
-			break;
 		default:
 			break;
 		}
@@ -160,11 +147,13 @@ public class Handler extends ApiHandler<Context> {
 
 					model.setActivity(activity);
 				} else if ("week".equals(type)) {
-					Activities activities = m_service.findActivities(pet, type, payload.getStartDate(), payload.getEndDate());
+					Activities activities = m_service
+					      .findActivities(pet, type, payload.getStartDate(), payload.getEndDate());
 
 					model.setActivities(activities);
 				} else if ("month".equals(type)) {
-					Activities activities = m_service.findActivities(pet, type, payload.getStartDate(), payload.getEndDate());
+					Activities activities = m_service
+					      .findActivities(pet, type, payload.getStartDate(), payload.getEndDate());
 
 					model.setActivities(activities);
 				} else {
