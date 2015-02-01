@@ -129,24 +129,67 @@ http://api.alnpet.com/api/pet?op=bind&type=portrait&token=b47f5b61-0617-4d3b-b79
 			<samples>
 				<sample>
 					<request><![CDATA[
-http://api.alnpet.com/api/activity/day?token=b47f5b61-0617-4d3b-b79f-857442b45ab1
+http://api.alnpet.com/api/activity/day?token=fake
 					]]></request>
 					<response><![CDATA[
 <model>
 <code>200</code>
-<pet id="b47f5b61-0617-4d3b-b79f-857442b45ab1"/>
-<activities start-date="2014-09-28 00:00:00" end-date="2014-09-28 23:59:59">
-   <activity food="90" play="60" active="60" rest="20" hour="0"/>
-   <activity food="96" play="60" active="0" rest="20" hour="1"/>
-   <activity food="49" play="40" active="60" rest="60" hour="2"/>
-   <activity food="42" play="0" active="40" rest="60" hour="3"/>
-   <activity food="95" play="40" active="40" rest="20" hour="4"/>
-   <activity food="89" play="0" active="20" rest="0" hour="5"/>
-   <activity food="44" play="0" active="0" rest="40" hour="6"/>
-   <activity food="21" play="40" active="60" rest="20" hour="7"/>
-   <activity food="21" play="40" active="0" rest="60" hour="8"/>
-   <activity food="56" play="60" active="40" rest="60" hour="9"/>
+<activity date="2015-02-01" food="185" play="426" active="237" rest="187" sport="1089" feeling="90" health="95" food0="300" sport0="1000">
+   <item hour="0" food="0" play="0" active="0" rest="7"/>
+   <item hour="1" food="0" play="0" active="0" rest="11"/>
+   <item hour="2" food="0" play="0" active="0" rest="10"/>
+   <item hour="3" food="0" play="0" active="0" rest="9"/>
+   <item hour="4" food="0" play="0" active="0" rest="1"/>
+   <item hour="5" food="0" play="0" active="0" rest="11"/>
+   <item hour="6" food="0" play="0" active="0" rest="15"/>
+   <item hour="7" food="0" play="179" active="11" rest="11"/>
+   <item hour="8" food="74" play="0" active="3" rest="9"/>
+   <item hour="9" food="0" play="0" active="28" rest="12"/>
+   <item hour="10" food="0" play="0" active="12" rest="1"/>
+   <item hour="11" food="0" play="0" active="26" rest="12"/>
+   <item hour="12" food="0" play="0" active="9" rest="5"/>
+   <item hour="13" food="0" play="0" active="19" rest="11"/>
+   <item hour="14" food="72" play="0" active="23" rest="8"/>
+   <item hour="15" food="0" play="0" active="9" rest="9"/>
+   <item hour="16" food="0" play="0" active="25" rest="7"/>
+   <item hour="17" food="0" play="65" active="19" rest="9"/>
+   <item hour="18" food="0" play="182" active="22" rest="1"/>
+   <item hour="19" food="0" play="0" active="12" rest="14"/>
+   <item hour="20" food="39" play="0" active="2" rest="12"/>
+   <item hour="21" food="0" play="0" active="17" rest="1"/>
+   <item hour="22" food="0" play="0" active="0" rest="1"/>
+</activity>
+<pet id="fake"/>
+</model>
+					]]></response>
+				</sample>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/activity/week?token=fake
+					]]></request>
+					<response><![CDATA[
+<model>
+<code>200</code>
+<activities date="2015-01-26" type="week">
+   <activity food="207" play="441" active="315" rest="240" sport="1197" sport0="1000" day="0"></activity>
+   <activity food="270" play="324" active="15" rest="336" sport="663" sport0="1000" to-spoon="48" to-walk="12" day="1"></activity>
 </activities>
+<pet id="fake"/>
+</model>
+					]]></response>
+				</sample>
+				<sample>
+					<request><![CDATA[
+http://api.alnpet.com/api/activity/month?token=fake
+					]]></request>
+					<response><![CDATA[
+<model>
+<code>200</code>
+<activities date="2015-02-08" type="month">
+   <activity food="99" play="318" active="465" rest="264" sport="1101" sport0="1000" day="1" week="1"></activity>
+   <activity food="105" play="174" active="270" rest="168" sport="618" sport0="1000" to-spoon="54" to-walk="14" day="1" week="2"></activity>
+</activities>
+<pet id="fake"/>
 </model>
 					]]></response>
 				</sample>
