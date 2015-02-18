@@ -18,5 +18,10 @@
             <description>Setting</description>
          </page>
       </module>
+      <module name="ajax" path="ajax" default="false">
+         <page name="newsletter" title="Newsletter" default="true" path="newsletter" template="default">
+            <description>Newsletter</description>
+         </page>
+      </module>
    </webapp>
 </wizard>

@@ -15,5 +15,8 @@
          <table name="category"/>
          <table name="setting"/>
       </group>
+      <group name="biz" package="com.alnpet.dal.biz">
+         <table name="user"/>
+      </group>
    </jdbc>
 </wizard>

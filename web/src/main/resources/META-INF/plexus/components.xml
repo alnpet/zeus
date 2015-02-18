@@ -154,6 +154,25 @@
 			</requirements>
 		</component>
 		<component>
+			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
+			<role-hint>user</role-hint>
+			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
+			<configuration>
+				<logical-table-name>user</logical-table-name>
+				<physical-table-name>user</physical-table-name>
+				<data-source-name>pet</data-source-name>
+			</configuration>
+		</component>
+		<component>
+			<role>com.alnpet.dal.biz.UserDao</role>
+			<implementation>com.alnpet.dal.biz.UserDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
 			<role>org.unidal.web.mvc.model.ModuleRegistry</role>
 			<implementation>org.unidal.web.mvc.model.ModuleRegistry</implementation>
 			<configuration>
@@ -305,6 +324,41 @@
 			<requirements>
 				<requirement>
 					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>org.unidal.web.mvc.Module</role>
+			<role-hint>com.alnpet.ajax.AjaxModule</role-hint>
+			<implementation>com.alnpet.ajax.AjaxModule</implementation>
+		</component>
+		<component>
+			<role>com.alnpet.ajax.newsletter.Handler</role>
+			<implementation>com.alnpet.ajax.newsletter.Handler</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.ajax.newsletter.JspViewer</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.biz.UserDao</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.ajax.newsletter.JspViewer</role>
+			<implementation>com.alnpet.ajax.newsletter.JspViewer</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.biz.UserDao</role>
+			<implementation>com.alnpet.dal.biz.UserDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
 				</requirement>
 			</requirements>
 		</component>

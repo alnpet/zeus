@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities do-package="com.alnpet.dal.biz" gen="true" >
+  <entity name="user" table="user" alias="u">
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
+  </entity>
+</entities>

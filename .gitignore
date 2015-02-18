@@ -8,3 +8,5 @@
 /*/*/*/.*
 /*/config/*
 /*/logs/*
+
+web/datasources.xml

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.alnpet.api.ApiModule;
+import com.alnpet.ajax.AjaxModule;
 
 import org.unidal.lookup.configuration.Component;
 import org.unidal.web.configuration.AbstractWebComponentsConfigurator;
@@ -14,7 +15,7 @@ class WebComponentConfigurator extends AbstractWebComponentsConfigurator {
 	public List<Component> defineComponents() {
 		List<Component> all = new ArrayList<Component>();
 
-		defineModuleRegistry(all, ApiModule.class, ApiModule.class);
+		defineModuleRegistry(all, ApiModule.class, ApiModule.class, AjaxModule.class);
 
 		return all;
 	}

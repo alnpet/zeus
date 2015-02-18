@@ -73,6 +73,14 @@
    <build>
       <pluginManagement>
          <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<archiveClasses>true</archiveClasses>
+				</configuration>
+			</plugin>
             <plugin>
                <artifactId>maven-compiler-plugin</artifactId>
                <version>2.5.1</version>
@@ -161,7 +169,9 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
                   </goals>
                   <configuration>
                      <manifest><![CDATA[,
-                           ${basedir}/src/main/resources/META-INF/dal/jdbc/core-manifest.xml,]]></manifest>
+                           ${basedir}/src/main/resources/META-INF/dal/jdbc/core-manifest.xml,
+                           ${basedir}/src/main/resources/META-INF/dal/jdbc/biz-manifest.xml,
+                     ]]></manifest>
                   </configuration>
                </execution>
             </executions>
