@@ -3,5 +3,13 @@
   <entity name="user" table="user" alias="u">
     <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
     <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
+    <query-defs>
+      <query name="find-all" type="SELECT" multiple="true">
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        ]]></statement>
+      </query>
+    </query-defs>
   </entity>
 </entities>

@@ -2,9 +2,10 @@ package com.alnpet.ajax.newsletter;
 
 public enum Action implements org.unidal.web.mvc.Action {
 	VIEW("view"),
-	
+
 	SIGNUP("signup"),
-	;
+
+	LIST("list");
 
 	private String m_name;
 

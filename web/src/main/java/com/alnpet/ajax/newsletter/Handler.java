@@ -2,6 +2,7 @@ package com.alnpet.ajax.newsletter;
 
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 
@@ -15,6 +16,7 @@ import org.unidal.web.mvc.annotation.PayloadMeta;
 import com.alnpet.ajax.AjaxPage;
 import com.alnpet.dal.biz.User;
 import com.alnpet.dal.biz.UserDao;
+import com.alnpet.dal.biz.UserEntity;
 import com.dianping.cat.Cat;
 
 public class Handler implements PageHandler<Context> {
@@ -59,13 +61,29 @@ public class Handler implements PageHandler<Context> {
 	@Override
 	@OutboundActionMeta(name = "newsletter")
 	public void handleOutbound(Context ctx) throws ServletException, IOException {
+		Payload payload = ctx.getPayload();
+		Action action = payload.getAction();
 		Model model = new Model(ctx);
 
 		model.setAction(Action.VIEW);
 		model.setPage(AjaxPage.NEWSLETTER);
 
+		if (action == Action.LIST) {
+			showList(ctx, model);
+		}
+
 		if (!ctx.isProcessStopped()) {
 			m_jspViewer.view(ctx, model);
+		}
+	}
+
+	private void showList(Context ctx, Model model) {
+		try {
+			List<User> users = m_dao.findAll(UserEntity.READSET_FULL);
+
+			model.setUsers(users);
+		} catch (DalException e) {
+			Cat.logError(e);
 		}
 	}
 }
