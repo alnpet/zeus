@@ -12,8 +12,8 @@
     <member name="rest" field="rest" value-type="int" length="10" nullable="false" />
     <member name="food-expected" field="food_expected" value-type="int" length="10" nullable="false" />
     <member name="sport-expected" field="sport_expected" value-type="int" length="10" nullable="false" />
-    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
-    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()" />
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()" />
     <var name="key-id" value-type="int" key-member="id" />
     <primary-key name="PRIMARY" members="id" />
     <index name="idx_pet_day" unique="true" members="pet_id ASC, day ASC" />
@@ -57,8 +57,8 @@
     <member name="play" field="play" value-type="int" length="10" nullable="false" />
     <member name="active" field="active" value-type="int" length="10" nullable="false" />
     <member name="rest" field="rest" value-type="int" length="10" nullable="false" />
-    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
-    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()" />
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()" />
     <var name="key-id" value-type="int" key-member="id" />
     <primary-key name="PRIMARY" members="id" />
     <index name="idx_pet_hour" unique="true" members="pet_id ASC, hour ASC" />
@@ -112,8 +112,8 @@
     <member name="female-feed" field="female_feed" value-type="double" length="22" nullable="false" />
     <member name="month-to-growup" field="month_to_growup" value-type="int" length="10" nullable="false" />
     <member name="status" field="status" value-type="int" length="10" nullable="false" />
-    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
-    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()" />
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()" />
     <var name="key-id" value-type="int" key-member="id" />
     <primary-key name="PRIMARY" members="id" />
     <index name="idx_code" unique="true" members="name ASC" />
@@ -159,8 +159,8 @@
     <member name="nickname" field="nickname" value-type="String" length="100" />
     <member name="phone" field="phone" value-type="String" length="100" />
     <member name="email" field="email" value-type="String" length="100" />
-    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
-    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()" />
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()" />
     <var name="key-id" value-type="int" key-member="id" />
     <primary-key name="PRIMARY" members="id" />
     <index name="idx_device" members="device ASC" />
@@ -200,8 +200,8 @@
     <member name="pet-id" field="pet_id" value-type="int" length="10" nullable="false" />
     <member name="key" field="key" value-type="String" length="100" nullable="false" />
     <member name="value" field="value" value-type="String" length="100" nullable="false" />
-    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" />
-    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" />
+    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()" />
+    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()" />
     <var name="key-id" value-type="int" key-member="id" />
     <primary-key name="PRIMARY" members="id" />
     <index name="idx_key" members="pet_id ASC, key ASC" />

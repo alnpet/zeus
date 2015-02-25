@@ -23,5 +23,13 @@
             <description>Newsletter</description>
          </page>
       </module>
+      <module name="biz" path="biz" default="false">
+         <page name="order" title="Order" default="true" path="order" template="default">
+            <description>Order</description>
+         </page>
+         <page name="payment" title="Payment" path="payment" template="default">
+            <description>Payment</description>
+         </page>
+      </module>
    </webapp>
 </wizard>

@@ -63,7 +63,7 @@ public class Payload implements ActionPayload<AjaxPage, Action> {
 				int pos2 = m_email.lastIndexOf('.');
 
 				if (pos1 < 0 || pos2 < 0 || pos1 > pos2) {
-					ctx.addError("email.invalid");
+					ctx.addError("email.invalid").addArgument("email", m_email);
 				}
 			}
 		}

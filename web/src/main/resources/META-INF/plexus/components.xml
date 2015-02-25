@@ -51,6 +51,21 @@
 			</requirements>
 		</component>
 		<component>
+			<role>com.alnpet.service.OrderService</role>
+			<implementation>com.alnpet.service.DefaultOrderService</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.dal.biz.AddressDao</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.biz.CouponDao</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.biz.OrderDao</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
 			<role>org.unidal.dal.jdbc.datasource.JdbcDataSourceDescriptorManager</role>
 			<implementation>org.unidal.dal.jdbc.datasource.JdbcDataSourceDescriptorManager</implementation>
 			<configuration>
@@ -155,6 +170,36 @@
 		</component>
 		<component>
 			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
+			<role-hint>address</role-hint>
+			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
+			<configuration>
+				<logical-table-name>address</logical-table-name>
+				<physical-table-name>address</physical-table-name>
+				<data-source-name>pet</data-source-name>
+			</configuration>
+		</component>
+		<component>
+			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
+			<role-hint>coupon</role-hint>
+			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
+			<configuration>
+				<logical-table-name>coupon</logical-table-name>
+				<physical-table-name>coupon</physical-table-name>
+				<data-source-name>pet</data-source-name>
+			</configuration>
+		</component>
+		<component>
+			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
+			<role-hint>order</role-hint>
+			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
+			<configuration>
+				<logical-table-name>order</logical-table-name>
+				<physical-table-name>order</physical-table-name>
+				<data-source-name>pet</data-source-name>
+			</configuration>
+		</component>
+		<component>
+			<role>org.unidal.dal.jdbc.mapping.TableProvider</role>
 			<role-hint>user</role-hint>
 			<implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
 			<configuration>
@@ -162,6 +207,33 @@
 				<physical-table-name>user</physical-table-name>
 				<data-source-name>pet</data-source-name>
 			</configuration>
+		</component>
+		<component>
+			<role>com.alnpet.dal.biz.AddressDao</role>
+			<implementation>com.alnpet.dal.biz.AddressDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.biz.CouponDao</role>
+			<implementation>com.alnpet.dal.biz.CouponDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.biz.OrderDao</role>
+			<implementation>com.alnpet.dal.biz.OrderDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
 		</component>
 		<component>
 			<role>com.alnpet.dal.biz.UserDao</role>
@@ -359,6 +431,65 @@
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>org.unidal.web.mvc.Module</role>
+			<role-hint>com.alnpet.biz.BizModule</role-hint>
+			<implementation>com.alnpet.biz.BizModule</implementation>
+		</component>
+		<component>
+			<role>com.alnpet.biz.order.Handler</role>
+			<implementation>com.alnpet.biz.order.Handler</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.biz.order.JspViewer</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.service.OrderService</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.biz.UserDao</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.dal.biz.CouponDao</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.biz.order.JspViewer</role>
+			<implementation>com.alnpet.biz.order.JspViewer</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.dal.biz.CouponDao</role>
+			<implementation>com.alnpet.dal.biz.CouponDao</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.dal.jdbc.QueryEngine</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.biz.payment.Handler</role>
+			<implementation>com.alnpet.biz.payment.Handler</implementation>
+			<requirements>
+				<requirement>
+					<role>com.alnpet.biz.payment.JspViewer</role>
+				</requirement>
+			</requirements>
+		</component>
+		<component>
+			<role>com.alnpet.biz.payment.JspViewer</role>
+			<implementation>com.alnpet.biz.payment.JspViewer</implementation>
+			<requirements>
+				<requirement>
+					<role>org.unidal.web.mvc.view.model.ModelHandler</role>
 				</requirement>
 			</requirements>
 		</component>

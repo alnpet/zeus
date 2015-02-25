@@ -97,3 +97,45 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `state` varchar(30) NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `postal_code` varchar(10) NOT NULL,
+  `address_line1` varchar(100) NOT NULL,
+  `address_line2` varchar(100) DEFAULT NULL,
+  `status` int(11) NOT NULL COMMENT "1:active, 9:inactive",
+  `creation_date` datetime NOT NULL,
+  `last_modified_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_userid` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `coupon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) NOT NULL COMMENT "coupon code",
+  `price` double NOT NULL COMMENT "price to pay",
+  `total_quantity` int(11) NOT NULL COMMENT "total quantity",
+  `remaining_quantity` int(11) NOT NULL COMMENT "remaining quantity",
+  `status` int(11) NOT NULL COMMENT "1:active, 9:inactive",
+  `creation_date` datetime NOT NULL,
+  `last_modified_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_code` (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `price` double NOT NULL COMMENT "price to pay",
+  `address_id` int(11) NOT NULL,
+  `coupon` varchar(20) DEFAULT NULL COMMENT "coupon code",
+  `status` int(11) NOT NULL COMMENT "1:created, 2:paid, 3:shipped, 4:received, 9:cancelled",
+  `creation_date` datetime NOT NULL,
+  `last_modified_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_userid` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

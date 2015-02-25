@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entities do-package="com.alnpet.dal.biz" gen="true" >
   <entity name="user" table="user" alias="u">
-    <member name="creation-date" field="creation_date" value-type="Date" nullable="false" insert-expr="NOW()"/>
-    <member name="last-modified-date" field="last_modified_date" value-type="Date" nullable="false" insert-expr="NOW()" update-expr="NOW()"/>
     <query-defs>
       <query name="find-all" type="SELECT" multiple="true">
         <statement><![CDATA[
         SELECT <FIELDS/>
         FROM <TABLE/>
+        ]]></statement>
+      </query>
+      <query name="find-by-email" type="SELECT">
+        <param name="email" />
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='email'/> = ${email}
+        ]]></statement>
+      </query>
+    </query-defs>
+  </entity>
+  <entity name="address" table="address" alias="a">
+    <query-defs>
+      <query name="find-all-by-user-id" type="SELECT" multiple="true">
+        <param name="user-id" />
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='user-id'/> = ${user-id}
+        ]]></statement>
+      </query>
+    </query-defs>
+  </entity>
+  <entity name="coupon" table="coupon" alias="c">
+    <query-defs>
+      <query name="find-by-code" type="SELECT">
+        <param name="code" />
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='code'/> = ${code}
+        ]]></statement>
+      </query>
+    </query-defs>
+  </entity>
+  <entity name="order" table="order" alias="o">
+    <query-defs>
+      <query name="find-all-by-user-id" type="SELECT" multiple="true">
+        <param name="user-id" />
+        <statement><![CDATA[
+        SELECT <FIELDS/>
+        FROM <TABLE/>
+        WHERE <FIELD name='user-id'/> = ${user-id}
         ]]></statement>
       </query>
     </query-defs>

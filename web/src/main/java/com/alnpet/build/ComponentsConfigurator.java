@@ -9,6 +9,9 @@ import org.unidal.lookup.configuration.Component;
 import org.unidal.web.mvc.view.model.ModelBuilder;
 
 import com.alnpet.api.XmlViewer;
+import com.alnpet.dal.biz.AddressDao;
+import com.alnpet.dal.biz.CouponDao;
+import com.alnpet.dal.biz.OrderDao;
 import com.alnpet.dal.core.ActivityInDayDao;
 import com.alnpet.dal.core.ActivityInHourDao;
 import com.alnpet.dal.core.CategoryDao;
@@ -18,8 +21,10 @@ import com.alnpet.service.ActivityService;
 import com.alnpet.service.CategoryService;
 import com.alnpet.service.DefaultActivityService;
 import com.alnpet.service.DefaultCategoryService;
+import com.alnpet.service.DefaultOrderService;
 import com.alnpet.service.DefaultPetService;
 import com.alnpet.service.DefaultSettingService;
+import com.alnpet.service.OrderService;
 import com.alnpet.service.PetService;
 import com.alnpet.service.SettingService;
 
@@ -39,6 +44,8 @@ public class ComponentsConfigurator extends AbstractResourceConfigurator {
 		      .req(ActivityInHourDao.class, ActivityInDayDao.class));
 		all.add(C(SettingService.class, DefaultSettingService.class) //
 		      .req(SettingDao.class));
+		all.add(C(OrderService.class, DefaultOrderService.class) //
+				.req(AddressDao.class, CouponDao.class, OrderDao.class));
 
 		// move following line to top-level project as possible
 		all.add(C(JdbcDataSourceDescriptorManager.class) //

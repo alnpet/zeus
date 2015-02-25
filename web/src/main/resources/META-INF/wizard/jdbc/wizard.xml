@@ -17,6 +17,9 @@
       </group>
       <group name="biz" package="com.alnpet.dal.biz">
          <table name="user"/>
+         <table name="address"/>
+         <table name="order"/>
+         <table name="coupon"/>
       </group>
    </jdbc>
 </wizard>
