@@ -24,6 +24,7 @@ public class CouponTest extends ComponentTestCase {
 		c.setPrice(price);
 		c.setRemainingQuantity(totalQuantity);
 		c.setTotalQuantity(totalQuantity);
+		c.setStatus(1);
 
 		return c;
 	}
