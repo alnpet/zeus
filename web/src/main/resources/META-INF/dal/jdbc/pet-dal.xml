@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<entities do-package="com.alnpet.dal.core" gen="true">
+<entities do-package="com.alnpet.dal.pet" gen="true">
   <entity name="pet" table="pet" alias="p" do-class="PetDo">
     <query-defs>
       <query name="insert" type="INSERT">

@@ -117,6 +117,7 @@ CREATE TABLE `address` (
 CREATE TABLE `coupon` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(20) NOT NULL COMMENT "coupon code",
+  `paypal_button_id` varchar(20) NOT NULL COMMENT "paypal button id", 
   `price` double NOT NULL COMMENT "price to pay",
   `total_quantity` int(11) NOT NULL COMMENT "total quantity",
   `remaining_quantity` int(11) NOT NULL COMMENT "remaining quantity",

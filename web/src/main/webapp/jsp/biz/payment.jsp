@@ -17,6 +17,9 @@
 		<w:error code="*">Error(\${code}) occurred.<br>
 		</w:error>
 	</w:errors>
-
 	
+	Order Details:
+	<xmp>${model.order}</xmp>
+	
+	Please go ahead for payment <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=${model.order.paypalButtonId}">HERE</a>
 </a:layout>

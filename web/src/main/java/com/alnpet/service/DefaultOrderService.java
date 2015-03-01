@@ -101,7 +101,16 @@ public class DefaultOrderService implements OrderService {
 
 	@Override
 	public Order findOrder(int orderId) throws Exception {
-		return m_orderDao.findByPK(orderId, OrderEntity.READSET_FULL);
+		Order order = m_orderDao.findByPK(orderId, OrderEntity.READSET_FULL);
+		String code = order.getCoupon();
+
+		if (code != null && code.length() > 0) {
+			Coupon coupon = m_couponDao.findByCode(code, CouponEntity.READSET_FULL);
+
+			order.setPaypalButtonId(coupon.getPaypalButtonId());
+		}
+
+		return order;
 	}
 
 	@Override
