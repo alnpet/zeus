@@ -3,9 +3,9 @@ package com.alnpet.service;
 import org.unidal.dal.jdbc.DalNotFoundException;
 import org.unidal.lookup.annotation.Inject;
 
-import com.alnpet.dal.core.SettingDao;
-import com.alnpet.dal.core.SettingDo;
-import com.alnpet.dal.core.SettingEntity;
+import com.alnpet.dal.pet.SettingDao;
+import com.alnpet.dal.pet.SettingDo;
+import com.alnpet.dal.pet.SettingEntity;
 
 public class DefaultSettingService implements SettingService {
 	@Inject

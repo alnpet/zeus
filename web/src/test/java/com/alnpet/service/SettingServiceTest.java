@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.unidal.dal.jdbc.DalNotFoundException;
 import org.unidal.lookup.ComponentTestCase;
 
-import com.alnpet.dal.core.SettingDao;
-import com.alnpet.dal.core.SettingDo;
+import com.alnpet.dal.pet.SettingDao;
+import com.alnpet.dal.pet.SettingDo;
 
 public class SettingServiceTest extends ComponentTestCase {
 	@Before

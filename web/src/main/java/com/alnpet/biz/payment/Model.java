@@ -3,7 +3,7 @@ package com.alnpet.biz.payment;
 import org.unidal.web.mvc.ViewModel;
 
 import com.alnpet.biz.BizPage;
-import com.alnpet.dal.biz.Order;
+import com.alnpet.dal.trx.Order;
 
 public class Model extends ViewModel<BizPage, Action, Context> {
 	private Order m_order;

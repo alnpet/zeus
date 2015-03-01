@@ -169,8 +169,8 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
                   </goals>
                   <configuration>
                      <manifest><![CDATA[,
-                           ${basedir}/src/main/resources/META-INF/dal/jdbc/core-manifest.xml,
-                           ${basedir}/src/main/resources/META-INF/dal/jdbc/biz-manifest.xml,
+                           ${basedir}/src/main/resources/META-INF/dal/jdbc/pet-manifest.xml,
+                           ${basedir}/src/main/resources/META-INF/dal/jdbc/trx-manifest.xml,
                      ]]></manifest>
                   </configuration>
                </execution>

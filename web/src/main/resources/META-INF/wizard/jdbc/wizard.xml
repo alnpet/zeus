@@ -8,14 +8,14 @@
          <password>~{d3b7beeeb0b838a00e90b0b0341d860b7f0}</password>
          <properties>useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true</properties>
       </datasource>
-      <group name="core" package="com.alnpet.dal.core">
+      <group name="pet" package="com.alnpet.dal.pet">
          <table name="pet"/>
          <table name="activity_in_day"/>
          <table name="activity_in_hour"/>
          <table name="category"/>
          <table name="setting"/>
       </group>
-      <group name="biz" package="com.alnpet.dal.biz">
+      <group name="trx" package="com.alnpet.dal.trx">
          <table name="user"/>
          <table name="address"/>
          <table name="order"/>

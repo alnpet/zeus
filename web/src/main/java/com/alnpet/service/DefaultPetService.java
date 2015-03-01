@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.unidal.dal.jdbc.DalException;
 import org.unidal.lookup.annotation.Inject;
 
-import com.alnpet.dal.core.PetDao;
-import com.alnpet.dal.core.PetDo;
-import com.alnpet.dal.core.PetEntity;
+import com.alnpet.dal.pet.PetDao;
+import com.alnpet.dal.pet.PetDo;
+import com.alnpet.dal.pet.PetEntity;
 import com.alnpet.model.entity.Pet;
 
 public class DefaultPetService implements PetService {

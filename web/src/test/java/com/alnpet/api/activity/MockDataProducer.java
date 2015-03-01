@@ -9,10 +9,10 @@ import org.unidal.helper.Dates;
 import org.unidal.helper.Dates.DateHelper;
 import org.unidal.lookup.ComponentTestCase;
 
-import com.alnpet.dal.core.ActivityInHourDao;
-import com.alnpet.dal.core.ActivityInHourDo;
-import com.alnpet.dal.core.PetDao;
-import com.alnpet.dal.core.PetDo;
+import com.alnpet.dal.pet.ActivityInHourDao;
+import com.alnpet.dal.pet.ActivityInHourDo;
+import com.alnpet.dal.pet.PetDao;
+import com.alnpet.dal.pet.PetDo;
 
 public class MockDataProducer extends ComponentTestCase {
 	@Test

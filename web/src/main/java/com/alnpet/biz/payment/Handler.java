@@ -11,7 +11,7 @@ import org.unidal.web.mvc.annotation.OutboundActionMeta;
 import org.unidal.web.mvc.annotation.PayloadMeta;
 
 import com.alnpet.biz.BizPage;
-import com.alnpet.dal.biz.Order;
+import com.alnpet.dal.trx.Order;
 import com.alnpet.service.OrderService;
 
 public class Handler implements PageHandler<Context> {

@@ -12,11 +12,11 @@ final class PetDatabaseConfigurator extends AbstractJdbcResourceConfigurator {
       List<Component> all = new ArrayList<Component>();
 
 
-      defineSimpleTableProviderComponents(all, "pet", com.alnpet.dal.core._INDEX.getEntityClasses());
-      defineDaoComponents(all, com.alnpet.dal.core._INDEX.getDaoClasses());
+      defineSimpleTableProviderComponents(all, "pet", com.alnpet.dal.pet._INDEX.getEntityClasses());
+      defineDaoComponents(all, com.alnpet.dal.pet._INDEX.getDaoClasses());
 
-      defineSimpleTableProviderComponents(all, "pet", com.alnpet.dal.biz._INDEX.getEntityClasses());
-      defineDaoComponents(all, com.alnpet.dal.biz._INDEX.getDaoClasses());
+      defineSimpleTableProviderComponents(all, "pet", com.alnpet.dal.trx._INDEX.getEntityClasses());
+      defineDaoComponents(all, com.alnpet.dal.trx._INDEX.getDaoClasses());
 
       return all;
    }

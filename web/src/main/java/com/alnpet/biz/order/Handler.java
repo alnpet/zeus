@@ -12,12 +12,12 @@ import org.unidal.web.mvc.annotation.OutboundActionMeta;
 import org.unidal.web.mvc.annotation.PayloadMeta;
 
 import com.alnpet.biz.BizPage;
-import com.alnpet.dal.biz.CouponDao;
-import com.alnpet.dal.biz.CouponEntity;
-import com.alnpet.dal.biz.Order;
-import com.alnpet.dal.biz.User;
-import com.alnpet.dal.biz.UserDao;
-import com.alnpet.dal.biz.UserEntity;
+import com.alnpet.dal.trx.CouponDao;
+import com.alnpet.dal.trx.CouponEntity;
+import com.alnpet.dal.trx.Order;
+import com.alnpet.dal.trx.User;
+import com.alnpet.dal.trx.UserDao;
+import com.alnpet.dal.trx.UserEntity;
 import com.alnpet.service.OrderService;
 
 public class Handler implements PageHandler<Context> {

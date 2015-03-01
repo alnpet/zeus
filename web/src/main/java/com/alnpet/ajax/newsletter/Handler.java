@@ -14,9 +14,9 @@ import org.unidal.web.mvc.annotation.OutboundActionMeta;
 import org.unidal.web.mvc.annotation.PayloadMeta;
 
 import com.alnpet.ajax.AjaxPage;
-import com.alnpet.dal.biz.User;
-import com.alnpet.dal.biz.UserDao;
-import com.alnpet.dal.biz.UserEntity;
+import com.alnpet.dal.trx.User;
+import com.alnpet.dal.trx.UserDao;
+import com.alnpet.dal.trx.UserEntity;
 import com.dianping.cat.Cat;
 
 public class Handler implements PageHandler<Context> {

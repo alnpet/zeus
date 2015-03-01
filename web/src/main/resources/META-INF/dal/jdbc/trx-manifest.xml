@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <file path="biz-codegen.xml" />
-  <file path="biz-dal.xml" />
+  <file path="trx-codegen.xml" />
+  <file path="trx-dal.xml" />
 </manifest>
 

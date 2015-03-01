@@ -6,15 +6,15 @@ import org.unidal.dal.jdbc.DalException;
 import org.unidal.dal.jdbc.DalNotFoundException;
 import org.unidal.lookup.annotation.Inject;
 
-import com.alnpet.dal.biz.Address;
-import com.alnpet.dal.biz.AddressDao;
-import com.alnpet.dal.biz.AddressEntity;
-import com.alnpet.dal.biz.Coupon;
-import com.alnpet.dal.biz.CouponDao;
-import com.alnpet.dal.biz.CouponEntity;
-import com.alnpet.dal.biz.Order;
-import com.alnpet.dal.biz.OrderDao;
-import com.alnpet.dal.biz.OrderEntity;
+import com.alnpet.dal.trx.Address;
+import com.alnpet.dal.trx.AddressDao;
+import com.alnpet.dal.trx.AddressEntity;
+import com.alnpet.dal.trx.Coupon;
+import com.alnpet.dal.trx.CouponDao;
+import com.alnpet.dal.trx.CouponEntity;
+import com.alnpet.dal.trx.Order;
+import com.alnpet.dal.trx.OrderDao;
+import com.alnpet.dal.trx.OrderEntity;
 
 public class DefaultOrderService implements OrderService {
 	@Inject

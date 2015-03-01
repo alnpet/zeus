@@ -8,9 +8,9 @@ import java.util.List;
 import org.unidal.helper.Files;
 import org.unidal.lookup.annotation.Inject;
 
-import com.alnpet.dal.core.CategoryDao;
-import com.alnpet.dal.core.CategoryDo;
-import com.alnpet.dal.core.CategoryEntity;
+import com.alnpet.dal.pet.CategoryDao;
+import com.alnpet.dal.pet.CategoryDo;
+import com.alnpet.dal.pet.CategoryEntity;
 import com.alnpet.model.entity.Category;
 import com.site.helper.Splitters;
 

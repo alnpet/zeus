@@ -16,7 +16,7 @@
 			<implementation>com.alnpet.service.DefaultPetService</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.dal.core.PetDao</role>
+					<role>com.alnpet.dal.pet.PetDao</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -25,7 +25,7 @@
 			<implementation>com.alnpet.service.DefaultCategoryService</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.dal.core.CategoryDao</role>
+					<role>com.alnpet.dal.pet.CategoryDao</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -34,10 +34,10 @@
 			<implementation>com.alnpet.service.DefaultActivityService</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.dal.core.ActivityInHourDao</role>
+					<role>com.alnpet.dal.pet.ActivityInHourDao</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.core.ActivityInDayDao</role>
+					<role>com.alnpet.dal.pet.ActivityInDayDao</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -46,7 +46,7 @@
 			<implementation>com.alnpet.service.DefaultSettingService</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.dal.core.SettingDao</role>
+					<role>com.alnpet.dal.pet.SettingDao</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -55,13 +55,13 @@
 			<implementation>com.alnpet.service.DefaultOrderService</implementation>
 			<requirements>
 				<requirement>
-					<role>com.alnpet.dal.biz.AddressDao</role>
+					<role>com.alnpet.dal.trx.AddressDao</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.biz.CouponDao</role>
+					<role>com.alnpet.dal.trx.CouponDao</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.biz.OrderDao</role>
+					<role>com.alnpet.dal.trx.OrderDao</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -124,8 +124,8 @@
 			</configuration>
 		</component>
 		<component>
-			<role>com.alnpet.dal.core.ActivityInDayDao</role>
-			<implementation>com.alnpet.dal.core.ActivityInDayDao</implementation>
+			<role>com.alnpet.dal.pet.ActivityInDayDao</role>
+			<implementation>com.alnpet.dal.pet.ActivityInDayDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -133,8 +133,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.core.ActivityInHourDao</role>
-			<implementation>com.alnpet.dal.core.ActivityInHourDao</implementation>
+			<role>com.alnpet.dal.pet.ActivityInHourDao</role>
+			<implementation>com.alnpet.dal.pet.ActivityInHourDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -142,8 +142,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.core.CategoryDao</role>
-			<implementation>com.alnpet.dal.core.CategoryDao</implementation>
+			<role>com.alnpet.dal.pet.CategoryDao</role>
+			<implementation>com.alnpet.dal.pet.CategoryDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -151,8 +151,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.core.PetDao</role>
-			<implementation>com.alnpet.dal.core.PetDao</implementation>
+			<role>com.alnpet.dal.pet.PetDao</role>
+			<implementation>com.alnpet.dal.pet.PetDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -160,8 +160,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.core.SettingDao</role>
-			<implementation>com.alnpet.dal.core.SettingDao</implementation>
+			<role>com.alnpet.dal.pet.SettingDao</role>
+			<implementation>com.alnpet.dal.pet.SettingDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -209,8 +209,8 @@
 			</configuration>
 		</component>
 		<component>
-			<role>com.alnpet.dal.biz.AddressDao</role>
-			<implementation>com.alnpet.dal.biz.AddressDao</implementation>
+			<role>com.alnpet.dal.trx.AddressDao</role>
+			<implementation>com.alnpet.dal.trx.AddressDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -218,8 +218,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.biz.CouponDao</role>
-			<implementation>com.alnpet.dal.biz.CouponDao</implementation>
+			<role>com.alnpet.dal.trx.CouponDao</role>
+			<implementation>com.alnpet.dal.trx.CouponDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -227,8 +227,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.biz.OrderDao</role>
-			<implementation>com.alnpet.dal.biz.OrderDao</implementation>
+			<role>com.alnpet.dal.trx.OrderDao</role>
+			<implementation>com.alnpet.dal.trx.OrderDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -236,8 +236,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.biz.UserDao</role>
-			<implementation>com.alnpet.dal.biz.UserDao</implementation>
+			<role>com.alnpet.dal.trx.UserDao</role>
+			<implementation>com.alnpet.dal.trx.UserDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -412,7 +412,7 @@
 					<role>com.alnpet.ajax.newsletter.JspViewer</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.biz.UserDao</role>
+					<role>com.alnpet.dal.trx.UserDao</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -426,8 +426,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.biz.UserDao</role>
-			<implementation>com.alnpet.dal.biz.UserDao</implementation>
+			<role>com.alnpet.dal.trx.UserDao</role>
+			<implementation>com.alnpet.dal.trx.UserDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -450,10 +450,10 @@
 					<role>com.alnpet.service.OrderService</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.biz.UserDao</role>
+					<role>com.alnpet.dal.trx.UserDao</role>
 				</requirement>
 				<requirement>
-					<role>com.alnpet.dal.biz.CouponDao</role>
+					<role>com.alnpet.dal.trx.CouponDao</role>
 				</requirement>
 			</requirements>
 		</component>
@@ -467,8 +467,8 @@
 			</requirements>
 		</component>
 		<component>
-			<role>com.alnpet.dal.biz.CouponDao</role>
-			<implementation>com.alnpet.dal.biz.CouponDao</implementation>
+			<role>com.alnpet.dal.trx.CouponDao</role>
+			<implementation>com.alnpet.dal.trx.CouponDao</implementation>
 			<requirements>
 				<requirement>
 					<role>org.unidal.dal.jdbc.QueryEngine</role>
@@ -481,6 +481,9 @@
 			<requirements>
 				<requirement>
 					<role>com.alnpet.biz.payment.JspViewer</role>
+				</requirement>
+				<requirement>
+					<role>com.alnpet.service.OrderService</role>
 				</requirement>
 			</requirements>
 		</component>

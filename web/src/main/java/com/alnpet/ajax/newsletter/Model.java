@@ -3,7 +3,7 @@ package com.alnpet.ajax.newsletter;
 import java.util.List;
 
 import com.alnpet.ajax.AjaxPage;
-import com.alnpet.dal.biz.User;
+import com.alnpet.dal.trx.User;
 
 import org.unidal.web.mvc.ViewModel;
 

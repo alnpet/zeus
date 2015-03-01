@@ -8,12 +8,12 @@ import java.util.Random;
 import org.unidal.dal.jdbc.DalException;
 import org.unidal.lookup.annotation.Inject;
 
-import com.alnpet.dal.core.ActivityInDayDao;
-import com.alnpet.dal.core.ActivityInDayDo;
-import com.alnpet.dal.core.ActivityInDayEntity;
-import com.alnpet.dal.core.ActivityInHourDao;
-import com.alnpet.dal.core.ActivityInHourDo;
-import com.alnpet.dal.core.ActivityInHourEntity;
+import com.alnpet.dal.pet.ActivityInDayDao;
+import com.alnpet.dal.pet.ActivityInDayDo;
+import com.alnpet.dal.pet.ActivityInDayEntity;
+import com.alnpet.dal.pet.ActivityInHourDao;
+import com.alnpet.dal.pet.ActivityInHourDo;
+import com.alnpet.dal.pet.ActivityInHourEntity;
 import com.alnpet.model.entity.Activities;
 import com.alnpet.model.entity.Activity;
 import com.alnpet.model.entity.Item;
