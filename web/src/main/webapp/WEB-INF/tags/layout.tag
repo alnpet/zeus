@@ -1,4 +1,5 @@
 <%@ tag isELIgnored="false" trimDirectiveWhitespaces="true" %>
+<%@ attribute name="head" fragment="true" required="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="navBar" class="com.alnpet.view.NavigationBar" scope="page" />
 
@@ -14,6 +15,8 @@
 	<link href="${model.webapp}/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
 	<script src="${model.webapp}/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<script type="text/javascript">var contextpath = "${model.webapp}";</script>
+	
+	<jsp:invoke fragment="head"/>
 </head>
 
 <body data-spy="scroll" data-target=".subnav" data-offset="50">

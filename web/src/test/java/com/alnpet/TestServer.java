@@ -38,6 +38,8 @@ public class TestServer extends JettyServer {
 	@Override
 	protected void postConfigure(WebAppContext context) {
 		context.addFilter(GzipFilter.class, "/api/*", Handler.ALL);
+		context.addFilter(GzipFilter.class, "/js/*", Handler.ALL);
+		context.addFilter(GzipFilter.class, "/css/*", Handler.ALL);
 	}
 
 	@Test
@@ -46,7 +48,7 @@ public class TestServer extends JettyServer {
 		// display("/alnpet/api/pet?op=register&name=name&category=category&device=d101");
 		// display("/alnpet/api/pet?op=update&token=fefa2021-f0f1-4215-aebe-db52118daafc&nickname=nickname&email=abc@example.com");
 		// display("/alnpet/api/activity/day?token=2eb4ead5-b76a-4a7d-86de-f95862dc5056");
-		display("/pet/biz/payment");
+		display("/pet/query");
 		waitForAnyKey();
 	}
 }
