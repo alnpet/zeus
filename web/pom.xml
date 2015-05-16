@@ -137,11 +137,10 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
          <plugin>
             <groupId>org.unidal.maven.plugins</groupId>
             <artifactId>plexus-maven-plugin</artifactId>
-            <version>2.1.1</version>
+            <version>2.2.0</version>
             <executions>
                <execution>
-                  <id>generate plexus component descriptor</id>
-                  <phase>process-classes</phase>
+               	  <id>generate component.xml</id>
                   <goals>
                      <goal>plexus</goal>
                   </goals>
@@ -149,12 +148,18 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
                      <className>com.alnpet.build.ComponentsConfigurator</className>
                   </configuration>
                </execution>
+               <execution>
+               	  <id>prepare web module resources</id>
+               	  <goals>
+               	  	 <goal>web-module</goal>
+               	  </goals>
+               </execution>
             </executions>
          </plugin>
          <plugin>
             <groupId>org.unidal.maven.plugins</groupId>
             <artifactId>codegen-maven-plugin</artifactId>
-            <version>2.1.1</version>
+            <version>2.1.2</version>
             <executions>
                <execution>
                   <id>generate dal model files</id>
