@@ -136,28 +136,6 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
       <plugins>
          <plugin>
             <groupId>org.unidal.maven.plugins</groupId>
-            <artifactId>plexus-maven-plugin</artifactId>
-            <version>2.2.0</version>
-            <executions>
-               <execution>
-               	  <id>generate component.xml</id>
-                  <goals>
-                     <goal>plexus</goal>
-                  </goals>
-                  <configuration>
-                     <className>com.alnpet.build.ComponentsConfigurator</className>
-                  </configuration>
-               </execution>
-               <execution>
-               	  <id>prepare web module resources</id>
-               	  <goals>
-               	  	 <goal>web-module</goal>
-               	  </goals>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <groupId>org.unidal.maven.plugins</groupId>
             <artifactId>codegen-maven-plugin</artifactId>
             <version>2.1.2</version>
             <executions>
@@ -183,23 +161,6 @@ org.eclipse.jdt.core.compiler.compliance=1.6]]></content>
                            ${basedir}/src/main/resources/META-INF/dal/jdbc/pet-manifest.xml,
                            ${basedir}/src/main/resources/META-INF/dal/jdbc/trx-manifest.xml,
                      ]]></manifest>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <groupId>org.unidal.maven.plugins</groupId>
-            <artifactId>uml-maven-plugin</artifactId>
-            <version>2.0.7</version>
-            <executions>
-               <execution>
-                  <id>default-cli</id>
-                  <goals>
-                     <goal>generate</goal>
-                  </goals>
-                  <configuration>
-                     <source>${basedir}/src/main/doc</source>
-                     <output>${basedir}/src/main/webapp/img/uml</output>
                   </configuration>
                </execution>
             </executions>
